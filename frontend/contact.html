@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AI Credit Evaluator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Floating Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem;">Login</a>
+                <a href="dashboard.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 50vh;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-subtitle">Get in Touch</p>
+                <h1 class="hero-title">
+                    Let's <span class="hero-title-highlight">Connect</span>
+                </h1>
+                <p class="hero-description">
+                    Have questions about our AI credit evaluation system? We're here to help.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="content-section">
+        <div class="container">
+            <div class="grid grid-2" style="gap: 3rem;">
+                <!-- Contact Form -->
+                <div class="card">
+                    <h3 style="font-size: 2rem; margin-bottom: 2rem;">Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-input" placeholder="you@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select id="subject" class="form-select" required>
+                                <option value="">Select a topic...</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="partnership">Partnership Opportunities</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-input" rows="5" placeholder="Tell us how we can help..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-lime" style="width: 100%;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div>
+                    <div class="card mb-lg">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Contact Information</h3>
+                        <div style="display: grid; gap: 1.5rem;">
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="width: 48px; height: 48px; background: #E7F9F3; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06D6A0"
+                                        stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 700; margin-bottom: 0.25rem;">Address</p>
+                                    <p style="color: var(--color-text-secondary);">
+                                        Vellore Institute of Technology<br>
+                                        Katpadi - Thiruvalam Road<br>
+                                        Vellore, Tamil Nadu 632014<br>
+                                        India
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="width: 48px; height: 48px; background: #E8F4FF; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#118AB2"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 700; margin-bottom: 0.25rem;">Email</p>
+                                    <p style="color: var(--color-text-secondary);">
+                                        <a href="mailto:gagankb2006@gmail.com"
+                                            style="color: var(--color-accent-lime); text-decoration: none;">gagankb2006@gmail.com</a><br>
+                                        <a href="mailto:aiman.dhanani@gmail.com"
+                                            style="color: var(--color-accent-lime); text-decoration: none;">aiman.dhanani@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card"
+                            style="background: linear-gradient(135deg, var(--color-accent-lime), #CFFF6E); border: none;">
+                            <h4 style="margin-bottom: 1rem; font-size: 1.25rem; color: var(--color-text-primary);">Quick
+                                Response</h4>
+                            <p style="color: var(--color-text-primary); margin-bottom: 0;">
+                                We typically respond to all inquiries within 24-48 hours during business days.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script src="js/theme.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

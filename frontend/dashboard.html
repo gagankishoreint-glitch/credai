@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AI Credit Evaluator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Floating Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem;">Login</a>
+                <a href="index.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">New Application</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="padding-top: 120px; min-height: 100vh;">
+        <div class="container" style="padding: 3rem;">
+            <div class="mb-xl">
+                <h2 class="section-title" style="text-align: left;">Applications Dashboard</h2>
+                <p class="section-description" style="text-align: left; margin: 1rem 0;">Review and manage all loan
+                    applications</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="card mb-lg">
+                <div class="flex gap-md items-center">
+                    <div class="form-group" style="margin: 0; flex: 1;">
+                        <select id="statusFilter" class="form-select">
+                            <option value="">All Applications</option>
+                            <option value="pending">Pending Evaluation</option>
+                            <option value="evaluated">Evaluated</option>
+                        </select>
+                    </div>
+                    <button id="refreshBtn" class="btn btn-lime">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6" />
+                            <path d="M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
+                        </svg>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center" style="padding: 5rem 2rem;">
+                <div class="spinner" style="margin: 0 auto;"></div>
+                <p style="margin-top: 2rem; color: var(--color-text-secondary);">Loading applications...</p>
+            </div>
+
+            <!-- Applications Grid -->
+            <div id="applicationsGrid" class="grid grid-2" style="display: none;">
+                <!-- Applications will be inserted here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="card text-center" style="display: none; padding: 5rem 3rem;">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 2rem; opacity: 0.2;">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                <h3 style="margin-bottom: 1rem; font-size: 2rem;">No Applications Yet</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem;">Submit your
+                    first application to get started</p>
+                <a href="index.html" class="btn btn-lime">Create Application</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

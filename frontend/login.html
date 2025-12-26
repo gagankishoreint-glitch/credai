@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AI Credit Evaluator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Floating Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="login.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div style="max-width: 500px; margin: 0 auto;">
+                <div class="text-center mb-xl">
+                    <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Welcome Back</h1>
+                    <p style="color: var(--color-text-secondary); font-size: 1.1rem;">
+                        Sign in to access AI-powered credit evaluation
+                    </p>
+                </div>
+
+                <!-- Login Card -->
+                <div class="card" style="padding: 3rem;">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="you@company.com"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-input"
+                                placeholder="Enter your password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                            Sign In
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                <polyline points="10 17 15 12 10 7" />
+                                <line x1="15" y1="12" x2="3" y2="12" />
+                            </svg>
+                        </button>
+                    </form>
+
+                    <div style="margin: 2rem 0; text-align: center; position: relative;">
+                        <div
+                            style="border-top: 2px solid var(--color-bg-secondary); position: absolute; top: 50%; left: 0; right: 0;">
+                        </div>
+                        <span
+                            style="background: var(--color-bg-card); padding: 0 1rem; position: relative; color: var(--color-text-muted); font-weight: 600; font-size: 0.875rem;">OR</span>
+                    </div>
+
+                    <button type="button" class="btn btn-lime" id="guestBtn" style="width: 100%;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        Continue as Guest
+                    </button>
+
+                    <p style="text-align: center; margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                        Don't have an account?
+                        <a href="#"
+                            style="color: var(--color-text-primary); font-weight: 700; text-decoration: none;">Sign
+                            up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/theme.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Login functionality coming soon! For now, please use Guest Mode.');
+        });
+
+        document.getElementById('guestBtn').addEventListener('click', function () {
+            // Set guest mode flag
+            localStorage.setItem('userMode', 'guest');
+            localStorage.setItem('userName', 'Guest User');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Credit Evaluator | Intelligent Loan Assessment</title>
+    <meta name="description"
+        content="Automated creditworthiness assessment powered by AI. Fast, accurate, data-driven insights for business loans.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Floating Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="login.html" class="btn btn-outline" style="padding: 0.6rem 1.5rem;">Login</a>
+                <a href="dashboard.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-subtitle">AI-Powered Credit Intelligence</p>
+                <h1 class="hero-title">
+                    Credit Decisions<br />
+                    Made <span class="hero-title-highlight">Simple</span>
+                </h1>
+                <p class="hero-description">
+                    Automate creditworthiness assessment with intelligent AI.
+                    Get instant, data-driven insights that reduce decision time by 80%
+                    and empower your underwriters with actionable intelligence.
+                </p>
+                <a href="#application-form" class="hero-cta">
+                    Apply for Credit Assessment
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="content-section" id="features" style="background: var(--color-bg-secondary); padding: 6rem 0;">
+        <div class="container">
+            <div class="grid grid-3">
+                <div class="card">
+                    <div
+                        style="width: 64px; height: 64px; background: #E7F9F3; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#06D6A0" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Automated Assessment</h3>
+                    <p style="color: var(--color-text-secondary);">
+                        AI-powered evaluation processes applications instantly, analyzing 50+ data points in seconds.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="width: 64px; height: 64px; background: #FFF6DC; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFD23F" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">80% Faster Decisions</h3>
+                    <p style="color: var(--color-text-secondary);">
+                        Reduce evaluation time from days to minutes. Get instant risk scores and recommendations.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="width: 64px; height: 64px; background: #E8F4FF; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#118AB2" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Data-Driven Insights</h3>
+                    <p style="color: var(--color-text-secondary);">
+                        Explainable AI shows which factors influenced each decision, empowering your team.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="content-section" id="application-form">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 class="section-title">Submit Application</h2>
+                <p class="section-description">
+                    Complete the form below for instant AI-powered credit risk assessment
+                </p>
+
+                <!-- Application Form -->
+                <div class="card">
+                    <form id="applicationForm">
+                        <div class="card-header">
+                            <h3 class="card-title">Business Information</h3>
+                        </div>
+
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="businessType" class="form-label">Business Type</label>
+                                <select id="businessType" name="business_type" class="form-select" required>
+                                    <option value="">Select type...</option>
+                                    <option value="Manufacturing">Manufacturing</option>
+                                    <option value="Trading">Trading</option>
+                                    <option value="Services">Services</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="yearsInOperation" class="form-label">Years in Operation</label>
+                                <input type="number" id="yearsInOperation" name="years_in_operation" class="form-input"
+                                    min="0" max="100" required placeholder="e.g., 10">
+                            </div>
+                        </div>
+
+                        <div class="card-header" style="margin-top: 2rem;">
+                            <h3 class="card-title">Financial Details</h3>
+                        </div>
+
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="annualRevenue" class="form-label">Annual Revenue (₹)</label>
+                                <input type="number" id="annualRevenue" name="annual_revenue" class="form-input" min="1"
+                                    required placeholder="e.g., 5000000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="monthlyCashflow" class="form-label">Monthly Cash Flow (₹)</label>
+                                <input type="number" id="monthlyCashflow" name="monthly_cashflow" class="form-input"
+                                    required placeholder="e.g., 300000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loanAmount" class="form-label">Loan Amount (₹)</label>
+                                <input type="number" id="loanAmount" name="loan_amount_requested" class="form-input"
+                                    min="1" required placeholder="e.g., 2000000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="creditScore" class="form-label">Credit Score</label>
+                                <input type="number" id="creditScore" name="credit_score" class="form-input" min="300"
+                                    max="900" required placeholder="300-900">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="existingLoans" class="form-label">Existing Loans</label>
+                                <input type="number" id="existingLoans" name="existing_loans" class="form-input" min="0"
+                                    required placeholder="e.g., 2">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="debtToIncome" class="form-label">Debt-to-Income Ratio</label>
+                                <input type="number" id="debtToIncome" name="debt_to_income_ratio" class="form-input"
+                                    min="0" step="0.01" required placeholder="e.g., 0.45">
+                                <div class="form-helper">Enter as decimal (e.g., 0.45 = 45%)</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="collateralValue" class="form-label">Collateral Value (₹)</label>
+                                <input type="number" id="collateralValue" name="collateral_value" class="form-input"
+                                    min="0" required placeholder="e.g., 3000000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="repaymentHistory" class="form-label">Repayment History</label>
+                                <select id="repaymentHistory" name="repayment_history" class="form-select" required>
+                                    <option value="">Select history...</option>
+                                    <option value="Good">Good</option>
+                                    <option value="Average">Average</option>
+                                    <option value="Poor">Poor</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem;">
+                            <button type="submit" class="btn btn-lime" id="submitBtn"
+                                style="width: 100%; font-size: 1.1rem; padding: 1.25rem;">
+                                <span id="btnText">Submit for AI Assessment</span>
+                                <span id="btnSpinner" class="spinner"
+                                    style="display: none; width: 24px; height: 24px; border-width: 3px;"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="card"
+                    style="display: none; margin-top: 2rem; background: #06D6A0; color: white; border: none;">
+                    <div class="text-center">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
+                        <h3 style="margin-bottom: 1rem; color: white; font-size: 2rem;">Application Submitted!</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem; font-size: 1.1rem;"
+                            id="applicationIdText"></p>
+                        <div class="flex gap-md justify-center" style="flex-wrap: wrap;">
+                            <button class="btn" style="background: white; color: #06D6A0; font-weight: 700;"
+                                onclick="location.reload()">Submit Another</button>
+                            <button class="btn"
+                                style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; font-weight: 700;"
+                                id="evaluateBtn">View Evaluation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/currency.js"></script>
+</body>
+
+</html>
