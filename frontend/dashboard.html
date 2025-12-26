@@ -43,28 +43,80 @@
     <main style="padding-top: 120px; min-height: 100vh;">
         <div class="container" style="padding: 3rem;">
             <div class="mb-xl">
-                <h2 class="section-title" style="text-align: left;">Applications Dashboard</h2>
-                <p class="section-description" style="text-align: left; margin: 1rem 0;">Review and manage all loan
-                    applications</p>
+                <h2 class="section-title" style="text-align: left;">Underwriter Dashboard</h2>
+                <p class="section-description" style="text-align: left; margin: 1rem 0;">Review applications, analyze
+                    risk, and make credit decisions</p>
             </div>
 
-            <!-- Filters -->
+            <!-- Stats Summary -->
+            <div class="grid grid-4 gap-md mb-lg">
+                <div class="card p-md">
+                    <p style="color: var(--color-text-muted); font-size: 0.875rem; font-weight: 600;">Total Applications
+                    </p>
+                    <p id="totalApps" style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem;">0</p>
+                </div>
+                <div class="card p-md">
+                    <p style="color: var(--color-success); font-size: 0.875rem; font-weight: 600;">Approved</p>
+                    <p id="approvedApps"
+                        style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem; color: var(--color-success);">0
+                    </p>
+                </div>
+                <div class="card p-md">
+                    <p style="color: var(--color-danger); font-size: 0.875rem; font-weight: 600;">Rejected</p>
+                    <p id="rejectedApps"
+                        style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem; color: var(--color-danger);">0</p>
+                </div>
+                <div class="card p-md">
+                    <p style="color: var(--color-accent-blue); font-size: 0.875rem; font-weight: 600;">Pending Review
+                    </p>
+                    <p id="pendingApps"
+                        style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem; color: var(--color-accent-blue);">
+                        0</p>
+                </div>
+            </div>
+
+            <!-- Filters & Actions -->
             <div class="card mb-lg">
-                <div class="flex gap-md items-center">
-                    <div class="form-group" style="margin: 0; flex: 1;">
-                        <select id="statusFilter" class="form-select">
-                            <option value="">All Applications</option>
-                            <option value="pending">Pending Evaluation</option>
-                            <option value="evaluated">Evaluated</option>
-                        </select>
+                <div class="flex gap-md items-center justify-between" style="flex-wrap: wrap;">
+                    <div class="flex gap-md items-center" style="flex: 1;">
+                        <div class="form-group" style="margin: 0; min-width: 200px;">
+                            <select id="statusFilter" class="form-select">
+                                <option value="">All Applications</option>
+                                <option value="pending">Pending Evaluation</option>
+                                <option value="evaluated">Evaluated</option>
+                            </select>
+                        </div>
+                        <div class="toggle-group bg-secondary p-xs rounded-sm flex">
+                            <button id="viewGrid" class="btn btn-sm btn-ghost active" title="Grid View">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </button>
+                            <button id="viewTable" class="btn btn-sm btn-ghost" title="Table View">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
+
                     <button id="refreshBtn" class="btn btn-lime">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M21.5 2v6h-6M2.5 22v-6h6" />
                             <path d="M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
                         </svg>
-                        Refresh
+                        Refresh Data
                     </button>
                 </div>
             </div>
@@ -77,7 +129,27 @@
 
             <!-- Applications Grid -->
             <div id="applicationsGrid" class="grid grid-2" style="display: none;">
-                <!-- Applications will be inserted here -->
+                <!-- Applications inserted here -->
+            </div>
+
+            <!-- Applications Table -->
+            <div id="applicationsTable" style="display: none; overflow-x: auto;">
+                <table class="data-table" style="width: 100%; text-align: left; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--color-border);">
+                            <th style="padding: 1rem;">ID</th>
+                            <th style="padding: 1rem;">Date</th>
+                            <th style="padding: 1rem;">Business</th>
+                            <th style="padding: 1rem;">Revenue</th>
+                            <th style="padding: 1rem;">Loan Amount</th>
+                            <th style="padding: 1rem;">Score</th>
+                            <th style="padding: 1rem;">Status</th>
+                            <th style="padding: 1rem;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applicationsTableBody">
+                    </tbody>
+                </table>
             </div>
 
             <!-- Empty State -->

@@ -1,205 +1,123 @@
 # AI-Driven Smart Credit Evaluation System
 
-An intelligent decision-support system for automating business loan credit risk assessment using machine learning.
+> **Academic Project: Intelligent Financial Decision Support System**
 
-##  Project Overview
+## 📌 Project Overview
+The **AI-Driven Smart Credit Evaluation System** is a modern web application designed to automate and enhance the creditworthiness assessment process for business loans. By leveraging Machine Learning techniques, the system analyzes applicant data to generate instant, consistent, and data-driven risk scores, significantly reducing the manual effort required by human underwriters.
 
-This system automates creditworthiness assessment for business loan applications, reducing decision time and providing data-driven insights to underwriters.
+**Live Demo:** [https://credit-evaluation-system.vercel.app](https://credit-evaluation-system.vercel.app)
 
-### Features
+---
 
-- **Synthetic Dataset Generation**: 5,000 realistic business loan records
-- **ML Models**: Logistic Regression, Random Forest, XGBoost with hyperparameter tuning
-- **Explainable AI**: SHAP-based feature importance and prediction explanations
-- **RESTful API**: FastAPI backend with automatic API documentation
-- **Modern UI**: Premium glassmorphism design with real-time validation
-- **Risk Assessment**: 0-100 risk scoring with confidence metrics
-- **Decision Support**: Automated approve/review/reject recommendations
+## 🚀 Key Features
+
+### Core Functionality
+- **Automated Credit Scoring**: ML-based prediction of default probability.
+- **Instant Decisioning**: Real-time Approved/Rejected/Review recommendations.
+- **Risk Score Generation**: 300-900 credit score simulation.
+
+### Intelligent Tools
+- **Loan Comparison Engine**: Side-by-side offer comparison with weighted priority scoring.
+- **True Cost Calculator**: Advanced EMI calculator revealing hidden fees and real monthly burden.
+- **Document Analyzer**: Intelligent parser for bank statements to extract credit strength signals.
+- **Market Benchmarks**: Dashboard showing regional interest rate trends and market stats.
+
+---
 
 ## 🛠️ Technology Stack
 
-### Backend
-- **Framework**: FastAPI 0.104.1
-- **Database**: SQLite (development) / PostgreSQL (production)
-- **ML Libraries**: Scikit-learn, XGBoost, SHAP
-- **ORM**: SQLAlchemy
+| Component | Technology | Rationale |
+|-----------|------------|-----------|
+| **Frontend** | HTML5, CSS3, JavaScript | Lightweight, fast, no build complexity |
+| **Backend** | Python (FastAPI) | High performance, native async support |
+| **ML Engine** | Scikit-learn, Pandas | Robust standard for tabular data ML |
+| **Data** | CSV / Synthetic | Flexible, easy to generate and manipulate |
+| **Deployment** | Vercel (Frontend), Railway (Backend) | Scalable serverless architecture |
 
-### Frontend
-- **Core**: HTML5, CSS3, Vanilla JavaScript
-- **Design**: Glassmorphism, CSS Grid, Gradients
-- **Fonts**: Google Fonts (Inter)
-
-### Machine Learning
-- Classification Models: Logistic Regression, Random Forest, XGBoost
-- Preprocessing: StandardScaler, LabelEncoder
-- Explainability: SHAP (SHapley Additive exPlanations)
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.8+
-- pip package manager
-
-### Installation
-
-1. **Clone or navigate to the project directory**
-   ```bash
-   cd d:\projects\credit-evaluation-system
-   ```
-
-2. **Install Python dependencies**
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   ```
-
-3. **Generate synthetic dataset**
-   ```bash
-   python ml_pipeline/scripts/generate_dataset.py
-   ```
-
-4. **Preprocess data**
-   ```bash
-   python ml_pipeline/scripts/data_preprocessing.py
-   ```
-
-5. **Train ML models**
-   ```bash
-   python ml_pipeline/scripts/model_training.py
-   ```
-
-6. **Generate explainability artifacts** (optional)
-   ```bash
-   python ml_pipeline/scripts/model_explainability.py
-   ```
-
-7. **Start the backend server**
-   ```bash
-   python main.py
-   ```
-   Or with uvicorn:
-   ```bash
-   uvicorn main:app --reload
-   ```
-
-8. **Open the frontend**
-   - Navigate to `frontend/index.html` in your browser
-   - Or use a local server like Live Server in VS Code
-
-### Access Points
-
-- **Frontend**: Open `frontend/index.html`
-- **API Documentation**: http://localhost:8000/docs
-- **API Base URL**: http://localhost:8000
-- **Health Check**: http://localhost:8000/health
+---
 
 ## 📂 Project Structure
 
-```
+```bash
 credit-evaluation-system/
 ├── backend/
-│   ├── app/
-│   │   ├── api/              # API endpoints
-│   │   │   ├── applications.py
-│   │   │   └── evaluations.py
-│   │   ├── models/           # Database models
-│   │   │   ├── database.py
-│   │   │   └── models.py
-│   │   ├── schemas/          # Pydantic schemas
-│   │   │   └── schemas.py
-│   │   └── services/         # Business logic
-│   │       └── credit_service.py
-│   ├── ml_pipeline/
-│   │   ├── data/             # Generated datasets
-│   │   ├── models/           # Trained models
-│   │   └── scripts/          # ML scripts
-│   │       ├── generate_dataset.py
-│   │       ├── data_preprocessing.py
-│   │       ├── model_training.py
-│   │       └── model_explainability.py
-│   ├── main.py               # FastAPI application
-│   └── requirements.txt
+│   ├── main.py              # FastAPI Application Entry Point
+│   ├── model.py             # ML Model & Prediction Logic
+│   ├── generate_dataset.py  # Synthetic Data Generator
+│   └── data/
+│       └── business_credit_data.csv
 ├── frontend/
-│   ├── css/
-│   │   └── styles.css        # Design system
-│   ├── js/
-│   │   ├── api.js            # API client
-│   │   ├── app.js            # Application form
-│   │   └── dashboard.js      # Dashboard logic
-│   ├── index.html            # Application form
-│   ├── dashboard.html        # Applications list
-│   └── evaluation.html       # Results display
-└── README.md
+│   ├── index.html           # Main Application Form
+│   ├── compare.html         # Loan Comparison Tool
+│   ├── calculator.html      # EMI Calculator
+│   ├── analyzer.html        # Document Analyzer
+│   ├── benchmarks.html      # Market Dashboard
+│   └── css/                 # Apple-Design System Styles
+├── docs/
+│   ├── architecture.md      # System Architecture
+│   ├── methodology.md       # AI/ML Methodology
+│   └── user_manual.md       # usage Guide
+└── models/                  # Saved .pkl model files
 ```
 
-## 🎯 Usage Workflow
+---
 
-1. **Submit Application**: Fill out the loan application form with business details
-2. **Dashboard Review**: View all submitted applications in the dashboard
-3. **Trigger Evaluation**: Click "Evaluate" to run AI assessment
-4. **View Results**: See risk score, recommendation, and feature importance
+## 📊 Dataset Description
+The system is trained on a synthetic dataset designed to mimic realistic business credit profiles.
+- **Source**: Generated via `backend/generate_dataset.py`
+- **Size**: 5,000 Records
+- **Key Features**:
+  - `annual_revenue` & `monthly_cashflow`
+  - `credit_score` & `repayment_history`
+  - `debt_to_income_ratio`
+  - `years_in_operation`
+  - `business_type` (Manufacturing, Trading, Services)
 
-## 📊 Dataset Specification
+---
 
-The system uses a synthetic dataset with the following columns:
+## 🔧 Setup & Installation
 
-- `applicant_id`: Unique identifier
-- `business_type`: Manufacturing/Trading/Services
-- `years_in_operation`: 0-50 years
-- `annual_revenue`: Annual revenue in ₹
-- `monthly_cashflow`: Average monthly cash flow
-- `loan_amount_requested`: Requested loan amount
-- `credit_score`: 300-900 credit score
-- `existing_loans`: Number of active loans
-- `debt_to_income_ratio`: Financial ratio
-- `collateral_value`: Asset value
-- `repayment_history`: Good/Average/Poor
-- `default_flag`: Target variable (0/1)
+### Prerequisites
+- Python 3.8+
+- Node.js (optional, for Vercel CLI)
 
-## 🔍 API Endpoints
+### 1. Clone Repository
+```bash
+git clone https://github.com/gagankishoreint-glitch/credit-evaluation-system.git
+cd credit-evaluation-system
+```
 
-### Applications
-- `POST /api/applications/` - Submit new application
-- `GET /api/applications/` - List all applications
-- `GET /api/applications/{id}` - Get specific application
-- `POST /api/applications/{id}/evaluate` - Trigger evaluation
+### 2. Backend Setup
+```bash
+# Install dependencies
+pip install fastapi uvicorn pandas scikit-learn numpy
 
-### Evaluations
-- `GET /api/evaluations/{id}` - Get evaluation result
-- `GET /api/evaluations/{id}/detailed` - Get detailed evaluation with explanations
-- `GET /api/evaluations/application/{application_id}` - Get evaluation by application
+# Generate Dataset
+python backend/generate_dataset.py
 
-## 🧪 Model Performance
+# Run API Server
+python backend/main.py
+```
+*Server runs at http://localhost:8000*
 
-The system trains three models and automatically selects the best performer:
-- Logistic Regression (baseline)
-- Random Forest (ensemble)
-- XGBoost (gradient boosting)
+### 3. Frontend Setup
+Simply open `frontend/index.html` in your browser, or serve using:
+```bash
+npx serve frontend
+```
 
-Expected performance: >75% accuracy with ROC-AUC > 0.80
+---
 
-## 📝 Development Notes
+## 📈 Future Enhancements
+- **Explainable AI Integration**: SHAP/LIME visualization for detailed decision reasoning.
+- **OCR Integration**: Tesseract/AWS Textract for real document scanning.
+- **Blockchain Ledger**: Immutable record keeping of credit decisions.
 
-- The system uses SQLite for development; configure PostgreSQL for production
-- CORS is enabled for all origins in development; restrict in production
-- Feature engineering creates additional features for better predictions
-- SHAP explainability provides transparency for decision-making
+---
 
-## 🤝 Contributing
+## 👥 Contributors
+- **Gagan Kishore** - Lead Developer & AI Architect
 
-This is an academic/demonstration project. For production use:
-1. Use real historical loan data
-2. Implement proper authentication
-3. Add comprehensive testing
-4. Set up CI/CD pipeline
-5. Configure production database
-6. Implement logging and monitoring
+---
 
-## 📄 License
-
-Educational/Academic Project
-
-## 👥 Support
-
-For issues or questions, refer to the project documentation or API docs at `/docs`.
+*This project was developed as part of the Advanced Credit Intelligence academic curriculum.*
