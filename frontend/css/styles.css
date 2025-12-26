@@ -25,7 +25,7 @@
     --color-text-inverse: #ffffff;
 
     --color-primary: #0071e3;
-    --color-accent-lime: #B4FF39;
+    --color-accent-lime: #0071e3;
     --color-accent-blue: #0071e3;
     --color-accent-coral: #FF6B6B;
     --color-accent-sky: #70D6FF;
@@ -199,20 +199,22 @@ p {
 .logo-icon {
     width: 28px;
     height: 28px;
-    background: linear-gradient(135deg, #1d1d1f, #34c759);
-    border-radius: 8px;
+    background: linear-gradient(135deg, #0071e3, #005bb5);
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 0.02em;
-    transition: transform var(--transition-base) ease;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    transition: transform var(--transition-base) ease, box-shadow var(--transition-base) ease;
+    box-shadow: 0 1px 3px rgba(0, 113, 227, 0.2);
 }
 
 .navbar-logo:hover .logo-icon {
     transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(0, 113, 227, 0.3);
 }
 
 .navbar-menu {
