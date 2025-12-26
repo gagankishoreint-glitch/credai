@@ -2,10 +2,13 @@
 
 const api = new APIClient();
 let allApplications = [];
+let currentView = 'grid'; // 'grid' or 'table'
 
 document.addEventListener('DOMContentLoaded', function () {
     const statusFilter = document.getElementById('statusFilter');
     const refreshBtn = document.getElementById('refreshBtn');
+    const viewGridBtn = document.getElementById('viewGrid');
+    const viewTableBtn = document.getElementById('viewTable');
 
     // Load applications on page load
     loadApplications();
@@ -18,19 +21,52 @@ document.addEventListener('DOMContentLoaded', function () {
     if (refreshBtn) {
         refreshBtn.addEventListener('click', loadApplications);
     }
+
+    if (viewGridBtn && viewTableBtn) {
+        viewGridBtn.addEventListener('click', () => switchView('grid'));
+        viewTableBtn.addEventListener('click', () => switchView('table'));
+    }
 });
+
+function switchView(view) {
+    currentView = view;
+    const viewGridBtn = document.getElementById('viewGrid');
+    const viewTableBtn = document.getElementById('viewTable');
+    const gridEl = document.getElementById('applicationsGrid');
+    const tableEl = document.getElementById('applicationsTable');
+
+    // Update buttons
+    if (view === 'grid') {
+        viewGridBtn.classList.add('active');
+        viewTableBtn.classList.remove('active');
+        if (allApplications.length > 0) {
+            gridEl.style.display = 'grid';
+            tableEl.style.display = 'none';
+        }
+    } else {
+        viewGridBtn.classList.remove('active');
+        viewTableBtn.classList.add('active');
+        if (allApplications.length > 0) {
+            gridEl.style.display = 'none';
+            tableEl.style.display = 'block';
+        }
+    }
+}
 
 async function loadApplications() {
     const loadingState = document.getElementById('loadingState');
     const applicationsGrid = document.getElementById('applicationsGrid');
+    const applicationsTable = document.getElementById('applicationsTable');
     const emptyState = document.getElementById('emptyState');
 
     loadingState.style.display = 'block';
     applicationsGrid.style.display = 'none';
+    applicationsTable.style.display = 'none';
     emptyState.style.display = 'none';
 
     try {
         allApplications = await api.getApplications();
+        updateStats(allApplications);
         displayApplications(allApplications);
     } catch (error) {
         console.error('Error loading applications:', error);
@@ -41,9 +77,44 @@ async function loadApplications() {
     }
 }
 
+function updateStats(apps) {
+    const total = apps.length;
+    const approved = apps.filter(a => a.recommendation === 'approve').length; // Assuming backend sends recommendation in list
+    // Note: Backend might not send recommendation in list view, might need detail fetch or update API.
+    // Fallback: If status is 'evaluated', count based on implicit logic or mock for now if not available.
+    // Actually, let's use status.
+    const pending = apps.filter(a => a.status !== 'evaluated').length;
+
+    // For approved/rejected, we might need to check if we have that data. 
+    // If not in listing, we might just show Evaluated vs Pending.
+    // But let's assume we can get it or just show Evaluated count.
+
+    // Let's refine:
+    const evaluated = apps.filter(a => a.status === 'evaluated');
+    // We'll mock the approved/rejected split for listing stats if data missing, 
+    // OR we relies on the API updating to send this. 
+    // For now, let's just count evaluated.
+
+    document.getElementById('totalApps').textContent = total;
+    document.getElementById('pendingApps').textContent = pending;
+
+    // Optimization: Since standard list API might not have recommendation, 
+    // we'll just show "-" for strictly Approved/Rejected unless we have the data.
+    // Check first app to see structure
+    if (apps.length > 0 && apps[0].recommendation) {
+        document.getElementById('approvedApps').textContent = apps.filter(a => a.recommendation === 'approve').length;
+        document.getElementById('rejectedApps').textContent = apps.filter(a => a.recommendation === 'reject').length;
+    } else {
+        document.getElementById('approvedApps').textContent = '-';
+        document.getElementById('rejectedApps').textContent = '-';
+        // Hint user that they are just 'Evaluated'
+    }
+}
+
 function displayApplications(applications) {
     const loadingState = document.getElementById('loadingState');
     const applicationsGrid = document.getElementById('applicationsGrid');
+    const applicationsTable = document.getElementById('applicationsTable');
     const emptyState = document.getElementById('emptyState');
 
     loadingState.style.display = 'none';
@@ -53,8 +124,41 @@ function displayApplications(applications) {
         return;
     }
 
-    applicationsGrid.style.display = 'grid';
-    applicationsGrid.innerHTML = applications.map(app => createApplicationCard(app)).join('');
+    if (currentView === 'grid') {
+        applicationsGrid.style.display = 'grid';
+        applicationsTable.style.display = 'none';
+        applicationsGrid.innerHTML = applications.map(app => createApplicationCard(app)).join('');
+    } else {
+        applicationsGrid.style.display = 'none';
+        applicationsTable.style.display = 'block';
+        document.getElementById('applicationsTableBody').innerHTML = applications.map(app => createApplicationRow(app)).join('');
+    }
+}
+
+function createApplicationRow(app) {
+    const statusBadge = app.status === 'evaluated'
+        ? '<span class="badge badge-success">Evaluated</span>'
+        : '<span class="badge" style="background: #E8F4FF; color: #118AB2;">Pending</span>';
+
+    const dateStr = new Date(app.created_at).toLocaleDateString();
+
+    return `
+        <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: 1rem; font-weight: 600;">${app.applicant_id || app.id}</td>
+            <td style="padding: 1rem; color: var(--color-text-muted);">${dateStr}</td>
+            <td style="padding: 1rem;">${app.business_type}</td>
+            <td style="padding: 1rem;">₹${formatNumber(app.annual_revenue)}</td>
+            <td style="padding: 1rem;">₹${formatNumber(app.loan_amount_requested)}</td>
+            <td style="padding: 1rem; font-weight: 700;">${app.credit_score}</td>
+            <td style="padding: 1rem;">${statusBadge}</td>
+            <td style="padding: 1rem;">
+                ${app.status === 'evaluated'
+            ? `<button class="btn btn-sm btn-outline" onclick="viewResults(${app.id})">View Result</button>`
+            : `<button class="btn btn-sm btn-lime" onclick="evaluateApplication(${app.id})">Evaluate</button>`
+        }
+            </td>
+        </tr>
+    `;
 }
 
 function createApplicationCard(app) {
