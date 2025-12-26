@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator | AI Credit Evaluator</title>
+    <meta name="description" content="Calculate your true loan cost with hidden fees breakdown">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/comparison-styles.css">
+    <link rel="stylesheet" href="css/calculator-styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="compare.html">Compare Loans</a></li>
+                <li><a href="calculator.html">EMI Calculator</a></li>
+                <li><a href="analyzer.html">Analyzer</a></li>
+                <li><a href="benchmarks.html">Benchmarks</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="dashboard.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 40vh; padding: 100px 0 40px;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">
+                    True Cost <span class="hero-title-highlight">Calculator</span>
+                </h1>
+                <p class="hero-description">
+                    See the real monthly burden including all hidden fees and charges.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="content-section" style="padding: 3rem 0 6rem;">
+        <div class="container" style="max-width: 900px;">
+
+            <!-- Input Card -->
+            <div class="card" style="padding: 3rem; margin-bottom: 3rem;">
+                <h2 style="margin-bottom: 2rem;">Loan Details</h2>
+
+                <div class="input-group">
+                    <label>Loan Amount (₹)</label>
+                    <input type="number" id="loanAmount" placeholder="500000" step="1000" value="500000" />
+                </div>
+
+                <div class="input-group">
+                    <label>Interest Rate (% per annum)</label>
+                    <input type="number" id="interestRate" placeholder="9.5" step="0.1" value="9.5" />
+                </div>
+
+                <div class="input-group">
+                    <label>Loan Tenure (months)</label>
+                    <input type="number" id="tenure" placeholder="36" value="36" />
+                </div>
+
+                <div class="input-group">
+                    <label>Processing Fee (₹)</label>
+                    <input type="number" id="processingFee" placeholder="5000" value="5000" />
+                </div>
+
+                <div class="input-group">
+                    <label>Insurance (₹ per month)</label>
+                    <input type="number" id="insurance" placeholder="500" value="500" />
+                </div>
+
+                <div class="input-group">
+                    <label>Prepayment Charges (%)</label>
+                    <input type="number" id="prepayCharge" placeholder="2" step="0.1" value="2" />
+                </div>
+
+                <div class="input-group">
+                    <label>Your Monthly Income (₹)</label>
+                    <input type="number" id="monthlyIncome" placeholder="50000" value="50000" />
+                </div>
+
+                <button class="btn btn-primary" id="calculateBtn" style="width: 100%; margin-top: 2rem; padding: 1rem;">
+                    Calculate True Cost
+                </button>
+            </div>
+
+            <!-- Results Card -->
+            <div id="resultsCard" class="card" style="padding: 3rem; display: none;">
+                <h2 style="margin-bottom: 2rem;">Your Loan Breakdown</h2>
+
+                <!-- Basic EMI -->
+                <div class="result-row">
+                    <span class="result-label">Base EMI</span>
+                    <span class="result-value" id="baseEMI">₹0</span>
+                </div>
+
+                <div class="result-row">
+                    <span class="result-label">Insurance (monthly)</span>
+                    <span class="result-value" id="insuranceValue">₹0</span>
+                </div>
+
+                <div class="result-row total-row">
+                    <span class="result-label">Real Monthly Burden</span>
+                    <span class="result-value highlight" id="realEMI">₹0</span>
+                </div>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--color-bg-secondary);">
+
+                <!-- Total Costs -->
+                <div class="result-row">
+                    <span class="result-label">Principal Amount</span>
+                    <span class="result-value" id="principalValue">₹0</span>
+                </div>
+
+                <div class="result-row">
+                    <span class="result-label">Total Interest Paid</span>
+                    <span class="result-value warning" id="totalInterest">₹0</span>
+                </div>
+
+                <div class="result-row">
+                    <span class="result-label">Processing Fee</span>
+                    <span class="result-value" id="processingValue">₹0</span>
+                </div>
+
+                <div class="result-row">
+                    <span class="result-label">Total Insurance</span>
+                    <span class="result-value" id="totalInsurance">₹0</span>
+                </div>
+
+                <div class="result-row total-row">
+                    <span class="result-label">Grand Total Cost</span>
+                    <span class="result-value highlight" id="grandTotal">₹0</span>
+                </div>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--color-bg-secondary);">
+
+                <!-- Affordability -->
+                <div class="affordability-section">
+                    <h3 style="margin-bottom: 1rem;">Affordability Check</h3>
+                    <div class="result-row">
+                        <span class="result-label">EMI-to-Income Ratio</span>
+                        <span class="result-value" id="emiRatio">0%</span>
+                    </div>
+                    <div class="affordability-message" id="affordabilityMsg"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/theme.js"></script>
+    <script src="js/calculator.js"></script>
+</body>
+
+</html>

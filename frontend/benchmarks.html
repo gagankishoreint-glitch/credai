@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Benchmarks | AI Credit Evaluator</title>
+    <meta name="description" content="See how your credit profile compares to market averages">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/comparison-styles.css">
+    <link rel="stylesheet" href="css/benchmarks-styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="compare.html">Compare</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="analyzer.html">Analyzer</a></li>
+                <li><a href="benchmarks.html">Benchmarks</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="dashboard.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 40vh; padding: 100px 0 40px;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">
+                    Market <span class="hero-title-highlight">Benchmarks</span>
+                </h1>
+                <p class="hero-description">
+                    Understand where you stand compared to others in your region and demographic.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmarks Section -->
+    <section class="content-section" style="padding: 3rem 0 6rem;">
+        <div class="container" style="max-width: 1100px;">
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value">₹5.2L</div>
+                    <div class="stat-label">Average Loan Amount</div>
+                    <div class="stat-change positive">+8% from last year</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-value">9.2%</div>
+                    <div class="stat-label">Median Interest Rate</div>
+                    <div class="stat-change negative">-0.3% from last month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-value">36 mo</div>
+                    <div class="stat-label">Popular Tenure</div>
+                    <div class="stat-change">Most common choice</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value">78%</div>
+                    <div class="stat-label">Approval Rate</div>
+                    <div class="stat-change positive">+5% this quarter</div>
+                </div>
+            </div>
+
+            <!-- Regional Comparison -->
+            <div class="card" style="padding: 3rem; margin-top: 3rem;">
+                <h2 style="margin-bottom: 2rem;">Regional Interest Rates</h2>
+                <div class="benchmark-list">
+                    <div class="benchmark-item">
+                        <div class="benchmark-region">
+                            <span class="region-name">Mumbai</span>
+                            <span class="region-tag">Metro</span>
+                        </div>
+                        <div class="benchmark-bar">
+                            <div class="bar-fill" style="width: 85%;"></div>
+                        </div>
+                        <span class="benchmark-value">8.9%</span>
+                    </div>
+
+                    <div class="benchmark-item">
+                        <div class="benchmark-region">
+                            <span class="region-name">Delhi NCR</span>
+                            <span class="region-tag">Metro</span>
+                        </div>
+                        <div class="benchmark-bar">
+                            <div class="bar-fill" style="width: 88%;"></div>
+                        </div>
+                        <span class="benchmark-value">9.1%</span>
+                    </div>
+
+                    <div class="benchmark-item">
+                        <div class="benchmark-region">
+                            <span class="region-name">Bangalore</span>
+                            <span class="region-tag">Metro</span>
+                        </div>
+                        <div class="benchmark-bar">
+                            <div class="bar-fill" style="width: 82%;"></div>
+                        </div>
+                        <span class="benchmark-value">8.7%</span>
+                    </div>
+
+                    <div class="benchmark-item">
+                        <div class="benchmark-region">
+                            <span class="region-name">Tier 2 Cities</span>
+                            <span class="region-tag">Tier 2</span>
+                        </div>
+                        <div class="benchmark-bar">
+                            <div class="bar-fill" style="width: 95%;"></div>
+                        </div>
+                        <span class="benchmark-value">9.8%</span>
+                    </div>
+
+                    <div class="benchmark-item">
+                        <div class="benchmark-region">
+                            <span class="region-name">Rural Areas</span>
+                            <span class="region-tag">Rural</span>
+                        </div>
+                        <div class="benchmark-bar">
+                            <div class="bar-fill" style="width: 100%;"></div>
+                        </div>
+                        <span class="benchmark-value">10.2%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trends -->
+            <div class="card" style="padding: 3rem; margin-top: 3rem;">
+                <h2 style="margin-bottom: 2rem;">Market Trends</h2>
+                <div class="trends-grid">
+                    <div class="trend-item">
+                        <div class="trend-header">
+                            <span class="trend-title">Digital Lending</span>
+                            <span class="trend-badge hot">🔥 Trending</span>
+                        </div>
+                        <p class="trend-description">
+                            Fintech lenders offering 24-hour approvals with rates 0.5-1% lower than traditional banks.
+                        </p>
+                    </div>
+
+                    <div class="trend-item">
+                        <div class="trend-header">
+                            <span class="trend-title">Green Loans</span>
+                            <span class="trend-badge new">✨ New</span>
+                        </div>
+                        <p class="trend-description">
+                            Special rates for eco-friendly vehicle purchases and solar installations.
+                        </p>
+                    </div>
+
+                    <div class="trend-item">
+                        <div class="trend-header">
+                            <span class="trend-title">Flexible EMIs</span>
+                            <span class="trend-badge">📈 Growing</span>
+                        </div>
+                        <p class="trend-description">
+                            More lenders offering skip-EMI and step-up EMI options for borrowers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/theme.js"></script>
+</body>
+
+</html>

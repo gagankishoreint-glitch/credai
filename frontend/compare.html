@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Loans | AI Credit Evaluator</title>
+    <meta name="description" content="Compare loan offers side-by-side with personalized priority scoring">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/comparison-styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="compare.html">Compare Loans</a></li>
+                <li><a href="calculator.html">EMI Calculator</a></li>
+                <li><a href="analyzer.html">Analyzer</a></li>
+                <li><a href="benchmarks.html">Benchmarks</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="dashboard.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 50vh; padding: 100px 0 60px;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">
+                    Compare Loan Offers <span class="hero-title-highlight">Side-by-Side</span>
+                </h1>
+                <p class="hero-description">
+                    Make smarter borrowing decisions. Input two loan offers and see which one truly fits your
+                    priorities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Tool -->
+    <section class="content-section" style="padding: 4rem 0 6rem;">
+        <div class="container" style="max-width: 1200px;">
+
+            <!-- Dual Card Comparison -->
+            <div class="comparison-grid">
+                <!-- Loan Offer 1 -->
+                <div class="comparison-card">
+                    <div class="card-header-custom">
+                        <h3>Loan Offer A</h3>
+                        <div class="winner-badge" id="winnerA" style="display: none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                                    fill="currentColor" />
+                            </svg>
+                            Best Match
+                        </div>
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="input-group">
+                            <label>Bank/Lender Name</label>
+                            <input type="text" id="bankA" placeholder="e.g., HDFC Bank" />
+                        </div>
+                        <div class="input-group">
+                            <label>Interest Rate (%)</label>
+                            <input type="number" id="rateA" placeholder="9.5" step="0.1" />
+                        </div>
+                        <div class="input-group">
+                            <label>Loan Amount (₹)</label>
+                            <input type="number" id="amountA" placeholder="500000" step="1000" />
+                        </div>
+                        <div class="input-group">
+                            <label>Tenure (months)</label>
+                            <input type="number" id="tenureA" placeholder="36" />
+                        </div>
+                        <div class="input-group">
+                            <label>Processing Fee (₹)</label>
+                            <input type="number" id="feeA" placeholder="5000" step="100" />
+                        </div>
+                        <div class="input-group">
+                            <label>Prepayment Charges (%)</label>
+                            <input type="number" id="prepayA" placeholder="2" step="0.1" />
+                        </div>
+                        <div class="input-group">
+                            <label>Approval Time (days)</label>
+                            <input type="number" id="approvalA" placeholder="7" />
+                        </div>
+                    </div>
+                    <div class="result-summary" id="resultA">
+                        <div class="metric">
+                            <span class="label">EMI</span>
+                            <span class="value" id="emiA">-</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Total Cost</span>
+                            <span class="value" id="totalA">-</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Priority Score</span>
+                            <span class="value score" id="scoreA">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loan Offer 2 -->
+                <div class="comparison-card">
+                    <div class="card-header-custom">
+                        <h3>Loan Offer B</h3>
+                        <div class="winner-badge" id="winnerB" style="display: none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                                    fill="currentColor" />
+                            </svg>
+                            Best Match
+                        </div>
+                    </div>
+                    <div class="card-body-custom">
+                        <div class="input-group">
+                            <label>Bank/Lender Name</label>
+                            <input type="text" id="bankB" placeholder="e.g., SBI" />
+                        </div>
+                        <div class="input-group">
+                            <label>Interest Rate (%)</label>
+                            <input type="number" id="rateB" placeholder="8.9" step="0.1" />
+                        </div>
+                        <div class="input-group">
+                            <label>Loan Amount (₹)</label>
+                            <input type="number" id="amountB" placeholder="500000" step="1000" />
+                        </div>
+                        <div class="input-group">
+                            <label>Tenure (months)</label>
+                            <input type="number" id="tenureB" placeholder="36" />
+                        </div>
+                        <div class="input-group">
+                            <label>Processing Fee (₹)</label>
+                            <input type="number" id="feeB" placeholder="3000" step="100" />
+                        </div>
+                        <div class="input-group">
+                            <label>Prepayment Charges (%)</label>
+                            <input type="number" id="prepayB" placeholder="0" step="0.1" />
+                        </div>
+                        <div class="input-group">
+                            <label>Approval Time (days)</label>
+                            <input type="number" id="approvalB" placeholder="10" />
+                        </div>
+                    </div>
+                    <div class="result-summary" id="resultB">
+                        <div class="metric">
+                            <span class="label">EMI</span>
+                            <span class="value" id="emiB">-</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Total Cost</span>
+                            <span class="value" id="totalB">-</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Priority Score</span>
+                            <span class="value score" id="scoreB">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Priority Sliders -->
+            <div class="priority-section">
+                <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">What Matters to <span
+                        style="color: var(--color-primary);">You?</span></h2>
+                <p
+                    style="text-align: center; color: var(--color-text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Adjust these sliders to reflect your priorities. We'll calculate which loan best fits your needs.
+                </p>
+
+                <div class="priority-grid">
+                    <div class="priority-item">
+                        <div class="priority-header">
+                            <label>💰 Low Monthly EMI</label>
+                            <span class="priority-value" id="emiWeight">50</span>
+                        </div>
+                        <input type="range" id="emiSlider" min="0" max="100" value="50" class="priority-slider" />
+                    </div>
+
+                    <div class="priority-item">
+                        <div class="priority-header">
+                            <label>⚡ Quick Approval</label>
+                            <span class="priority-value" id="approvalWeight">50</span>
+                        </div>
+                        <input type="range" id="approvalSlider" min="0" max="100" value="50" class="priority-slider" />
+                    </div>
+
+                    <div class="priority-item">
+                        <div class="priority-header">
+                            <label>🔄 Flexible Prepayment</label>
+                            <span class="priority-value" id="prepayWeight">50</span>
+                        </div>
+                        <input type="range" id="prepaySlider" min="0" max="100" value="50" class="priority-slider" />
+                    </div>
+
+                    <div class="priority-item">
+                        <div class="priority-header">
+                            <label>📊 Total Interest Saved</label>
+                            <span class="priority-value" id="interestWeight">50</span>
+                        </div>
+                        <input type="range" id="interestSlider" min="0" max="100" value="50" class="priority-slider" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compare Button -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-primary" id="compareBtn" style="padding: 1rem 3rem; font-size: 1.1rem;">
+                    Compare Loans
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/theme.js"></script>
+    <script src="js/comparison.js"></script>
+</body>
+
+</html>

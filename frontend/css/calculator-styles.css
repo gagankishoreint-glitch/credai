@@ -1,0 +1,57 @@
+/* Calculator Results Styles */
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-bg-secondary);
+}
+
+.result-row:last-of-type {
+    border-bottom: none;
+}
+
+.result-label {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.result-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.result-value.highlight {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+}
+
+.result-value.warning {
+    color: var(--color-warning);
+}
+
+.total-row {
+    padding: 1.25rem 0;
+    background: var(--color-bg-secondary);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: var(--radius-sm);
+    margin: 0.5rem 0;
+}
+
+.affordability-section {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.affordability-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 113, 227, 0.1);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}

@@ -1,0 +1,89 @@
+/* Upload Zone and Analyzer Styles */
+.upload-zone {
+    border: 2px dashed rgba(0, 113, 227, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 4rem 2rem;
+    cursor: pointer;
+    transition: all var(--transition-base) ease;
+}
+
+.upload-zone:hover {
+    border-color: var(--color-primary);
+    background: rgba(0, 113, 227, 0.05);
+}
+
+.upload-zone svg {
+    color: var(--color-primary);
+    margin: 0 auto;
+}
+
+.upload-progress {
+    padding: 3rem;
+    text-align: center;
+}
+
+.spinner {
+    border: 3px solid var(--color-bg-tertiary);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.score-display {
+    margin: 2rem 0;
+}
+
+.score-circle {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.score-value {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.score-max {
+    font-size: 2rem;
+    color: var(--color-text-secondary);
+}
+
+.score-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.finding-item,
+.suggestion-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+}
+
+.finding-icon,
+.suggestion-bullet {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}

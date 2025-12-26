@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Analyzer | AI Credit Evaluator</title>
+    <meta name="description" content="Upload bank statements for instant credit strength analysis">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/comparison-styles.css">
+    <link rel="stylesheet" href="css/analyzer-styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">CE</div>
+                <span>Credit Evaluator</span>
+            </a>
+
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="compare.html">Compare</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="analyzer.html">Analyzer</a></li>
+                <li><a href="benchmarks.html">Benchmarks</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="dashboard.html" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 40vh; padding: 100px 0 40px;">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 3.5rem);">
+                    Credit Strength <span class="hero-title-highlight">Analyzer</span>
+                </h1>
+                <p class="hero-description">
+                    Upload your bank statement and get instant feedback on your creditworthiness.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="content-section" style="padding: 3rem 0 6rem;">
+        <div class="container" style="max-width: 800px;">
+
+            <!-- Upload Card -->
+            <div class="card" style="padding: 3rem; text-align: center;">
+                <div class="upload-zone" id="uploadZone">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h3 style="margin: 1.5rem 0 0.5rem;">Drop your bank statement here</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">or click to browse</p>
+                    <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" style="display: none;" />
+                    <button class="btn btn-primary" id="browseBtn">Browse Files</button>
+                    <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: 1rem;">
+                        Supports PDF, JPG, PNG (Max 10MB)
+                    </p>
+                </div>
+
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing your document...</p>
+                </div>
+            </div>
+
+            <!-- Results Card -->
+            <div id="resultsCard" class="card" style="padding: 3rem; margin-top: 2rem; display: none;">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2>Credit Strength Score</h2>
+                    <div class="score-display" id="scoreDisplay">
+                        <div class="score-circle">
+                            <span class="score-value" id="scoreValue">0</span>
+                            <span class="score-max">/100</span>
+                        </div>
+                    </div>
+                    <p class="score-label" id="scoreLabel">Calculating...</p>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem;">Key Findings</h3>
+                <div id="findings"></div>
+
+                <h3 style="margin: 2rem 0 1rem;">Improvement Suggestions</h3>
+                <div id="suggestions"></div>
+
+                <button class="btn btn-outline" id="analyzeAgain" style="width: 100%; margin-top: 2rem;">
+                    Analyze Another Document
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/theme.js"></script>
+    <script src="js/analyzer.js"></script>
+</body>
+
+</html>
