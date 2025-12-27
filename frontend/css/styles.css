@@ -12,63 +12,58 @@
    CSS Variables - Apple Aesthetic
    ======================================== */
 :root {
-    /* Light Theme - Apple Style */
-    --color-bg-primary: #ffffff;
-    --color-bg-secondary: #f5f5f7;
-    --color-bg-tertiary: #e8e8ed;
-    --color-bg-card: #ffffff;
-    --color-bg-nav: rgba(251, 251, 253, 0.72);
+    /* Credit Genie Inspired Palette */
+    --color-primary: #667eea;
+    --color-primary-dark: #764ba2;
+    --color-accent-gold: #fbbf24;
+    --color-accent-orange: #f97316;
 
-    --color-text-primary: #1d1d1f;
-    --color-text-secondary: #6e6e73;
-    --color-text-muted: #86868b;
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #fdfbf7;
+    /* Warm off-white */
+    --color-bg-tertiary: #f3f4f6;
+
+    --color-text-primary: #1f2937;
+    --color-text-secondary: #4b5563;
     --color-text-inverse: #ffffff;
 
-    --color-primary: #0071e3;
-    --color-accent-lime: #0071e3;
-    --color-accent-blue: #0071e3;
-    --color-accent-coral: #FF6B6B;
-    --color-accent-sky: #70D6FF;
-    --color-accent-purple: #C77DFF;
+    --gradient-hero: linear-gradient(135deg, #4c1d95 0%, #3b82f6 100%);
+    --gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 
-    --color-success: #34c759;
-    --color-warning: #ff9500;
-    --color-danger: #ff3b30;
-    --color-info: #0071e3;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
-    --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.16);
-
+    /* Bubbly UI Radius */
     --radius-sm: 12px;
-    --radius-md: 18px;
-    --radius-lg: 28px;
-    --radius-xl: 40px;
-    --radius-pill: 100px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-pill: 50rem;
 
-    /* Transition Speeds */
-    --transition-fast: 150ms;
-    --transition-base: 250ms;
-    --transition-slow: 350ms;
-    --transition-slower: 500ms;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(59, 130, 246, 0.15);
+    --shadow-xl: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+
+    /* Beem-Inspired Animation Engine (Kept for smoothness) */
+    --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+    --transition-fast: 0.2s var(--ease-smooth);
+    --transition-base: 0.4s var(--ease-smooth);
+    --transition-slow: 0.8s var(--ease-smooth);
 }
 
 [data-theme="dark"] {
-    --color-bg-primary: #000000;
-    --color-bg-secondary: #1d1d1f;
-    --color-bg-tertiary: #2d2d2d;
-    --color-bg-card: #1d1d1f;
-    --color-bg-nav: rgba(29, 29, 31, 0.72);
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-bg-tertiary: #334155;
 
-    --color-text-primary: #f5f5f7;
-    --color-text-secondary: #a1a1a6;
-    --color-text-muted: #86868b;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-inverse: #ffffff;
 
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
-    --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.6);
+    --gradient-hero: linear-gradient(135deg, #312e81 0%, #1e3a8a 100%);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
 /* ========================================
@@ -447,97 +442,168 @@ p {
 }
 
 /* ========================================
-   Hero Section - Beem Inspired
+   Hero Section - Credit Genie Style
    ======================================== */
 .hero {
-    min-height: 100vh;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    padding-top: 70px;
-    /* Navbar height */
-}
-
-.hero-split-left {
-    flex: 1;
-    background: var(--color-bg-primary);
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    padding: 4rem 2rem 4rem 6vw;
-    z-index: 2;
-}
-
-.hero-split-right {
-    flex: 1;
+    justify-content: center;
     position: relative;
-    background: var(--color-bg-secondary);
-    /* The Beem Diagonal Cut */
-    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-    margin-left: -5%;
-    /* Overlap slightly */
+    overflow: hidden;
+    padding-top: 80px;
+    background: var(--gradient-hero);
+    color: var(--color-text-inverse);
+    text-align: center;
 }
 
-[data-theme="dark"] .hero-split-right {
-    background: #111;
-}
-
-.hero-abstract-bg {
+/* Floating Elements Container */
+.hero-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #0071e3 0%, #00c6fb 100%);
-    opacity: 0.1;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.float-item {
+    position: absolute;
+    opacity: 0.2;
+    filter: blur(40px);
+    border-radius: 50%;
+    background: white;
+    animation: floatAnimation 10s infinite ease-in-out;
+}
+
+.float-1 {
+    width: 300px;
+    height: 300px;
+    top: -10%;
+    left: -5%;
+    animation-delay: 0s;
+    background: var(--color-accent-orange);
+}
+
+.float-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 10%;
+    right: -5%;
+    animation-delay: 2s;
+    background: var(--color-accent-gold);
+}
+
+.float-3 {
+    width: 150px;
+    height: 150px;
+    top: 20%;
+    right: 15%;
+    animation-delay: 4s;
+    background: var(--color-primary);
+}
+
+@keyframes floatAnimation {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.1);
+    }
 }
 
 .hero-content {
-    max-width: 600px;
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: 0 2rem;
 }
 
 .hero-subtitle {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-accent-blue);
-    margin-bottom: 1.5rem;
-    display: block;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(10px);
 }
 
 .hero-title {
-    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
-    color: var(--color-text-primary);
+    line-height: 1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Remove old gradient text for hero since it's on dark bg now */
 .text-gradient {
-    background: linear-gradient(135deg, #0071e3, #00c6fb);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-accent-gold);
+    background: none;
+    -webkit-text-fill-color: initial;
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
 }
 
 .hero-description {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     line-height: 1.6;
-    color: var(--color-text-secondary);
-    margin-bottom: 2.5rem;
-    max-width: 480px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-actions {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
+    justify-content: center;
     align-items: center;
 }
 
 .btn-lg {
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-/* Animations using Beem Smoothness */
+.btn-primary {
+    background: #ffffff;
+    color: var(--color-primary-dark);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.4);
+    background: #ffffff;
+    opacity: 1;
+}
+
+.btn-ghost {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Animations included in variables section */
 .fade-up {
     opacity: 0;
     transform: translateY(30px);
