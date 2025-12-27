@@ -37,12 +37,8 @@
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
+                <!-- Theme Toggle Removed -->
+
                 <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
                 <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn"
                     style="padding: 0.6rem 1.5rem;">Dashboard</a>
@@ -57,14 +53,18 @@
         <div class="hero-content fade-up">
             <span class="hero-subtitle">( EXPERT ANALYSIS. )</span>
             <h1 class="hero-title">
-                Credit decisions<br>
-                made magical.
+                <span class="shutter-text">
+                    <span class="delay-1">Credit decisions</span>
+                </span>
+                <span class="shutter-text">
+                    <span class="delay-2">made magical.</span>
+                </span>
             </h1>
-            <p class="hero-description">
+            <p class="hero-description reveal-on-scroll delay-3">
                 Empower your underwriting team with AI-driven insights.
                 Faster approvals, smart risk analysis, and effortless integration.
             </p>
-            <div class="hero-actions">
+            <div class="hero-actions reveal-on-scroll delay-3">
                 <a href="application.html" class="btn btn-primary">
                     Start Assessment
                 </a>
@@ -79,10 +79,14 @@
     <section class="content-section section-dark" id="features">
         <div class="container">
             <div style="margin-bottom: 4rem; text-align: center;">
-                <span style="font-size: 0.9rem; letter-spacing: 0.15em; opacity: 0.6; text-transform: uppercase;">[
+                <span class="reveal-on-scroll"
+                    style="font-size: 0.9rem; letter-spacing: 0.15em; opacity: 0.6; text-transform: uppercase;">[
                     CAPABILITIES ]</span>
-                <h3 style="font-size: 2.5rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: -0.02em;">
-                    Digital Architecture</h3>
+                <div class="shutter-text">
+                    <h3 class="delay-1"
+                        style="font-size: 2.5rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: -0.02em;">
+                        Digital Architecture</h3>
+                </div>
             </div>
 
             <div class="grid grid-3">
@@ -167,6 +171,7 @@
     <script src="js/api.js"></script>
     <script src="js/app.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/animations.js"></script> <!-- Added Animations -->
     <script src="js/currency.js"></script>
 </body>
 
