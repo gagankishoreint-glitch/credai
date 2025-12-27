@@ -12,166 +12,129 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
-    <!-- Floating Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-logo">
-                <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                <span>Credit Evaluator</span>
+<!-- Max Milkin Clone Structure -->
+
+<body class="is-loading">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- Navigation (Max Milkin Style: Minimal, Corners) -->
+    <nav class="milkin-nav">
+        <div class="nav-left">
+            <a href="index.html" class="brand-link">
+                CREDIT EVALUATOR <span class="version">[ v.1.0 ]</span>
             </a>
-
-            <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="application.html">Application</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="methodology.html">Docs</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#problem" class="active-link">( PROBLEM )</a></li>
+                <li><a href="#objectives">( OBJECTIVES )</a></li>
+                <li><a href="#methodology">( METHODOLOGY )</a></li>
+                <li><a href="application.html" class="highlight-link">[ START APP ]</a></li>
             </ul>
-
-            <div class="navbar-actions">
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" style="margin-right: 0.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-                <!-- Theme Toggle Removed -->
-
-                <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
-                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn"
-                    style="padding: 0.6rem 1.5rem;">Dashboard</a>
-            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg-text">FUNDAMENTALS</div>
+    <!-- Main Scroll Container -->
+    <main class="smooth-scroll-container">
 
-        <div class="hero-content fade-up">
-            <span class="hero-subtitle">( EXPERT ANALYSIS. )</span>
-            <h1 class="hero-title">
-                <span class="shutter-text">
-                    <span class="delay-1">Credit decisions</span>
-                </span>
-                <span class="shutter-text">
-                    <span class="delay-2">made magical.</span>
-                </span>
-            </h1>
-            <p class="hero-description reveal-on-scroll delay-3">
-                Empower your underwriting team with AI-driven insights.
-                Faster approvals, smart risk analysis, and effortless integration.
-            </p>
-            <div class="hero-actions reveal-on-scroll delay-3">
-                <a href="application.html" class="btn btn-primary">
-                    Start Assessment
-                </a>
-                <a href="methodology.html" class="btn btn-ghost">
-                    Our Methodology
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section - Dark Contrast -->
-    <section class="content-section section-dark" id="features">
-        <div class="container">
-            <div style="margin-bottom: 4rem; text-align: center;">
-                <span class="reveal-on-scroll"
-                    style="font-size: 0.9rem; letter-spacing: 0.15em; opacity: 0.6; text-transform: uppercase;">[
-                    CAPABILITIES ]</span>
-                <div class="shutter-text">
-                    <h3 class="delay-1"
-                        style="font-size: 2.5rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: -0.02em;">
-                        Digital Architecture</h3>
+        <!-- Hero Section -->
+        <section class="milkin-hero" id="hero">
+            <div class="hero-center">
+                <h1 class="hero-headline">
+                    <div class="line-mask"><span class="reveal-text delay-1">AI-DRIVEN</span></div>
+                    <div class="line-mask"><span class="reveal-text delay-2">SMART CREDIT</span></div>
+                    <div class="line-mask"><span class="reveal-text delay-3">EVALUATION</span></div>
+                </h1>
+                <div class="hero-meta reveal-up delay-4">
+                    <p>SYSTEM ARCHITECTURE &middot; 2025</p>
+                    <p>SUPPORTS HUMAN UNDERWRITERS</p>
                 </div>
             </div>
+        </section>
 
-            <div class="grid grid-3">
-                <div class="card reveal-on-scroll">
-                    <span style="display: block; font-size: 0.8rem; opacity: 0.5; margin-bottom: 1rem;">N.001</span>
-                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem; text-transform: uppercase;">Automated Logic</h3>
-                    <p style="opacity: 0.7;">
-                        AI-powered evaluation processes applications instantly, analyzing 50+ data points in seconds.
-                    </p>
+        <!-- Section 1: Problem Statement (Styled as "About") -->
+        <section class="milkin-section dark-theme" id="problem">
+            <div class="section-label">[ 01. PROBLEM STATEMENT ]</div>
+            <div class="content-block">
+                <h2 class="section-title">
+                    Financial institutions face delays in evaluating loan applications due to manual document
+                    verification.
+                </h2>
+                <p class="section-body">
+                    Current methods rely heavily on manual scrutiny of financial documents and static rules. These
+                    methods are slow, inconsistent, and prone to error—especially as volume increases.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Objectives (Grid Layout) -->
+        <section class="milkin-section light-theme" id="objectives">
+            <div class="section-label">[ 02. OBJECTIVES ]</div>
+            <div class="grid-list">
+                <div class="grid-item">
+                    <span class="item-number">( A )</span>
+                    <h3>Automate Assessment</h3>
+                    <p>Eliminate manual bottlenecks with instant AI analysis.</p>
                 </div>
-
-                <div class="card reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <span style="display: block; font-size: 0.8rem; opacity: 0.5; margin-bottom: 1rem;">N.002</span>
-                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem; text-transform: uppercase;">Instant Velocity</h3>
-                    <p style="opacity: 0.7;">
-                        Reduce evaluation time from days to minutes. Get instant risk scores and recommendations.
-                    </p>
+                <div class="grid-item">
+                    <span class="item-number">( B )</span>
+                    <h3>Reduce Decision Time</h3>
+                    <p>Cut evaluation time from days to mere seconds.</p>
                 </div>
-
-                <div class="card reveal-on-scroll" style="transition-delay: 0.2s;">
-                    <span style="display: block; font-size: 0.8rem; opacity: 0.5; margin-bottom: 1rem;">N.003</span>
-                    <h3 style="margin-bottom: 1rem; font-size: 1.5rem; text-transform: uppercase;">Data Insight</h3>
-                    <p style="opacity: 0.7;">
-                        Explainable AI shows which factors influenced each decision, empowering your team.
-                    </p>
+                <div class="grid-item">
+                    <span class="item-number">( C )</span>
+                    <h3>Assist Underwriters</h3>
+                    <p>Provide data-driven insights to support human judgment.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer Section -->
-    <!-- Shared Footer -->
-    <footer
-        style="background: var(--color-sage); border-top: 1px solid rgba(0,0,0,0.1); padding: 6rem 0 2rem; color: var(--color-black);">
-        <div class="container">
-            <div class="grid grid-2 gap-xl">
-                <div>
-                    <a href="index.html" class="navbar-logo"
-                        style="margin-bottom: 1.5rem; display: inline-flex; filter: invert(0);">
-                        <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                        <span style="font-size: 1.5rem; color: var(--color-black);">Credit Evaluator</span>
-                    </a>
-                    <p style="color: rgba(0,0,0,0.7); line-height: 1.6; max-width: 400px; font-weight: 500;">
-                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure
-                        evaluation.
-                    </p>
+        <!-- Section 3: Methodology / Scope (Styled as "Works") -->
+        <section class="milkin-section sage-theme" id="methodology">
+            <div class="section-label">[ 03. METHODOLOGY ]</div>
+
+            <div class="interactive-list">
+                <div class="list-row hover-reveal">
+                    <span class="row-id">STATE I</span>
+                    <span class="row-title">Data Preprocessing</span>
+                    <span class="row-meta">Normalization & Cleaning</span>
                 </div>
-
-                <div>
-                    <h3
-                        style="margin-bottom: 2rem; color: var(--color-black); text-transform: uppercase; font-size: 1rem; letter-spacing: 0.1em;">
-                        ( INQUIRIES. )</h3>
-
-                    <div style="margin-bottom: 2rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-black); font-size: 1.25rem;">What is this
-                            site about?</h4>
-                        <p style="color: rgba(0,0,0,0.7); font-size: 0.95rem;">
-                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness
-                            instantly.
-                        </p>
-                    </div>
-
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-black); font-size: 1.25rem;">How
-                            trustworthy is it?</h4>
-                        <p style="color: rgba(0,0,0,0.7); font-size: 0.95rem;">
-                            Calibrated on thousands of historical records with >75% accuracy. "Decision Assistant" for
-                            human underwriters.
-                        </p>
-                    </div>
+                <div class="list-row hover-reveal">
+                    <span class="row-id">STATE II</span>
+                    <span class="row-title">Model Development</span>
+                    <span class="row-meta">XGBoost & Logistic Regression</span>
+                </div>
+                <div class="list-row hover-reveal">
+                    <span class="row-id">STATE III</span>
+                    <span class="row-title">Decision Logic</span>
+                    <span class="row-meta">Thresholds & Confidence Scores</span>
                 </div>
             </div>
+        </section>
 
-            <div
-                style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); text-align: center; color: rgba(0,0,0,0.4); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;">
-                &copy; 2025 Credit Evaluator. All rights reserved.
+        <!-- Footer (Max Milkin Style Big Impact) -->
+        <footer class="milkin-footer dark-theme">
+            <div class="footer-content">
+                <div class="footer-cta">
+                    <span>READY TO EVALUATE?</span>
+                    <a href="application.html" class="big-link">START SYSTEM</a>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">&copy; 2025 AI CREDIT SYSTEM</div>
+                    <div class="credits">DESIGNED FOR EXCELLENCE</div>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
+    </main>
 
     <script src="js/api.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/animations.js"></script> <!-- Added Animations -->
+    <!-- REMOVED OLD THEME JS -->
+    <script src="js/animations.js"></script>
     <script src="js/currency.js"></script>
 </body>
 

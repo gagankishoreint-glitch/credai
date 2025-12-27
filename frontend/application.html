@@ -12,41 +12,26 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
-    <!-- Floating Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-logo">
-                <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                <span>Credit Evaluator</span>
+<body class="is-loading">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- Navigation (Max Milkin Style) -->
+    <nav class="milkin-nav">
+        <div class="nav-left">
+            <a href="index.html" class="brand-link">
+                CREDIT EVALUATOR <span class="version">[ v.1.0 ]</span>
             </a>
-
-            <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="application.html">Application</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="methodology.html">Docs</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html">( HOME )</a></li>
+                <li><a href="application.html" class="active-link">( APPLICATION )</a></li>
+                <li><a href="dashboard.html">( DASHBOARD )</a></li>
             </ul>
-
-            <div class="navbar-actions">
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" style="margin-right: 0.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-                <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
-                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn"
-                    style="padding: 0.6rem 1.5rem;">Dashboard</a>
-            </div>
+            style="padding: 0.6rem 1.5rem;">Dashboard</a>
+        </div>
         </div>
     </nav>
 
