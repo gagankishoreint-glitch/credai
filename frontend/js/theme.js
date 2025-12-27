@@ -32,3 +32,21 @@ function updateThemeIcon(theme) {
         }
     }
 }
+// Auth State Management
+document.addEventListener('DOMContentLoaded', () => {
+    const userMode = localStorage.getItem('userMode');
+    const loginBtn = document.getElementById('navLoginBtn');
+    const dashboardBtn = document.getElementById('navDashboardBtn');
+
+    if (loginBtn && dashboardBtn) {
+        if (userMode === 'guest' || userMode === 'user') {
+            // User is logged in
+            loginBtn.style.display = 'none';
+            dashboardBtn.style.display = 'inline-flex';
+        } else {
+            // User is logged out
+            loginBtn.style.display = 'inline-flex';
+            dashboardBtn.style.display = 'none';
+        }
+    }
+});
