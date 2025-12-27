@@ -21,7 +21,7 @@
                 <span>Credit Evaluator</span>
             </a>
 
-                                    <ul class="navbar-menu">
+            <ul class="navbar-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="application.html">Application</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
@@ -30,6 +30,13 @@
             </ul>
 
             <div class="navbar-actions">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" style="margin-right: 0.5rem;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -121,7 +128,7 @@
     </section>
 
     <!-- Footer Section -->
-        <!-- Shared Footer -->
+    <!-- Shared Footer -->
     <footer style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 4rem 0;">
         <div class="container">
             <div class="grid grid-2 gap-xl">
@@ -131,219 +138,43 @@
                         <span style="font-size: 1.5rem;">Credit Evaluator</span>
                     </a>
                     <p style="color: var(--color-text-secondary); line-height: 1.6; max-width: 400px;">
-                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure evaluation.
+                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure
+                        evaluation.
                     </p>
                 </div>
-                
+
                 <div>
                     <h3 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
-                    
+
                     <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?</h4>
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?
+                        </h4>
                         <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage to provide a real-time risk assessment without manual delays.
+                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness
+                            instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage
+                            to provide a real-time risk assessment without manual delays.
                         </p>
                     </div>
 
                     <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the evaluation?</h4>
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the
+                            evaluation?</h4>
                         <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            Our system is calibrated on thousands of historical credit records, achieving over 75% accuracy. While we provide a high-confidence "Decision Assistant," final approvals are always reviewed by human underwriters to ensure fairness and compliance.
+                            Our system is calibrated on thousands of historical credit records, achieving over 75%
+                            accuracy. While we provide a high-confidence "Decision Assistant," final approvals are
+                            always reviewed by human underwriters to ensure fairness and compliance.
                         </p>
                     </div>
                 </div>
             </div>
-            
-            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
+
+            <div
+                style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
                 &copy; 2025 Credit Evaluator. All rights reserved.
             </div>
         </div>
     </footer>
-    </div>
-    <div class="flex gap-sm">
-        <button type="button" class="btn btn-sm" onclick="fillDemo('safe')"
-            style="background: var(--color-success); color: white;">Low Risk</button>
-        <button type="button" class="btn btn-sm" onclick="fillDemo('medium')"
-            style="background: var(--color-warning); color: black;">Medium Risk</button>
-        <button type="button" class="btn btn-sm" onclick="fillDemo('risky')"
-            style="background: var(--color-danger); color: white;">High Risk</button>
-    </div>
-    </div>
-    </div>
 
-    <!-- Application Form -->
-    <div class="card">
-        <form id="applicationForm">
-            <!-- header business info -->
-            <div class="card-header">
-                <h3 class="card-title">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        style="vertical-align: text-bottom; margin-right: 8px; color: var(--color-primary);">
-                        <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4h8v4" />
-                    </svg>
-                    Business Profile
-                </h3>
-                <span style="font-size: 0.85rem; color: var(--color-text-muted); display: flex; align-items: center;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        style="margin-right: 4px;">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                    256-bit Secure
-                </span>
-            </div>
-
-            <div class="grid grid-2">
-                <div class="form-group">
-                    <label for="businessType" class="form-label">Business Type</label>
-                    <select id="businessType" name="business_type" class="form-select" required>
-                        <option value="">Select type...</option>
-                        <option value="Manufacturing">Manufacturing</option>
-                        <option value="Trading">Retail/Trading</option>
-                        <option value="Services">Services</option>
-                        <option value="Tech/Startup">Tech/Startup</option>
-                        <option value="Logistics">Logistics</option>
-                        <option value="Construction">Construction</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="yearsInOperation" class="form-label">Years in Operation</label>
-                    <input type="number" id="yearsInOperation" name="years_in_operation" class="form-input" min="0"
-                        max="100" required placeholder="e.g., 5">
-                </div>
-            </div>
-
-            <!-- Loan Request -->
-            <div class="card-header" style="margin-top: 2rem;">
-                <h3 class="card-title">Loan Request</h3>
-            </div>
-            <div class="grid grid-3">
-                <div class="form-group">
-                    <label for="loanAmount" class="form-label">Amount (₹)</label>
-                    <input type="number" id="loanAmount" name="loan_amount_requested" class="form-input" min="10000"
-                        required placeholder="20,00,000">
-                </div>
-                <div class="form-group">
-                    <label for="loanTenure" class="form-label">Tenure (Months)</label>
-                    <select id="loanTenure" name="loan_tenure_months" class="form-select" required>
-                        <option value="12">12 Months</option>
-                        <option value="24">24 Months</option>
-                        <option value="36" selected>36 Months</option>
-                        <option value="48">48 Months</option>
-                        <option value="60">60 Months</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="loanPurpose" class="form-label">Purpose</label>
-                    <select id="loanPurpose" name="loan_purpose" class="form-select">
-                        <option value="Working Capital">Working Capital</option>
-                        <option value="Expansion">Expansion</option>
-                        <option value="Equipment Purchase">Equipment</option>
-                        <option value="Debt Consolidation">Debt Consolidation</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Financials -->
-            <div class="card-header" style="margin-top: 2rem;">
-                <h3 class="card-title">Financial Health</h3>
-            </div>
-            <div class="grid grid-2">
-                <div class="form-group">
-                    <label for="annualRevenue" class="form-label">Annual Revenue (₹)</label>
-                    <input type="number" id="annualRevenue" name="annual_revenue" class="form-input" min="1" required
-                        placeholder="50,00,000">
-                    <div class="form-helper">Latest audited revenue</div>
-                </div>
-                <div class="form-group">
-                    <label for="monthlyCashflow" class="form-label">Avg. Monthly Sales (₹)</label>
-                    <input type="number" id="monthlyCashflow" name="monthly_cashflow" class="form-input" required
-                        placeholder="4,00,000">
-                </div>
-
-                <!-- Advanced Metrics -->
-                <div class="form-group">
-                    <label for="ebitdaMargin" class="form-label">EBITDA Margin (%)</label>
-                    <input type="number" id="ebitdaMargin" name="ebitda_margin" class="form-input" step="0.1"
-                        placeholder="e.g. 15">
-                    <div class="form-helper">Operating profit margin</div>
-                </div>
-                <div class="form-group">
-                    <label for="totalDebt" class="form-label">Current Total Debt (₹)</label>
-                    <input type="number" id="totalDebt" name="total_debt" class="form-input" min="0" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="existingEmi" class="form-label">Existing Monthly EMI (₹)</label>
-                    <input type="number" id="existingEmi" name="existing_emi" class="form-input" min="0" value="0">
-                </div>
-            </div>
-
-            <!-- Collateral & Promoter -->
-            <div class="card-header" style="margin-top: 2rem;">
-                <h3 class="card-title">Promoter & Collateral</h3>
-            </div>
-            <div class="grid grid-2">
-                <div class="form-group">
-                    <label for="promoterScore" class="form-label">Promoter Credit Score</label>
-                    <input type="number" id="promoterScore" name="promoter_credit_score" class="form-input" min="300"
-                        max="900" required placeholder="e.g. 750">
-                    <!-- Hidden field for compatibility -->
-                    <input type="hidden" id="creditScore" name="credit_score">
-                </div>
-                <div class="form-group">
-                    <label for="promoterExp" class="form-label">Experience (Years)</label>
-                    <input type="number" id="promoterExp" name="promoter_exp_years" class="form-input" min="0"
-                        placeholder="e.g. 10">
-                </div>
-                <div class="form-group">
-                    <label for="collateralType" class="form-label">Collateral Type</label>
-                    <select id="collateralType" name="collateral_type" class="form-select">
-                        <option value="None">None (Unsecured)</option>
-                        <option value="Real Estate">Real Estate</option>
-                        <option value="Machinery">Machinery</option>
-                        <option value="Inventory">Inventory</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="collateralValue" class="form-label">Collateral Value (₹)</label>
-                    <input type="number" id="collateralValue" name="collateral_value" class="form-input" min="0"
-                        value="0">
-                </div>
-            </div>
-
-            <div style="margin-top: 2rem;">
-                <button type="submit" class="btn btn-lime" id="submitBtn"
-                    style="width: 100%; font-size: 1.1rem; padding: 1.25rem; box-shadow: var(--shadow-md);">
-                    <span id="btnText">✨ Run AI Risk Assessment</span>
-                    <span id="btnSpinner" class="spinner"
-                        style="display: none; width: 24px; height: 24px; border-width: 3px;"></span>
-                </button>
-            </div>
-            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--color-text-muted);">
-                By clicking Submit, you agree to our Terms. AI results are indicative.
-            </p>
-        </form>
-    </div>
-
-    <!-- Success Message -->
-    <div id="successMessage" class="card"
-        style="display: none; margin-top: 2rem; background: #06D6A0; color: white; border: none;">
-        <div class="text-center">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
-            <h3 style="margin-bottom: 1rem; color: white; font-size: 2rem;">Application Submitted!</h3>
-            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem; font-size: 1.1rem;" id="applicationIdText"></p>
-            <div class="flex gap-md justify-center" style="flex-wrap: wrap;">
-                <button class="btn" style="background: white; color: #06D6A0; font-weight: 700;"
-                    onclick="location.reload()">Submit Another</button>
-                <button class="btn"
-                    style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; font-weight: 700;"
-                    id="evaluateBtn">View Evaluation</button>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </section>
 
     <script src="js/api.js"></script>
     <script src="js/app.js"></script>
