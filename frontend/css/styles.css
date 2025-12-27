@@ -100,8 +100,14 @@ body {
     font-family: var(--font-family);
     background: var(--color-bg-primary);
     color: var(--color-text-primary);
-    line-height: 1.7;
-    font-weight: 400;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
 }
 
 /* ========================================
@@ -156,25 +162,24 @@ p {
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 44px;
-    background: var(--color-bg-nav);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     z-index: 1000;
-    transition: all var(--transition-base) ease;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
 [data-theme="dark"] .navbar {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    height: 100%;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -183,38 +188,23 @@ p {
 .navbar-logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
+    gap: 0.75rem;
     text-decoration: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-text-primary);
     letter-spacing: -0.01em;
-    transition: opacity var(--transition-fast) ease;
 }
 
-.navbar-logo:hover {
-    opacity: 0.7;
+.logo-image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform var(--transition-base);
 }
 
-.logo-icon {
-    width: 28px;
-    height: 28px;
-    background: linear-gradient(135deg, #0071e3, #005bb5);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    transition: transform var(--transition-base) ease, box-shadow var(--transition-base) ease;
-    box-shadow: 0 1px 3px rgba(0, 113, 227, 0.2);
-}
-
-.navbar-logo:hover .logo-icon {
-    transform: scale(1.05);
-    box-shadow: 0 2px 6px rgba(0, 113, 227, 0.3);
+.navbar-logo:hover .logo-image {
+    transform: scale(1.1) rotate(-5deg);
 }
 
 .navbar-menu {
@@ -225,11 +215,13 @@ p {
 }
 
 .navbar-menu a {
-    color: var(--color-text-primary);
     text-decoration: none;
-    font-weight: 400;
-    font-size: 0.75rem;
-    transition: opacity var(--transition-fast) ease;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--transition-base);
+    position: relative;
+    padding: 0.5rem 0;
 }
 
 .navbar-menu a:hover {
@@ -455,87 +447,137 @@ p {
 }
 
 /* ========================================
-   Hero Section - Apple Style
+   Hero Section - Beem Inspired
    ======================================== */
 .hero {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    padding: 120px 0 100px;
-    background: var(--color-bg-primary);
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+    /* Navbar height */
 }
 
-.hero-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 3rem;
+.hero-split-left {
+    flex: 1;
+    background: var(--color-bg-primary);
+    display: flex;
+    align-items: center;
+    padding: 4rem 2rem 4rem 6vw;
+    z-index: 2;
+}
+
+.hero-split-right {
+    flex: 1;
+    position: relative;
+    background: var(--color-bg-secondary);
+    /* The Beem Diagonal Cut */
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    margin-left: -5%;
+    /* Overlap slightly */
+}
+
+[data-theme="dark"] .hero-split-right {
+    background: #111;
+}
+
+.hero-abstract-bg {
     width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0071e3 0%, #00c6fb 100%);
+    opacity: 0.1;
 }
 
 .hero-content {
-    max-width: 800px;
-    text-align: center;
-    margin: 0 auto;
-    animation: fadeInUp 0.8s ease;
+    max-width: 600px;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
+.hero-subtitle {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent-blue);
+    margin-bottom: 1.5rem;
+    display: block;
+}
 
+.hero-title {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #0071e3, #00c6fb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+/* Animations using Beem Smoothness */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUpReveal 1.2s var(--ease-out-expo) forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeUpReveal {
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.hero-subtitle {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--color-text-secondary);
-}
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+    }
 
-.hero-title {
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 700;
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.03em;
-}
+    .hero-split-right {
+        min-height: 300px;
+        clip-path: none;
+        margin: 0;
+        order: -1;
+        /* Image on top for mobile */
+    }
 
-.hero-title-highlight {
-    color: var(--color-accent-lime);
-}
+    .hero-split-left {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
 
-.hero-description {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    margin-bottom: 3rem;
-    color: var(--color-text-secondary);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
+    .hero-content {
+        margin: 0 auto;
+    }
 
-.hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: var(--color-text-primary);
-    color: var(--color-bg-primary);
-    border-radius: var(--radius-pill);
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all var(--transition-base) ease;
-}
-
-.hero-cta:hover {
-    opacity: 0.85;
+    .hero-actions {
+        justify-content: center;
+    }
 }
 
 /* ========================================
@@ -603,11 +645,18 @@ p {
 /* ========================================
    Progress Bar
    ======================================== */
-.progress {
-    height: 12px;
-    background: var(--color-bg-secondary);
-    border-radius: var(--radius-pill);
-    overflow: hidden;
+/* ========================================
+   Scroll Reveal Animation
+   ======================================== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s var(--ease-out-expo);
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .progress-bar {
