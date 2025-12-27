@@ -27,7 +27,8 @@
     --color-text-secondary: #4b5563;
     --color-text-inverse: #ffffff;
 
-    --gradient-hero: linear-gradient(135deg, #4c1d95 0%, #3b82f6 100%);
+    --gradient-hero: linear-gradient(135deg, #020617 0%, #1e1b4b 100%);
+    /* Deep premium dark for Light Mode too */
     --gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 
     --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -62,9 +63,11 @@
     --color-text-secondary: #94a3b8;
     --color-text-inverse: #ffffff;
 
-    --gradient-hero: linear-gradient(135deg, #0f172a 0%, #000000 100%);
+    --gradient-hero: linear-gradient(135deg, #000000 0%, #0f172a 100%);
+    /* Pure black to deep slate */
     --shadow-md: 0 10px 15px -3px rgba(255, 255, 255, 0.1);
 }
+
 
 /* Fix Input Visibility in Dark Mode */
 [data-theme="dark"] .form-input,
@@ -557,11 +560,12 @@ p {
 }
 
 .hero-title {
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    /* Reduced from 5.5rem max */
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.1;
     margin-bottom: 2rem;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     color: #ffffff;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
