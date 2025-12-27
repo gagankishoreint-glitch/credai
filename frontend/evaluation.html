@@ -19,14 +19,15 @@
                 <span>CREDIT EVALUATOR</span>
             </a>
 
-                        <ul class="navbar-menu">
+            <ul class="navbar-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="analyzer.html">Analyzer</a></li>
-                <li><a href="benchmarks.html">Benchmarks</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#application-form">Application</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="analyzer.html">Analysis</a></li>
+                <li><a href="methodology.html">Docs</a></li>
             </ul>
 
-                        <div class="navbar-actions">
+            <div class="navbar-actions">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -34,9 +35,10 @@
                     </svg>
                 </button>
                 <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
-                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn"
+                    style="padding: 0.6rem 1.5rem;">Dashboard</a>
             </div>
-            </div>
+        </div>
         </div>
     </nav>
 
@@ -49,88 +51,118 @@
                 <p style="margin-top: 1.5rem; color: var(--color-text-secondary);">Loading evaluation results...</p>
             </div>
 
-            <!-- Evaluation Content -->
-            <div id="evaluationContent" style="display: none;">
-                <!-- Risk Score Card -->
-                <div class="card text-center mb-xl" style="padding: 3rem;">
-                    <h2 style="margin-bottom: 2rem; font-size: 2rem;">Credit Risk Evaluation</h2>
+            <!-- Dashboard Header -->
+            <div class="card mb-lg" style="padding: 2rem;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="margin-bottom: 0.5rem; font-size: 1.75rem;">Credit Risk Report</h2>
+                        <p style="color: var(--color-text-secondary); display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            App ID: <span id="displayAppId"
+                                style="font-family: monospace; font-weight: 600;">#---</span>
+                        </p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div id="decisionBadge" class="status-badge" style="font-size: 1.1rem; padding: 0.5rem 1rem;">--
+                        </div>
+                        <p id="evaluatedAt"
+                            style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.5rem;">--</p>
+                    </div>
+                </div>
+            </div>
 
-                    <div style="margin: 2rem 0;">
-                        <div id="riskScoreCircle"
-                            style="width: 200px; height: 200px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-xl);">
-                            <div style="text-align: center;">
-                                <div id="riskScoreValue" style="font-size: 3.5rem; font-weight: 900;">--</div>
-                                <div
-                                    style="font-size: 0.875rem; color: var(--color-text-secondary); text-transform: uppercase; font-weight: 600;">
-                                    Risk Score</div>
-                            </div>
+            <!-- Charts Grid -->
+            <div class="grid grid-2 gap-lg mb-xl">
+                <!-- Risk Gauge -->
+                <div class="card"
+                    style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px;">
+                    <h3 class="card-title mb-lg" style="width: 100%;">Risk Assessment</h3>
+                    <div
+                        style="position: relative; height: 200px; width: 100%; display: flex; justify-content: center;">
+                        <canvas id="riskGaugeChart"></canvas>
+                        <div style="position: absolute; bottom: 10px; text-align: center;">
+                            <div id="riskScoreValue" style="font-size: 3rem; font-weight: 800; line-height: 1;">--</div>
+                            <div style="font-size: 0.85rem; color: var(--color-text-secondary); font-weight: 600;">TRUST
+                                SCORE</div>
                         </div>
                     </div>
-
-                    <div id="recommendationBadge" class="mb-lg"></div>
-
-                    <div class="grid grid-2 gap-md" style="max-width: 600px; margin: 2rem auto 0;">
-                        <div class="card" style="background: var(--color-bg-secondary); border: none;">
-                            <p
-                                style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; text-transform: uppercase; font-weight: 600;">
-                                Default Probability</p>
-                            <p id="defaultProb" style="font-size: 2rem; font-weight: 800; margin: 0.5rem 0 0;">--</p>
-                        </div>
-                        <div class="card" style="background: var(--color-bg-secondary); border: none;">
-                            <p
-                                style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; text-transform: uppercase; font-weight: 600;">
-                                Confidence</p>
-                            <p id="confidence" style="font-size: 2rem; font-weight: 800; margin: 0.5rem 0 0;">--</p>
-                        </div>
+                    <div id="riskCategory"
+                        style="font-weight: 600; margin-top: 1rem; padding: 0.25rem 1rem; border-radius: 20px; background: var(--color-bg-tertiary);">
+                        --
                     </div>
                 </div>
 
-                <!-- Application Details and Feature Importance -->
-                <div class="grid grid-2 gap-lg mb-xl">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Application Details</h3>
-                        </div>
-                        <div id="applicationDetails" class="grid gap-md">
-                            <!-- Details will be inserted here -->
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Top Contributing Factors</h3>
-                            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: 0.5rem;">
-                                Key features that influenced this decision
-                            </p>
-                        </div>
-                        <div id="featureImportance">
-                            <!-- Feature importance will be inserted here -->
-                        </div>
+                <!-- Feature Importance Bar -->
+                <div class="card" style="min-height: 320px;">
+                    <h3 class="card-title mb-md">Key Decision Drivers</h3>
+                    <div style="height: 240px;">
+                        <canvas id="featureChart"></canvas>
                     </div>
                 </div>
+            </div>
 
-                <!-- Model Info -->
+            <!-- Detailed Metrics -->
+            <div class="grid grid-2 gap-lg mb-xl">
                 <div class="card">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <p
-                                style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">
-                                Model Version</p>
-                            <p id="modelVersion" style="font-weight: 700; margin: 0.25rem 0 0; font-size: 1.1rem;">--
-                            </p>
-                        </div>
-                        <div style="text-align: right;">
-                            <p
-                                style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">
-                                Evaluated At</p>
-                            <p id="evaluatedAt" style="font-weight: 700; margin: 0.25rem 0 0; font-size: 1.1rem;">--</p>
-                        </div>
+                    <h3 class="card-title mb-md">Financial Health</h3>
+                    <div id="applicationDetails" class="grid gap-md">
+                        <!-- Injected by JS -->
                     </div>
                 </div>
+
+                <div class="card">
+                    <h3 class="card-title mb-md">AI Model Insights</h3>
+                    <div class="metric-item"
+                        style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--color-border);">
+                        <span class="label">Confidence Score</span>
+                        <span class="value" id="confidence" style="font-weight: 700;">--%</span>
+                    </div>
+                    <div class="metric-item"
+                        style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--color-border);">
+                        <span class="label">Model Version</span>
+                        <span class="value" id="modelVersion" style="font-weight: 600;">--</span>
+                    </div>
+
+                    <div
+                        style="margin-top: 2rem; background: var(--color-bg-secondary); padding: 1rem; border-radius: var(--radius-md);">
+                        <p style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.5;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" style="margin-right: 4px;">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            <strong>Compliance Note:</strong> This automated decision is based on the applicant's
+                            provided financial data. Final approval is subject to manual underwriting review.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-outline" onclick="window.print()" style="margin-right: 1rem;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="margin-right: 8px; vertical-align: text-bottom;">
+                        <path d="M6 9V2h12v7"></path>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    Download Report
+                </button>
+                <a href="index.html" class="btn btn-primary">New Application</a>
             </div>
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/api.js"></script>
     <script src="js/theme.js"></script>
     <script>
@@ -157,95 +189,139 @@
             }
         });
 
+        let riskChartInstance = null;
+        let featureChartInstance = null;
+
         function displayEvaluation(data) {
             const { evaluation, application, top_features } = data;
 
             document.getElementById('loadingState').style.display = 'none';
             document.getElementById('evaluationContent').style.display = 'block';
 
-            // Risk Score
-            const riskScore = evaluation.risk_score;
-            const riskScoreElement = document.getElementById('riskScoreValue');
-            const riskScoreCircle = document.getElementById('riskScoreCircle');
-
-            riskScoreElement.textContent = Math.round(riskScore);
-
-            let circleGradient;
-            if (riskScore < 30) {
-                circleGradient = 'linear-gradient(135deg, #10b981, #34d399)';
-            } else if (riskScore < 60) {
-                circleGradient = 'linear-gradient(135deg, #f59e0b, #fbbf24)';
-            } else {
-                circleGradient = 'linear-gradient(135deg, #ef4444, #f87171)';
-            }
-            riskScoreCircle.style.background = circleGradient;
-
-            // Default Probability & Confidence
-            document.getElementById('defaultProb').textContent = `${(evaluation.default_probability * 100).toFixed(1)}%`;
+            // 1. Text Data Population
+            document.getElementById('displayAppId').textContent = application.applicant_id || '#APP-' + Math.floor(Math.random() * 10000);
+            document.getElementById('evaluatedAt').textContent = new Date(evaluation.evaluated_at).toLocaleString();
+            document.getElementById('modelVersion').textContent = evaluation.model_version;
             document.getElementById('confidence').textContent = `${(evaluation.confidence_score * 100).toFixed(1)}%`;
 
-            // Recommendation
+            // Risk Score
+            const riskScore = Math.round(evaluation.risk_score);
+            document.getElementById('riskScoreValue').textContent = riskScore.toString(); // Ensure string
+
+            // Decision Badge
             const recommendation = evaluation.recommendation;
-            let badgeHTML;
+            const badgeEl = document.getElementById('decisionBadge');
             if (recommendation === 'approve') {
-                badgeHTML = '<span class="badge badge-success" style="font-size: 1rem; padding: 0.75rem 1.5rem;">✓ APPROVED</span>';
+                badgeEl.textContent = '✓ APPROVED';
+                badgeEl.className = 'status-badge status-success';
+                document.getElementById('riskCategory').textContent = 'Low Risk';
+                document.getElementById('riskCategory').style.color = 'var(--color-success)';
+                document.getElementById('riskCategory').style.background = '#dcfce7';
             } else if (recommendation === 'reject') {
-                badgeHTML = '<span class="badge badge-danger" style="font-size: 1rem; padding: 0.75rem 1.5rem;">✗ REJECTED</span>';
+                badgeEl.textContent = '✗ REJECTED';
+                badgeEl.className = 'status-badge status-high-risk'; // Custom class needed or reuse danger
+                badgeEl.style.background = '#fee2e2';
+                badgeEl.style.color = '#ef4444';
+                document.getElementById('riskCategory').textContent = 'High Risk';
+                document.getElementById('riskCategory').style.color = '#ef4444';
+                document.getElementById('riskCategory').style.background = '#fee2e2';
             } else {
-                badgeHTML = '<span class="badge badge-warning" style="font-size: 1rem; padding: 0.75rem 1.5rem;">⚠ REVIEW REQUIRED</span>';
+                badgeEl.textContent = '⚠ REVIEW';
+                badgeEl.className = 'status-badge status-warning';
+                document.getElementById('riskCategory').textContent = 'Medium Risk';
+                document.getElementById('riskCategory').style.color = '#d97706';
+                document.getElementById('riskCategory').style.background = '#fef3c7';
             }
-            document.getElementById('recommendationBadge').innerHTML = badgeHTML;
 
-            // Application Details
-            const detailsHTML = `
-                <div>
-                    <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">Applicant ID</p>
-                    <p style="font-weight: 700; margin: 0.25rem 0 0;">${application.applicant_id}</p>
-                </div>
-                <div>
-                    <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">Business Type</p>
-                    <p style="font-weight: 700; margin: 0.25rem 0 0;">${application.business_type}</p>
-                </div>
-                <div>
-                    <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">Years in Operation</p>
-                    <p style="font-weight: 700; margin: 0.25rem 0 0;">${application.years_in_operation}</p>
-                </div>
-                <div>
-                    <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">Credit Score</p>
-                    <p style="font-weight: 700; margin: 0.25rem 0 0;">${application.credit_score}</p>
-                </div>
-                <div>
-                    <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">Annual Revenue</p>
-                    <p style="font-weight: 700; margin: 0.25rem 0 0;">₹${formatNumber(application.annual_revenue)}</p>
-                </div>
-                <div>
-                    <p style="font-size: 0.875rem; color: var(--color-text-muted); margin: 0; font-weight: 600;">Loan Requested</p>
-                    <p style="font-weight: 700; margin: 0.25rem 0 0;">₹${formatNumber(application.loan_amount_requested)}</p>
-                </div>
-            `;
-            document.getElementById('applicationDetails').innerHTML = detailsHTML;
+            // 2. Risk Gauge Chart
+            const ctxGauge = document.getElementById('riskGaugeChart').getContext('2d');
+            if (riskChartInstance) riskChartInstance.destroy();
 
-            // Feature Importance
-            const maxImportance = Math.max(...top_features.map(f => f.importance));
-            const featuresHTML = top_features.slice(0, 8).map(feature => {
-                const percentage = (feature.importance / maxImportance) * 100;
-                return `
-                    <div style="margin-bottom: 1rem;">
-                        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
-                            <span style="font-size: 0.875rem; font-weight: 700;">${formatFeatureName(feature.feature)}</span>
-                            <span style="font-size: 0.875rem; color: var(--color-text-muted); font-weight: 600;">${feature.importance.toFixed(3)}</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" style="width: ${percentage}%;"></div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('featureImportance').innerHTML = featuresHTML;
+            // Color based on score (High score = Low Risk in my model? Or Low Score = Low Risk? 
+            // Usually Credit Score 0-100: Higher is better. 
+            // BUT implementation says "Risk Score". Usually Risk Score 0-100: Lower is better. 
+            // Let's check logic: if riskScore < 30 (Green). So Low Score = Low Risk.
 
-            // Model Info
-            document.getElementById('modelVersion').textContent = evaluation.model_version;
-            document.getElementById('evaluatedAt').textContent = new Date(evaluation.evaluated_at).toLocaleString();
+            let gaugeColor = '#10b981'; // Green
+            if (riskScore > 30) gaugeColor = '#f59e0b'; // Orange
+            if (riskScore > 60) gaugeColor = '#ef4444'; // Red
+
+            riskChartInstance = new Chart(ctxGauge, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Risk', 'Safe'],
+                    datasets: [{
+                        data: [riskScore, 100 - riskScore],
+                        backgroundColor: [gaugeColor, '#e5e7eb'],
+                        borderWidth: 0,
+                        cutout: '80%',
+                        circumference: 180,
+                        rotation: 270,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+
+            // 3. Feature Importance Chart (Bar)
+            const ctxFeature = document.getElementById('featureChart').getContext('2d');
+            if (featureChartInstance) featureChartInstance.destroy();
+
+            // Prepare Data
+            const top5 = top_features.slice(0, 5);
+            const labels = top5.map(f => formatFeatureName(f.feature));
+            const values = top5.map(f => f.importance);
+
+            featureChartInstance = new Chart(ctxFeature, {
+                type: 'bar',
+                indexAxis: 'y',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Impact Score',
+                        data: values,
+                        backgroundColor: 'rgba(99, 102, 241, 0.7)',
+                        borderColor: 'rgba(99, 102, 241, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { beginAtZero: true, grid: { display: false } },
+                        y: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // 4. Detailed Metrics List
+            const metricsObj = {
+                "Annual Revenue": `₹${formatNumber(application.annual_revenue)}`,
+                "Requested Loan": `₹${formatNumber(application.loan_amount_requested)}`,
+                "Business Type": application.business_type,
+                "Credit History": application.credit_score + " (Bureau Score)",
+                "Years Operating": application.years_in_operation,
+                "Debt Ratio": (application.debt_to_income_ratio * 100).toFixed(1) + '%'
+            };
+
+            const metricsListEl = document.getElementById('applicationDetails');
+            metricsListEl.innerHTML = Object.entries(metricsObj).map(([key, val]) => `
+                <div style="background: var(--color-bg-primary); padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border);">
+                    <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 0.25rem;">${key}</p>
+                    <p style="font-weight: 700; font-size: 1rem;">${val}</p>
+                </div>
+            `).join('');
         }
 
         function formatNumber(num) {
