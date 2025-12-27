@@ -359,6 +359,18 @@ p {
     background: var(--color-bg-secondary);
 }
 
+.btn-ghost {
+    background: transparent;
+    border: none;
+    color: var(--color-text-primary);
+    padding: 0.5rem 1.25rem;
+}
+
+.btn-ghost:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
 /* ========================================
    Cards - Apple Minimal
    ======================================== */
