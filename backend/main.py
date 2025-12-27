@@ -38,6 +38,10 @@ app.add_middleware(
 # Include routers
 app.include_router(applications.router)
 app.include_router(evaluations.router)
+from app.api import predict
+app.include_router(predict.router)
+from app.api import metrics
+app.include_router(metrics.router)
 
 @app.get("/", tags=["root"])
 async def root():

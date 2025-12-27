@@ -21,13 +21,13 @@
 
                                     <ul class="navbar-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#application-form">Application</a></li>
+                <li><a href="application.html">Application</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="analyzer.html">Analysis</a></li>
                 <li><a href="methodology.html">Docs</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
 
-                        <div class="navbar-actions">
+            <div class="navbar-actions">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                     <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -35,7 +35,8 @@
                     </svg>
                 </button>
                 <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
-                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn"
+                    style="padding: 0.6rem 1.5rem;">Dashboard</a>
             </div>
         </div>
     </nav>
@@ -85,90 +86,106 @@
                                 <option value="">All Applications</option>
                                 <option value="pending">Pending Evaluation</option>
                                 <option value="evaluated">Evaluated</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
                             </select>
                         </div>
-                        <div class="toggle-group bg-secondary p-xs rounded-sm flex">
-                            <button id="viewGrid" class="btn btn-sm btn-ghost active" title="Grid View">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="3" y="3" width="7" height="7"></rect>
-                                    <rect x="14" y="3" width="7" height="7"></rect>
-                                    <rect x="14" y="14" width="7" height="7"></rect>
-                                    <rect x="3" y="14" width="7" height="7"></rect>
-                                </svg>
-                            </button>
-                            <button id="viewTable" class="btn btn-sm btn-ghost" title="Table View">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <line x1="8" y1="6" x2="21" y2="6"></line>
-                                    <line x1="8" y1="12" x2="21" y2="12"></line>
-                                    <line x1="8" y1="18" x2="21" y2="18"></line>
-                                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                                </svg>
-                            </button>
+                        <div class="form-group" style="margin: 0; min-width: 150px;">
+                            <select id="limitFilter" class="form-select">
+                                <option value="10">Show 10</option>
+                                <option value="50">Show 50</option>
+                                <option value="100">Show 100</option>
+                            </select>
                         </div>
                     </div>
-
-                    <button id="refreshBtn" class="btn btn-lime">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M21.5 2v6h-6M2.5 22v-6h6" />
-                            <path d="M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
-                        </svg>
-                        Refresh Data
-                    </button>
                 </div>
             </div>
 
             <!-- Loading State -->
-            <div id="loadingState" class="text-center" style="padding: 5rem 2rem;">
+            <div id="loadingState" class="text-center" style="padding: 5rem 2rem; display: none;">
                 <div class="spinner" style="margin: 0 auto;"></div>
                 <p style="margin-top: 2rem; color: var(--color-text-secondary);">Loading applications...</p>
             </div>
 
-            <!-- Applications Grid -->
-            <div id="applicationsGrid" class="grid grid-2" style="display: none;">
-                <!-- Applications inserted here -->
-            </div>
-
             <!-- Applications Table -->
-            <div id="applicationsTable" style="display: none; overflow-x: auto;">
+            <div class="card" style="overflow-x: auto; padding: 0;">
                 <table class="data-table" style="width: 100%; text-align: left; border-collapse: collapse;">
                     <thead>
-                        <tr style="border-bottom: 2px solid var(--color-border);">
+                        <tr
+                            style="border-bottom: 2px solid var(--color-border); background: var(--color-bg-secondary);">
                             <th style="padding: 1rem;">ID</th>
-                            <th style="padding: 1rem;">Date</th>
-                            <th style="padding: 1rem;">Business</th>
-                            <th style="padding: 1rem;">Revenue</th>
-                            <th style="padding: 1rem;">Loan Amount</th>
-                            <th style="padding: 1rem;">Score</th>
+                            <th style="padding: 1rem;">Applicant Profile</th>
+                            <th style="padding: 1rem;">Loan Request</th>
+                            <th style="padding: 1rem;">AI Risk Score</th>
                             <th style="padding: 1rem;">Status</th>
-                            <th style="padding: 1rem;">Action</th>
+                            <th style="padding: 1rem;">Date</th>
+                            <th style="padding: 1rem;">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="applicationsTableBody">
                     </tbody>
                 </table>
             </div>
+            <tbody id="applicationsTableBody">
+            </tbody>
+            </table>
+        </div>
 
-            <!-- Empty State -->
-            <div id="emptyState" class="card text-center" style="display: none; padding: 5rem 3rem;">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 2rem; opacity: 0.2;">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                </svg>
-                <h3 style="margin-bottom: 1rem; font-size: 2rem;">No Applications Yet</h3>
-                <p style="color: var(--color-text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem;">Submit your
-                    first application to get started</p>
-                <a href="index.html" class="btn btn-lime">Create Application</a>
-            </div>
+        <!-- Empty State -->
+        <div id="emptyState" class="card text-center" style="display: none; padding: 5rem 3rem;">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 2rem; opacity: 0.2;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+            <h3 style="margin-bottom: 1rem; font-size: 2rem;">No Applications Yet</h3>
+            <p style="color: var(--color-text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem;">Submit your
+                first application to get started</p>
+            <a href="index.html" class="btn btn-lime">Create Application</a>
+        </div>
         </div>
     </main>
+
+        <!-- Shared Footer -->
+    <footer style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 4rem 0;">
+        <div class="container">
+            <div class="grid grid-2 gap-xl">
+                <div>
+                    <a href="index.html" class="navbar-logo" style="margin-bottom: 1.5rem; display: inline-flex;">
+                        <img src="assets/logo.png" alt="CE Logo" class="logo-image">
+                        <span style="font-size: 1.5rem;">Credit Evaluator</span>
+                    </a>
+                    <p style="color: var(--color-text-secondary); line-height: 1.6; max-width: 400px;">
+                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure evaluation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?</h4>
+                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
+                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage to provide a real-time risk assessment without manual delays.
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the evaluation?</h4>
+                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
+                            Our system is calibrated on thousands of historical credit records, achieving over 75% accuracy. While we provide a high-confidence "Decision Assistant," final approvals are always reviewed by human underwriters to ensure fairness and compliance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
+                &copy; 2025 Credit Evaluator. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
     <script src="js/api.js"></script>
     <script src="js/dashboard.js"></script>

@@ -8,6 +8,7 @@ const themeIcon = document.getElementById('themeIcon');
 // Set initial theme
 document.documentElement.setAttribute('data-theme', currentTheme);
 updateThemeIcon(currentTheme);
+updateLogo(currentTheme);
 
 // Theme toggle event listener
 if (themeToggle) {
@@ -18,6 +19,18 @@ if (themeToggle) {
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon(newTheme);
+        updateLogo(newTheme);
+    });
+}
+
+function updateLogo(theme) {
+    const logos = document.querySelectorAll('.logo-image');
+    logos.forEach(logo => {
+        if (theme === 'dark') {
+            logo.src = 'assets/logo-dark.png';
+        } else {
+            logo.src = 'assets/logo.png';
+        }
     });
 }
 

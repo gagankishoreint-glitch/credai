@@ -1,0 +1,52 @@
+{
+    "logistic_regression": {
+        "auc": 0.8143413120135199,
+        "accuracy": 0.738
+    },
+    "xgboost": {
+        "auc": 0.833479582053657,
+        "accuracy": 0.753
+    },
+    "fairness_approval_rates": {
+        "Retail/Trading": 0.0433,
+        "Construction": 0.0577,
+        "Services": 0.1781,
+        "Manufacturing": 0.0766,
+        "Logistics": 0.0521,
+        "Tech/Startup": 0.0104
+    },
+    "feature_names": [
+        "years_in_operation",
+        "promoter_credit_score",
+        "promoter_exp_years",
+        "annual_revenue",
+        "gst_turnover",
+        "ebitda_margin",
+        "net_margin",
+        "total_debt",
+        "existing_emi",
+        "loan_amount_requested",
+        "loan_tenure_months",
+        "proposed_emi",
+        "dscr",
+        "collateral_value",
+        "business_type_Construction",
+        "business_type_Logistics",
+        "business_type_Manufacturing",
+        "business_type_Retail/Trading",
+        "business_type_Services",
+        "business_type_Tech/Startup",
+        "loan_purpose_Debt Consolidation",
+        "loan_purpose_Equipment Purchase",
+        "loan_purpose_Expansion",
+        "loan_purpose_Inventory Restocking",
+        "loan_purpose_Working Capital",
+        "collateral_type_Inventory",
+        "collateral_type_Machinery",
+        "collateral_type_Real Estate",
+        "collateral_type_Receivables",
+        "collateral_type_nan",
+        "prior_default_0",
+        "prior_default_1"
+    ]
+}

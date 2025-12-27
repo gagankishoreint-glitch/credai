@@ -37,6 +37,18 @@ class Application(Base):
     collateral_value = Column(Float)
     repayment_history = Column(String)
     
+    # Expanded Fields
+    gst_turnover = Column(Float, nullable=True)
+    ebitda_margin = Column(Float, nullable=True)
+    net_margin = Column(Float, nullable=True)
+    loan_tenure_months = Column(Integer, nullable=True)
+    loan_purpose = Column(String, nullable=True)
+    promoter_credit_score = Column(Integer, nullable=True)
+    promoter_exp_years = Column(Integer, nullable=True)
+    collateral_type = Column(String, nullable=True)
+    total_debt = Column(Float, nullable=True)
+    existing_emi = Column(Float, nullable=True)
+    
     # Status
     status = Column(SQLEnum(ApplicationStatus), default=ApplicationStatus.PENDING)
     

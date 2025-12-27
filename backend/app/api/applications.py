@@ -37,7 +37,19 @@ async def create_application(
         debt_to_income_ratio=application.debt_to_income_ratio,
         collateral_value=application.collateral_value,
         repayment_history=application.repayment_history.value,
-        status=ApplicationStatus.PENDING
+        status=ApplicationStatus.PENDING,
+        
+        # New Fields
+        gst_turnover=application.gst_turnover,
+        ebitda_margin=application.ebitda_margin,
+        net_margin=application.net_margin,
+        loan_tenure_months=application.loan_tenure_months,
+        loan_purpose=application.loan_purpose,
+        promoter_credit_score=application.promoter_credit_score,
+        promoter_exp_years=application.promoter_exp_years,
+        collateral_type=application.collateral_type,
+        total_debt=application.total_debt,
+        existing_emi=application.existing_emi
     )
     
     db.add(db_application)

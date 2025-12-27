@@ -39,6 +39,18 @@ class ApplicationCreate(BaseModel):
     collateral_value: float = Field(ge=0)
     repayment_history: RepaymentHistory
     
+    # New optional fields for AI Model (Fallback to defaults if missing)
+    gst_turnover: float = Field(default=0.0, ge=0)
+    ebitda_margin: float = Field(default=0.1, ge=-1.0, le=1.0)
+    net_margin: float = Field(default=0.05, ge=-1.0, le=1.0)
+    loan_tenure_months: int = Field(default=36, ge=0)
+    loan_purpose: str = "Working Capital"
+    promoter_credit_score: int = Field(default=650, ge=300, le=900)
+    promoter_exp_years: int = Field(default=5, ge=0)
+    collateral_type: str = "None"
+    total_debt: float = Field(default=0.0, ge=0)
+    existing_emi: float = Field(default=0.0, ge=0)
+    
     class Config:
         json_schema_extra = {
             "example": {
@@ -51,7 +63,8 @@ class ApplicationCreate(BaseModel):
                 "existing_loans": 2,
                 "debt_to_income_ratio": 0.45,
                 "collateral_value": 3000000,
-                "repayment_history": "Good"
+                "repayment_history": "Good",
+                "loan_tenure_months": 36
             }
         }
 

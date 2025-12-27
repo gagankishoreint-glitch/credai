@@ -1,0 +1,27 @@
+{
+    "num_records": 5000,
+    "default_rate": 0.4382,
+    "columns": [
+        "applicant_id",
+        "business_type",
+        "years_in_operation",
+        "promoter_credit_score",
+        "promoter_exp_years",
+        "prior_default",
+        "annual_revenue",
+        "gst_turnover",
+        "ebitda_margin",
+        "net_margin",
+        "total_debt",
+        "existing_emi",
+        "loan_amount_requested",
+        "loan_tenure_months",
+        "loan_purpose",
+        "proposed_emi",
+        "dscr",
+        "collateral_type",
+        "collateral_value",
+        "default_probability_true",
+        "default_flag"
+    ]
+}

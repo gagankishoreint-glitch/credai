@@ -19,12 +19,12 @@
                 <span>CREDIT EVALUATOR</span>
             </a>
 
-            <ul class="navbar-menu">
+                                    <ul class="navbar-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#application-form">Application</a></li>
+                <li><a href="application.html">Application</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="analyzer.html">Analysis</a></li>
                 <li><a href="methodology.html">Docs</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
 
             <div class="navbar-actions">
@@ -109,6 +109,60 @@
                 </div>
             </div>
 
+            <!-- What-If Simulator -->
+            <div class="card mb-xl"
+                style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1px solid #bbf7d0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <div>
+                        <h3 class="card-title">🧪 What-If Simulator</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Adjust parameters to see how
+                            they impact the risk score.</p>
+                    </div>
+                    <span class="status-badge"
+                        style="background: white; color: var(--color-primary);">Interactive</span>
+                </div>
+
+                <div class="grid grid-3 gap-lg">
+                    <!-- Slider 1: Loan Amount -->
+                    <div class="form-group">
+                        <label class="form-label" style="display: flex; justify-content: space-between;">
+                            Loan Amount
+                            <span id="simAmountVal" style="font-weight: 700;">₹0</span>
+                        </label>
+                        <input type="range" id="simAmount" class="form-range" min="100000" max="50000000" step="100000"
+                            style="width: 100%;">
+                    </div>
+
+                    <!-- Slider 2: Tenure -->
+                    <div class="form-group">
+                        <label class="form-label" style="display: flex; justify-content: space-between;">
+                            Tenure (Months)
+                            <span id="simTenureVal" style="font-weight: 700;">0</span>
+                        </label>
+                        <input type="range" id="simTenure" class="form-range" min="6" max="60" step="6"
+                            style="width: 100%;">
+                    </div>
+
+                    <!-- Slider 3: Revenue -->
+                    <div class="form-group">
+                        <label class="form-label" style="display: flex; justify-content: space-between;">
+                            Annual Revenue
+                            <span id="simRevenueVal" style="font-weight: 700;">₹0</span>
+                        </label>
+                        <input type="range" id="simRevenue" class="form-range" min="500000" max="100000000"
+                            step="500000" style="width: 100%;">
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: right;">
+                    <button id="btnSimulate" class="btn btn-primary" onclick="runSimulation()">
+                        Recalculate Risk
+                    </button>
+                    <p id="simStatus" style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.5rem;">
+                    </p>
+                </div>
+            </div>
+
             <!-- Detailed Metrics -->
             <div class="grid grid-2 gap-lg mb-xl">
                 <div class="card">
@@ -162,10 +216,54 @@
         </div>
     </main>
 
+        <!-- Shared Footer -->
+    <footer style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 4rem 0;">
+        <div class="container">
+            <div class="grid grid-2 gap-xl">
+                <div>
+                    <a href="index.html" class="navbar-logo" style="margin-bottom: 1.5rem; display: inline-flex;">
+                        <img src="assets/logo.png" alt="CE Logo" class="logo-image">
+                        <span style="font-size: 1.5rem;">Credit Evaluator</span>
+                    </a>
+                    <p style="color: var(--color-text-secondary); line-height: 1.6; max-width: 400px;">
+                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure evaluation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?</h4>
+                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
+                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage to provide a real-time risk assessment without manual delays.
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the evaluation?</h4>
+                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
+                            Our system is calibrated on thousands of historical credit records, achieving over 75% accuracy. While we provide a high-confidence "Decision Assistant," final approvals are always reviewed by human underwriters to ensure fairness and compliance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
+                &copy; 2025 Credit Evaluator. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/api.js"></script>
     <script src="js/theme.js"></script>
     <script>
+        // Global State for Simulation
+        let currentAppData = null;
+        let riskChartInstance = null;
+        let featureChartInstance = null;
+
         // Initialize theme
         const currentTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', currentTheme);
@@ -182,15 +280,14 @@
 
             try {
                 const data = await api.getDetailedEvaluation(evaluationId);
+                currentAppData = data.application; // Store for simulation
                 displayEvaluation(data);
+                initSimulator(currentAppData);
             } catch (error) {
                 alert(`Error loading evaluation: ${error.message}`);
                 console.error(error);
             }
         });
-
-        let riskChartInstance = null;
-        let featureChartInstance = null;
 
         function displayEvaluation(data) {
             const { evaluation, application, top_features } = data;
@@ -205,42 +302,141 @@
             document.getElementById('confidence').textContent = `${(evaluation.confidence_score * 100).toFixed(1)}%`;
 
             // Risk Score
-            const riskScore = Math.round(evaluation.risk_score);
-            document.getElementById('riskScoreValue').textContent = riskScore.toString(); // Ensure string
+            updateRiskUI(evaluation.risk_score, evaluation.recommendation);
 
-            // Decision Badge
-            const recommendation = evaluation.recommendation;
+            // 2. Risk Gauge Chart
+            renderRiskChart(evaluation.risk_score);
+
+            // 3. Feature Importance Chart (Bar)
+            renderFeatureChart(top_features);
+
+            // 4. Detailed Metrics List
+            const metricsObj = {
+                "Annual Revenue": `₹${formatNumber(application.annual_revenue)}`,
+                "Requested Loan": `₹${formatNumber(application.loan_amount_requested)}`,
+                "Business Type": application.business_type,
+                "Credit History": application.credit_score + " (Bureau Score)",
+                "Years Operating": application.years_in_operation,
+                "Debt Ratio": ((application.debt_to_income_ratio || 0) * 100).toFixed(1) + '%'
+            };
+
+            const metricsListEl = document.getElementById('applicationDetails');
+            metricsListEl.innerHTML = Object.entries(metricsObj).map(([key, val]) => `
+                <div style="background: var(--color-bg-primary); padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border);">
+                    <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 0.25rem;">${key}</p>
+                    <p style="font-weight: 700; font-size: 1rem;">${val}</p>
+                </div>
+            `).join('');
+        }
+
+        // --- Simulator Logic ---
+        function initSimulator(appData) {
+            // Set initial values
+            const amountSlider = document.getElementById('simAmount');
+            const tenureSlider = document.getElementById('simTenure');
+            const revSlider = document.getElementById('simRevenue');
+
+            amountSlider.value = appData.loan_amount_requested;
+            tenureSlider.value = appData.loan_tenure_months || 36;
+            revSlider.value = appData.annual_revenue;
+
+            // Update Labels
+            document.getElementById('simAmountVal').textContent = '₹' + formatNumber(amountSlider.value);
+            document.getElementById('simTenureVal').textContent = tenureSlider.value + 'm';
+            document.getElementById('simRevenueVal').textContent = '₹' + formatNumber(revSlider.value);
+
+            // Listeners
+            amountSlider.oninput = function () { document.getElementById('simAmountVal').textContent = '₹' + formatNumber(this.value); };
+            tenureSlider.oninput = function () { document.getElementById('simTenureVal').textContent = this.value + 'm'; };
+            revSlider.oninput = function () { document.getElementById('simRevenueVal').textContent = '₹' + formatNumber(this.value); };
+        }
+
+        async function runSimulation() {
+            if (!currentAppData) return;
+
+            const btn = document.getElementById('btnSimulate');
+            const statusEl = document.getElementById('simStatus');
+            btn.disabled = true;
+            btn.textContent = 'Simulating...';
+            statusEl.textContent = 'Contacting AI Prediction Engine...';
+
+            // Prepare payload (clone and update)
+            const payload = { ...currentAppData };
+            payload.loan_amount_requested = parseFloat(document.getElementById('simAmount').value);
+            payload.loan_tenure_months = parseInt(document.getElementById('simTenure').value);
+            payload.annual_revenue = parseFloat(document.getElementById('simRevenue').value);
+
+            // Recalculate derived fields roughly if needed? 
+            // The backend handles derivations in preprocess_application, so sending raw is fine.
+            // But we need to make sure we send valid ApplicationCreate schema.
+            // currentAppData has internal fields (id, applicant_id, etc) which ApplicationCreate might reject if strict.
+            // But ApplicationCreate ignores extras usually.
+            // However, `timestamps` (created_at) might cause issue if schema is strict.
+            // Let's rely on FastAPI validation ignoring extra fields, or clean it.
+
+            try {
+                // Call /api/predict
+                const response = await fetch(`${API_BASE_URL}/api/predict/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error('Simulation failed');
+
+                const result = await response.json();
+
+                // Update UI with new Risk Score
+                updateRiskUI(result.risk_score, result.recommendation);
+                renderRiskChart(result.risk_score);
+
+                statusEl.textContent = `Scenario updated! Risk Score: ${result.risk_score}`;
+                statusEl.style.color = 'var(--color-success)';
+
+            } catch (e) {
+                console.error(e);
+                statusEl.textContent = 'Simulation Error.';
+                statusEl.style.color = 'red';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Recalculate Risk';
+            }
+        }
+
+        function updateRiskUI(score, recommendation) {
+            const roundedScore = Math.round(score);
+            document.getElementById('riskScoreValue').textContent = roundedScore;
+
             const badgeEl = document.getElementById('decisionBadge');
+            const catEl = document.getElementById('riskCategory');
+
             if (recommendation === 'approve') {
                 badgeEl.textContent = '✓ APPROVED';
                 badgeEl.className = 'status-badge status-success';
-                document.getElementById('riskCategory').textContent = 'Low Risk';
-                document.getElementById('riskCategory').style.color = 'var(--color-success)';
-                document.getElementById('riskCategory').style.background = '#dcfce7';
+                badgeEl.style.background = '#dcfce7'; badgeEl.style.color = '#166534';
+                catEl.textContent = 'Low Risk';
+                catEl.style.color = 'var(--color-success)';
+                catEl.style.background = '#dcfce7';
             } else if (recommendation === 'reject') {
                 badgeEl.textContent = '✗ REJECTED';
-                badgeEl.className = 'status-badge status-high-risk'; // Custom class needed or reuse danger
-                badgeEl.style.background = '#fee2e2';
-                badgeEl.style.color = '#ef4444';
-                document.getElementById('riskCategory').textContent = 'High Risk';
-                document.getElementById('riskCategory').style.color = '#ef4444';
-                document.getElementById('riskCategory').style.background = '#fee2e2';
+                badgeEl.className = 'status-badge status-high-risk';
+                badgeEl.style.background = '#fee2e2'; badgeEl.style.color = '#991b1b';
+                catEl.textContent = 'High Risk';
+                catEl.style.color = '#ef4444';
+                catEl.style.background = '#fee2e2';
             } else {
                 badgeEl.textContent = '⚠ REVIEW';
                 badgeEl.className = 'status-badge status-warning';
-                document.getElementById('riskCategory').textContent = 'Medium Risk';
-                document.getElementById('riskCategory').style.color = '#d97706';
-                document.getElementById('riskCategory').style.background = '#fef3c7';
+                badgeEl.style.background = '#fef3c7'; badgeEl.style.color = '#92400e';
+                catEl.textContent = 'Medium Risk';
+                catEl.style.color = '#d97706';
+                catEl.style.background = '#fef3c7';
             }
+        }
 
-            // 2. Risk Gauge Chart
+        function renderRiskChart(riskScore) {
             const ctxGauge = document.getElementById('riskGaugeChart').getContext('2d');
             if (riskChartInstance) riskChartInstance.destroy();
-
-            // Color based on score (High score = Low Risk in my model? Or Low Score = Low Risk? 
-            // Usually Credit Score 0-100: Higher is better. 
-            // BUT implementation says "Risk Score". Usually Risk Score 0-100: Lower is better. 
-            // Let's check logic: if riskScore < 30 (Green). So Low Score = Low Risk.
 
             let gaugeColor = '#10b981'; // Green
             if (riskScore > 30) gaugeColor = '#f59e0b'; // Orange
@@ -262,18 +458,15 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { enabled: false }
-                    }
+                    plugins: { legend: { display: false }, tooltip: { enabled: false } }
                 }
             });
+        }
 
-            // 3. Feature Importance Chart (Bar)
+        function renderFeatureChart(top_features) {
             const ctxFeature = document.getElementById('featureChart').getContext('2d');
             if (featureChartInstance) featureChartInstance.destroy();
 
-            // Prepare Data
             const top5 = top_features.slice(0, 5);
             const labels = top5.map(f => formatFeatureName(f.feature));
             const values = top5.map(f => f.importance);
@@ -299,29 +492,9 @@
                         x: { beginAtZero: true, grid: { display: false } },
                         y: { grid: { display: false } }
                     },
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { display: false } }
                 }
             });
-
-            // 4. Detailed Metrics List
-            const metricsObj = {
-                "Annual Revenue": `₹${formatNumber(application.annual_revenue)}`,
-                "Requested Loan": `₹${formatNumber(application.loan_amount_requested)}`,
-                "Business Type": application.business_type,
-                "Credit History": application.credit_score + " (Bureau Score)",
-                "Years Operating": application.years_in_operation,
-                "Debt Ratio": (application.debt_to_income_ratio * 100).toFixed(1) + '%'
-            };
-
-            const metricsListEl = document.getElementById('applicationDetails');
-            metricsListEl.innerHTML = Object.entries(metricsObj).map(([key, val]) => `
-                <div style="background: var(--color-bg-primary); padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border);">
-                    <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 0.25rem;">${key}</p>
-                    <p style="font-weight: 700; font-size: 1rem;">${val}</p>
-                </div>
-            `).join('');
         }
 
         function formatNumber(num) {

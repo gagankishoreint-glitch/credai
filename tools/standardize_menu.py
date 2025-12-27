@@ -6,10 +6,10 @@ target_dir = r"d:\projects\credit-evaluation-system\frontend"
 # The standardized menu structure (Removing Compare and Calculator)
 standard_nav_menu = """            <ul class="navbar-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#application-form">Application</a></li>
+                <li><a href="application.html">Application</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="analyzer.html">Analysis</a></li>
                 <li><a href="methodology.html">Docs</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>"""
 
 # Regex to find the navbar-menu ul
