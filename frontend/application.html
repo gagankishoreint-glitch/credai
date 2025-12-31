@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply for Credit | AI Evaluator</title>
+    <title>CredAi | Apply for Credit Evaluation</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 </head>
 
 <body>
@@ -16,7 +21,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">underwrite.ai</a>
+            <a href="index.html" class="nav-brand">CredAi</a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
             </ul>
@@ -49,18 +54,18 @@
                 </div>
             </div>
 
-            <form id="applicationForm">
+            <form id="application-form">
                 <!-- STEP 1: BUSINESS BASICS -->
                 <div class="step-content active" id="step-1">
                     <div class="form-group">
                         <label class="form-label">Business Name</label>
-                        <input type="text" class="form-input" name="business_name" required
+                        <input type="text" id="businessName" class="form-input" name="business_name" required
                             placeholder="e.g. Acme Corp">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Industry Type</label>
-                        <select class="form-select" name="industry_type" required>
+                        <select id="industry" class="form-select" name="industry_type" required>
                             <option value="">Select industry...</option>
                             <option value="Retail">Retail</option>
                             <option value="Services">Services</option>
@@ -71,7 +76,8 @@
 
                     <div class="form-group">
                         <label class="form-label">Years in Operation</label>
-                        <input type="number" class="form-input" name="years_in_operation" required min="0">
+                        <input type="number" id="yearsInBusiness" class="form-input" name="years_in_operation" required
+                            min="0">
                         <div class="strength-meter">
                             <div class="strength-fill" id="years-strength"></div>
                         </div>
@@ -87,11 +93,11 @@
                     <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="form-group">
                             <label class="form-label">Annual Revenue ($)</label>
-                            <input type="number" class="form-input" name="annual_revenue" required>
+                            <input type="number" id="revenue" class="form-input" name="annual_revenue" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Requested Loan Amount ($)</label>
-                            <input type="number" class="form-input" name="loan_amount" required>
+                            <input type="number" id="loanAmount" class="form-input" name="loan_amount" required>
                         </div>
                     </div>
 
@@ -186,6 +192,11 @@
             dropZone.style.borderColor = 'var(--color-border)';
         });
     </script>
+
+    <!-- Firebase Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/application-submit.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 
 </html>

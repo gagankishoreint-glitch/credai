@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applicant Dashboard | Underwrite.ai</title>
+    <title>CredAi | Dashboard</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -15,7 +19,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">underwrite.ai</a>
+            <a href="index.html" class="nav-brand">CredAi</a>
             <div style="display: flex; gap: 16px; align-items: center;">
                 <span style="font-size: 0.9rem; color: var(--color-text-secondary);">Welcome, Acme Corp</span>
                 <a href="#" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">Logout</a>
@@ -112,6 +116,9 @@
         </div>
     </div>
 
+    <!-- Firebase Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/dashboard-realtime.js"></script>
 </body>
 
 </html>

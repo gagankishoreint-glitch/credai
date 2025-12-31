@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwriter Dashboard | Underwrite.ai</title>
+    <title>CredAi | Admin Dashboard</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -17,7 +21,8 @@
         <div class="nav-container">
             <div style="display: flex; gap: 32px; align-items: center;">
                 <span
-                    style="font-weight: 700; color: var(--color-white); font-family: 'Playfair Display', serif;">UNDERWRITER</span>
+                    style="font-weight: 700; color: var(--color-white); font-family: 'Playfair Display', serif;">CREDAI
+                    ADMIN</span>
                 <a href="#" style="color: var(--color-text-secondary); font-size: 0.9rem;">Dashboard</a>
                 <a href="#" style="color: var(--color-white); font-size: 0.9rem; font-weight: 500;">Applications</a>
                 <a href="#" style="color: var(--color-text-secondary); font-size: 0.9rem;">Risk Models</a>
@@ -79,7 +84,7 @@
                         </td>
                         <td style="padding: 20px; text-align: right;">
                             <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem;"
-                                onclick="toggleDetails(1)">Review</button>
+                                onclick="toggleDetails()">Review</button>
                         </td>
                     </tr>
                     <!-- Row 2 -->
@@ -96,8 +101,8 @@
                                 Risk</span>
                         </td>
                         <td style="padding: 20px; text-align: right;">
-                            <button class="btn btn-outline"
-                                style="padding: 8px 20px; font-size: 0.85rem;">Review</button>
+                            <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem;"
+                                onclick="toggleDetails()">Review</button>
                         </td>
                     </tr>
                 </tbody>
@@ -161,14 +166,20 @@
     </div>
 
     <script>
-        function toggleDetails(id) {
+        function toggleDetails() {
             const detailView = document.getElementById('detail-view');
-            detailView.style.display = detailView.style.display === 'none' ? 'block' : 'none';
-            if (detailView.style.display === 'block') {
+            if (detailView.style.display === 'none' || detailView.style.display === '') {
+                detailView.style.display = 'block';
                 detailView.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                detailView.style.display = 'none';
             }
         }
     </script>
+
+    <!-- Firebase Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin-panel.js"></script>
 </body>
 
 </html>
