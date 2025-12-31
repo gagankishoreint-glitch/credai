@@ -1,141 +1,173 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Credit Evaluator | Intelligent Loan Assessment</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <meta name="description"
-        content="Automated creditworthiness assessment powered by AI. Fast, accurate, data-driven insights for business loans.">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Ionicons for Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<!-- Max Milkin Clone Structure -->
+<body>
 
-<body class="is-loading">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">underwrite.ai</a>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
-
-    <!-- Navigation (Max Milkin Style: Minimal, Corners) -->
-    <nav class="milkin-nav">
-        <div class="nav-left">
-            <a href="index.html" class="brand-link">
-                CREDIT EVALUATOR <span class="version">[ v.1.0 ]</span>
-            </a>
-        </div>
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="#problem" class="active-link">( PROBLEM )</a></li>
-                <li><a href="#objectives">( OBJECTIVES )</a></li>
-                <li><a href="#methodology">( METHODOLOGY )</a></li>
-                <li><a href="application.html" class="highlight-link">[ START APP ]</a></li>
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Our Technology</a>
+                    <div class="dropdown-menu">
+                        <a href="methodology.html" class="dropdown-item">Credit Evaluation</a>
+                        <a href="#" class="dropdown-item">Risk Assessment</a>
+                        <a href="#" class="dropdown-item">Automation</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Use Cases</a>
+                    <div class="dropdown-menu">
+                        <a href="application.html" class="dropdown-item">SMB Lending</a>
+                        <a href="#" class="dropdown-item">Consumer Lending</a>
+                        <a href="#" class="dropdown-item">Auto Loans</a>
+                    </div>
+                </li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Resources</a></li>
+                <!-- REMOVED: Pricing -->
             </ul>
+
+            <div class="nav-actions">
+                <a href="application.html" class="btn btn-primary">Start for Free</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Main Scroll Container -->
-    <main class="smooth-scroll-container">
-
-        <!-- Hero Section -->
-        <section class="milkin-hero" id="hero">
-            <div class="hero-center">
-                <h1 class="hero-headline">
-                    <div class="line-mask"><span class="reveal-text delay-1">AI-DRIVEN</span></div>
-                    <div class="line-mask"><span class="reveal-text delay-2">SMART CREDIT</span></div>
-                    <div class="line-mask"><span class="reveal-text delay-3">EVALUATION</span></div>
-                </h1>
-                <div class="hero-meta reveal-up delay-4">
-                    <p>SYSTEM ARCHITECTURE &middot; 2025</p>
-                    <p>SUPPORTS HUMAN UNDERWRITERS</p>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>AI-Driven Smart Credit Evaluation</h1>
+                <p>Automate your lending decisions with 99.9% accuracy. Reduce manual underwriting time from days to
+                    seconds using advanced machine learning.</p>
+                <div class="hero-buttons">
+                    <a href="application.html" class="btn btn-primary">Start for Free</a>
+                    <a href="#" class="btn btn-outline"><ion-icon name="play-circle-outline"
+                            style="margin-right: 8px; font-size: 1.2rem;"></ion-icon> Play Video</a>
                 </div>
             </div>
-        </section>
-
-        <!-- Section 1: Problem Statement (Styled as "About") -->
-        <section class="milkin-section dark-theme" id="problem">
-            <div class="section-label">[ 01. PROBLEM STATEMENT ]</div>
-            <div class="content-block">
-                <h2 class="section-title">
-                    Financial institutions face delays in evaluating loan applications due to manual document
-                    verification.
-                </h2>
-                <p class="section-body">
-                    Current methods rely heavily on manual scrutiny of financial documents and static rules. These
-                    methods are slow, inconsistent, and prone to error—especially as volume increases.
-                </p>
+            <div class="hero-image">
+                <!-- Placeholder for Hero Image -->
+                <img src="https://placehold.co/600x400/00AEEF/FFFFFF?text=Credit+Evaluation+Dashboard"
+                    alt="Dashboard Preview">
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section 2: Objectives (Grid Layout) -->
-        <section class="milkin-section light-theme" id="objectives">
-            <div class="section-label">[ 02. OBJECTIVES ]</div>
-            <div class="grid-list">
-                <div class="grid-item">
-                    <span class="item-number">( A )</span>
-                    <h3>Automate Assessment</h3>
-                    <p>Eliminate manual bottlenecks with instant AI analysis.</p>
-                </div>
-                <div class="grid-item">
-                    <span class="item-number">( B )</span>
-                    <h3>Reduce Decision Time</h3>
-                    <p>Cut evaluation time from days to mere seconds.</p>
-                </div>
-                <div class="grid-item">
-                    <span class="item-number">( C )</span>
-                    <h3>Assist Underwriters</h3>
-                    <p>Provide data-driven insights to support human judgment.</p>
-                </div>
+    <!-- FEATURES OVERVIEW -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Why Choose Our AI?</h2>
+                <p class="text-gray" style="max-width: 600px; margin: 0 auto;">Our system leverages advanced machine
+                    learning to provide explainable, fair, and accurate credit scores, empowering lenders to make better
+                    choices.</p>
             </div>
-        </section>
 
-        <!-- Section 3: Methodology / Scope (Styled as "Works") -->
-        <section class="milkin-section sage-theme" id="methodology">
-            <div class="section-label">[ 03. METHODOLOGY ]</div>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <ion-icon name="speedometer-outline" style="font-size: 24px;"></ion-icon>
+                    </div>
+                    <h3>Greater Accuracy</h3>
+                    <p>Our models analyze thousands of data points to predict creditworthiness with superior precision
+                        compared to traditional methods.</p>
+                </div>
 
-            <div class="interactive-list">
-                <div class="list-row hover-reveal">
-                    <span class="row-id">STATE I</span>
-                    <span class="row-title">Data Preprocessing</span>
-                    <span class="row-meta">Normalization & Cleaning</span>
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <ion-icon name="search-outline" style="font-size: 24px;"></ion-icon>
+                    </div>
+                    <h3>Full Explainability</h3>
+                    <p>We provide transparent reasoning for every decision, ensuring compliance and building trust with
+                        your applicants.</p>
                 </div>
-                <div class="list-row hover-reveal">
-                    <span class="row-id">STATE II</span>
-                    <span class="row-title">Model Development</span>
-                    <span class="row-meta">XGBoost & Logistic Regression</span>
-                </div>
-                <div class="list-row hover-reveal">
-                    <span class="row-id">STATE III</span>
-                    <span class="row-title">Decision Logic</span>
-                    <span class="row-meta">Thresholds & Confidence Scores</span>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <ion-icon name="trending-up-outline" style="font-size: 24px;"></ion-icon>
+                    </div>
+                    <h3>Proven Value</h3>
+                    <p>Lenders using our platform see a 30% reduction in default rates and a 50% increase in approval
+                        speed.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer (Max Milkin Style Big Impact) -->
-        <footer class="milkin-footer dark-theme">
-            <div class="footer-content">
-                <div class="footer-cta">
-                    <span>READY TO EVALUATE?</span>
-                    <a href="application.html" class="big-link">START SYSTEM</a>
+    <!-- CTA SECTION -->
+    <section style="background-color: #F9FAFB; padding: 100px 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 24px;">Ready to modernize your lending?</h2>
+            <p class="text-gray" style="margin-bottom: 32px; font-size: 1.1rem;">Join financial institutions already
+                using Underwrite.ai technology.</p>
+            <a href="application.html" class="btn btn-primary">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>underwrite.ai</h2>
+                    <p>The next generation of credit evaluation, powered by artificial intelligence and machine
+                        learning.</p>
                 </div>
-                <div class="footer-bottom">
-                    <div class="copyright">&copy; 2025 AI CREDIT SYSTEM</div>
-                    <div class="credits">DESIGNED FOR EXCELLENCE</div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="methodology.html">Technology</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">API Docs</a></li>
+                        <!-- REMOVED: Pricing -->
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
 
-    </main>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Underwrite.ai Clone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <script src="js/api.js"></script>
-    <script src="js/app.js"></script>
-    <!-- REMOVED OLD THEME JS -->
-    <script src="js/animations.js"></script>
-    <script src="js/currency.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 
 </html>
