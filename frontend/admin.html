@@ -68,41 +68,13 @@
                             Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Row 1 -->
-                    <tr style="border-bottom: 1px solid var(--color-border);">
-                        <td style="padding: 20px; color: var(--color-text-secondary);">#49210</td>
-                        <td style="padding: 20px; font-weight: 500;">Acme Corp</td>
-                        <td style="padding: 20px;">$50,000</td>
-                        <td style="padding: 20px;">
-                            <span style="font-weight: 600; color: var(--color-white);">720</span>
-                        </td>
-                        <td style="padding: 20px;">
-                            <span
-                                style="background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 6px 12px; border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 600;">Low
-                                Risk</span>
-                        </td>
-                        <td style="padding: 20px; text-align: right;">
-                            <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem;"
-                                onclick="toggleDetails()">Review</button>
-                        </td>
-                    </tr>
-                    <!-- Row 2 -->
-                    <tr style="border-bottom: 1px solid var(--color-border);">
-                        <td style="padding: 20px; color: var(--color-text-secondary);">#49211</td>
-                        <td style="padding: 20px; font-weight: 500;">CyberDyne Systems</td>
-                        <td style="padding: 20px;">$250,000</td>
-                        <td style="padding: 20px;">
-                            <span style="font-weight: 600; color: var(--color-white);">450</span>
-                        </td>
-                        <td style="padding: 20px;">
-                            <span
-                                style="background: rgba(239, 68, 68, 0.1); color: #EF4444; padding: 6px 12px; border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 600;">High
-                                Risk</span>
-                        </td>
-                        <td style="padding: 20px; text-align: right;">
-                            <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem;"
-                                onclick="toggleDetails()">Review</button>
+                <tbody id="applications-tbody">
+                    <!-- Applications loaded from Firebase in real-time -->
+                    <tr>
+                        <td colspan="6" style="padding: 40px; text-align: center; color: var(--color-text-muted);">
+                            <ion-icon name="sync-outline"
+                                style="font-size: 32px; margin-bottom: 12px; animation: spin 2s linear infinite;"></ion-icon>
+                            <div>Loading applications from Firebase...</div>
                         </td>
                     </tr>
                 </tbody>
