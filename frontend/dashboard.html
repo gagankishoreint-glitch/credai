@@ -1,202 +1,117 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | AI Credit Evaluator</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Applicant Dashboard | Underwrite.ai</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
 <body>
-    <!-- Floating Navigation Bar -->
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-logo">
-                <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                <span>Credit Evaluator</span>
-            </a>
-
-                                    <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="application.html">Application</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="methodology.html">Docs</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-
-            <div class="navbar-actions">
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" style="margin-right: 0.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-                <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
-                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn"
-                    style="padding: 0.6rem 1.5rem;">Dashboard</a>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">underwrite.ai</a>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <span style="font-size: 0.9rem; color: var(--color-text-secondary);">Welcome, Acme Corp</span>
+                <a href="#" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">Logout</a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main style="padding-top: 120px; min-height: 100vh;">
-        <div class="container" style="padding: 3rem;">
-            <div class="mb-xl">
-                <h2 class="section-title" style="text-align: left;">Underwriter Dashboard</h2>
-                <p class="section-description" style="text-align: left; margin: 1rem 0;">Review applications, analyze
-                    risk, and make credit decisions</p>
-            </div>
+    <div class="container" style="padding-top: 140px; padding-bottom: 80px;">
+        <div class="text-center" style="margin-bottom: 48px;">
+            <p class="label-tag">Dashboard</p>
+            <h2 style="margin-top: 16px;">Application Status</h2>
+        </div>
 
-            <!-- Stats Summary -->
-            <div class="grid grid-4 gap-md mb-lg">
-                <div class="card p-md">
-                    <p style="color: var(--color-text-muted); font-size: 0.875rem; font-weight: 600;">Total Applications
-                    </p>
-                    <p id="totalApps" style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem;">0</p>
+        <div class="grid" style="grid-template-columns: 2fr 1fr; gap: 32px;">
+            <!-- Main Status Card -->
+            <div class="feature-card glow-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                    <div>
+                        <h3 style="margin: 0;">Loan Application #49210</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 8px;">Submitted on
+                            Dec 31, 2025</p>
+                    </div>
+                    <span
+                        style="background: rgba(90, 69, 255, 0.1); color: #5A45FF; padding: 8px 16px; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 600;">Processing</span>
                 </div>
-                <div class="card p-md">
-                    <p style="color: var(--color-success); font-size: 0.875rem; font-weight: 600;">Approved</p>
-                    <p id="approvedApps"
-                        style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem; color: var(--color-success);">0
-                    </p>
-                </div>
-                <div class="card p-md">
-                    <p style="color: var(--color-danger); font-size: 0.875rem; font-weight: 600;">Rejected</p>
-                    <p id="rejectedApps"
-                        style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem; color: var(--color-danger);">0</p>
-                </div>
-                <div class="card p-md">
-                    <p style="color: var(--color-accent-blue); font-size: 0.875rem; font-weight: 600;">Pending Review
-                    </p>
-                    <p id="pendingApps"
-                        style="font-size: 2rem; font-weight: 800; margin-top: 0.5rem; color: var(--color-accent-blue);">
-                        0</p>
-                </div>
-            </div>
 
-            <!-- Filters & Actions -->
-            <div class="card mb-lg">
-                <div class="flex gap-md items-center justify-between" style="flex-wrap: wrap;">
-                    <div class="flex gap-md items-center" style="flex: 1;">
-                        <div class="form-group" style="margin: 0; min-width: 200px;">
-                            <select id="statusFilter" class="form-select">
-                                <option value="">All Applications</option>
-                                <option value="pending">Pending Evaluation</option>
-                                <option value="evaluated">Evaluated</option>
-                                <option value="approved">Approved</option>
-                                <option value="rejected">Rejected</option>
-                            </select>
+                <!-- Status Tracker -->
+                <div style="position: relative; display: flex; justify-content: space-between; margin-bottom: 48px;">
+                    <div
+                        style="position: absolute; top: 16px; left: 0; width: 100%; height: 2px; background: var(--color-border); z-index: 0;">
+                    </div>
+
+                    <div style="z-index: 1; text-align: center;">
+                        <div
+                            style="width: 40px; height: 40px; background: #10B981; border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: white;">
+                            <ion-icon name="checkmark"></ion-icon>
                         </div>
-                        <div class="form-group" style="margin: 0; min-width: 150px;">
-                            <select id="limitFilter" class="form-select">
-                                <option value="10">Show 10</option>
-                                <option value="50">Show 50</option>
-                                <option value="100">Show 100</option>
-                            </select>
+                        <span style="font-size: 0.85rem; font-weight: 600;">Received</span>
+                    </div>
+
+                    <div style="z-index: 1; text-align: center;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: white; box-shadow: var(--shadow-glow);">
+                            <ion-icon name="sync"></ion-icon>
                         </div>
+                        <span style="font-size: 0.85rem; font-weight: 600; color: #5A45FF;">Analyzing</span>
+                    </div>
+
+                    <div style="z-index: 1; text-align: center;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--color-bg-card); border: 2px solid var(--color-border); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 0.85rem; color: var(--color-text-muted);">3</span>
+                        </div>
+                        <span style="font-size: 0.85rem; color: var(--color-text-muted);">Decision</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Loading State -->
-            <div id="loadingState" class="text-center" style="padding: 5rem 2rem; display: none;">
-                <div class="spinner" style="margin: 0 auto;"></div>
-                <p style="margin-top: 2rem; color: var(--color-text-secondary);">Loading applications...</p>
-            </div>
-
-            <!-- Applications Table -->
-            <div class="card" style="overflow-x: auto; padding: 0;">
-                <table class="data-table" style="width: 100%; text-align: left; border-collapse: collapse;">
-                    <thead>
-                        <tr
-                            style="border-bottom: 2px solid var(--color-border); background: var(--color-bg-secondary);">
-                            <th style="padding: 1rem;">ID</th>
-                            <th style="padding: 1rem;">Applicant Profile</th>
-                            <th style="padding: 1rem;">Loan Request</th>
-                            <th style="padding: 1rem;">AI Risk Score</th>
-                            <th style="padding: 1rem;">Status</th>
-                            <th style="padding: 1rem;">Date</th>
-                            <th style="padding: 1rem;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="applicationsTableBody">
-                    </tbody>
-                </table>
-            </div>
-            <tbody id="applicationsTableBody">
-            </tbody>
-            </table>
-        </div>
-
-        <!-- Empty State -->
-        <div id="emptyState" class="card text-center" style="display: none; padding: 5rem 3rem;">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 2rem; opacity: 0.2;">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
-            <h3 style="margin-bottom: 1rem; font-size: 2rem;">No Applications Yet</h3>
-            <p style="color: var(--color-text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem;">Submit your
-                first application to get started</p>
-            <a href="index.html" class="btn btn-lime">Create Application</a>
-        </div>
-        </div>
-    </main>
-
-        <!-- Shared Footer -->
-    <footer style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 4rem 0;">
-        <div class="container">
-            <div class="grid grid-2 gap-xl">
-                <div>
-                    <a href="index.html" class="navbar-logo" style="margin-bottom: 1.5rem; display: inline-flex;">
-                        <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                        <span style="font-size: 1.5rem;">Credit Evaluator</span>
-                    </a>
-                    <p style="color: var(--color-text-secondary); line-height: 1.6; max-width: 400px;">
-                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure evaluation.
+                <div style="background: var(--color-bg-secondary); padding: 28px; border-radius: var(--radius-lg);">
+                    <h4 style="margin-bottom: 12px;">Next Steps</h4>
+                    <p style="color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.7;">
+                        Our AI models are currently analyzing your documents and financial inputs.
+                        This process typically takes 2-5 minutes. You will receive an email notification once the
+                        decision is ready.
                     </p>
                 </div>
-                
-                <div>
-                    <h3 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage to provide a real-time risk assessment without manual delays.
-                        </p>
+            </div>
+
+            <!-- Risk Gauge Card -->
+            <div class="feature-card glow-card" style="text-align: center;">
+                <h3 style="margin-bottom: 32px;">Credit Health</h3>
+
+                <div
+                    style="width: 200px; height: 100px; border-top-left-radius: 100px; border-top-right-radius: 100px; background: var(--color-bg-secondary); margin: 0 auto; position: relative; overflow: hidden;">
+                    <div
+                        style="width: 100%; height: 100%; background: conic-gradient(from 180deg, #EF4444 0deg, #F59E0B 60deg, #10B981 120deg, #10B981 180deg); opacity: 0.3;">
+                    </div>
+                    <div
+                        style="position: absolute; bottom: 0; left: 50%; width: 160px; height: 80px; background: var(--color-bg-card); transform: translateX(-50%); border-top-left-radius: 80px; border-top-right-radius: 80px;">
                     </div>
 
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the evaluation?</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            Our system is calibrated on thousands of historical credit records, achieving over 75% accuracy. While we provide a high-confidence "Decision Assistant," final approvals are always reviewed by human underwriters to ensure fairness and compliance.
-                        </p>
+                    <!-- Needle -->
+                    <div
+                        style="position: absolute; bottom: 0; left: 50%; width: 4px; height: 90px; background: var(--gradient-primary); transform-origin: bottom center; transform: translateX(-50%) rotate(-45deg); box-shadow: 0 0 10px rgba(90, 69, 255, 0.5);">
                     </div>
                 </div>
-            </div>
-            
-            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
-                &copy; 2025 Credit Evaluator. All rights reserved.
+
+                <div style="margin-top: -32px;">
+                    <h2
+                        style="font-size: 3.5rem; margin-bottom: 0; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        720</h2>
+                    <p style="color: var(--color-text-secondary);">Pending Final Review</p>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="js/api.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/theme.js"></script>
 </body>
 
 </html>

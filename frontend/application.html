@@ -1,305 +1,191 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Credit Evaluator | Intelligent Loan Assessment</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <meta name="description"
-        content="Automated creditworthiness assessment powered by AI. Fast, accurate, data-driven insights for business loans.">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Apply for Credit | AI Evaluator</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body class="is-loading">
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
+<body>
 
-    <!-- Navigation (Max Milkin Style) -->
-    <nav class="milkin-nav">
-        <div class="nav-left">
-            <a href="index.html" class="brand-link">
-                CREDIT EVALUATOR <span class="version">[ v.1.0 ]</span>
-            </a>
-        </div>
-        <div class="nav-right">
-            <ul class="nav-links">
-                <li><a href="index.html">( HOME )</a></li>
-                <li><a href="application.html" class="active-link">( APPLICATION )</a></li>
-                <li><a href="dashboard.html">( DASHBOARD )</a></li>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">underwrite.ai</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
             </ul>
-            style="padding: 0.6rem 1.5rem;">Dashboard</a>
-        </div>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="btn btn-outline">Dashboard</a>
+            </div>
         </div>
     </nav>
 
-    <main style="padding-top: 120px; padding-bottom: 2rem;">
-        <!-- Application Form Content -->
-    </main>
+    <div class="container" style="padding-top: 140px; padding-bottom: 80px;">
+        <div class="stepper-container">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <p class="label-tag">Application</p>
+                <h2 style="margin-top: 16px;">Business Loan Application</h2>
+            </div>
 
-    <!-- Application Form Section -->
-    <section class="content-section" id="application-form">
-        <div class="container">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <h2 class="section-title">Submit Application</h2>
-                <p class="section-description">
-                    Complete the form below for instant AI-powered credit risk assessment
-                </p>
-
-                <!-- Demo Mode Controls -->
-                <div class="card"
-                    style="margin-bottom: 2rem; background: var(--color-bg-secondary); border: 1px dashed var(--color-primary);">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <h3 style="margin: 0; font-size: 1.1rem;">🚀 Quick Demo</h3>
-                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: var(--color-text-muted);">Pre-fill
-                                form to see AI in action</p>
-                        </div>
-                        <div class="flex gap-sm">
-                            <button type="button" class="btn btn-sm" onclick="fillDemo('safe')"
-                                style="background: var(--color-success); color: white;">Low Risk</button>
-                            <button type="button" class="btn btn-sm" onclick="fillDemo('medium')"
-                                style="background: var(--color-warning); color: black;">Medium Risk</button>
-                            <button type="button" class="btn btn-sm" onclick="fillDemo('risky')"
-                                style="background: var(--color-danger); color: white;">High Risk</button>
-                        </div>
-                    </div>
+            <!-- Stepper Header -->
+            <div class="stepper-header">
+                <div class="step-item active" id="step-header-1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label active">Business Basics</div>
                 </div>
-
-                <!-- Application Form -->
-                <div class="card">
-                    <form id="applicationForm">
-                        <!-- header business info -->
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2"
-                                    style="vertical-align: text-bottom; margin-right: 8px; color: var(--color-primary);">
-                                    <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-4h8v4" />
-                                </svg>
-                                Business Profile
-                            </h3>
-                            <span
-                                style="font-size: 0.85rem; color: var(--color-text-muted); display: flex; align-items: center;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" style="margin-right: 4px;">
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                </svg>
-                                256-bit Secure
-                            </span>
-                        </div>
-
-                        <div class="grid grid-2">
-                            <div class="form-group">
-                                <label for="businessType" class="form-label">Business Type</label>
-                                <select id="businessType" name="business_type" class="form-select" required>
-                                    <option value="">Select type...</option>
-                                    <option value="Manufacturing">Manufacturing</option>
-                                    <option value="Trading">Retail/Trading</option>
-                                    <option value="Services">Services</option>
-                                    <option value="Tech/Startup">Tech/Startup</option>
-                                    <option value="Logistics">Logistics</option>
-                                    <option value="Construction">Construction</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="yearsInOperation" class="form-label">Years in Operation</label>
-                                <input type="number" id="yearsInOperation" name="years_in_operation" class="form-input"
-                                    min="0" max="100" required placeholder="e.g., 5">
-                            </div>
-                        </div>
-
-                        <!-- Loan Request -->
-                        <div class="card-header" style="margin-top: 2rem;">
-                            <h3 class="card-title">Loan Request</h3>
-                        </div>
-                        <div class="grid grid-3">
-                            <div class="form-group">
-                                <label for="loanAmount" class="form-label">Amount (₹)</label>
-                                <input type="number" id="loanAmount" name="loan_amount_requested" class="form-input"
-                                    min="10000" required placeholder="20,00,000">
-                            </div>
-                            <div class="form-group">
-                                <label for="loanTenure" class="form-label">Tenure (Months)</label>
-                                <select id="loanTenure" name="loan_tenure_months" class="form-select" required>
-                                    <option value="12">12 Months</option>
-                                    <option value="24">24 Months</option>
-                                    <option value="36" selected>36 Months</option>
-                                    <option value="48">48 Months</option>
-                                    <option value="60">60 Months</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="loanPurpose" class="form-label">Purpose</label>
-                                <select id="loanPurpose" name="loan_purpose" class="form-select">
-                                    <option value="Working Capital">Working Capital</option>
-                                    <option value="Expansion">Expansion</option>
-                                    <option value="Equipment Purchase">Equipment</option>
-                                    <option value="Debt Consolidation">Debt Consolidation</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Financials -->
-                        <div class="card-header" style="margin-top: 2rem;">
-                            <h3 class="card-title">Financial Health</h3>
-                        </div>
-                        <div class="grid grid-2">
-                            <div class="form-group">
-                                <label for="annualRevenue" class="form-label">Annual Revenue (₹)</label>
-                                <input type="number" id="annualRevenue" name="annual_revenue" class="form-input" min="1"
-                                    required placeholder="50,00,000">
-                                <div class="form-helper">Latest audited revenue</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="monthlyCashflow" class="form-label">Avg. Monthly Sales (₹)</label>
-                                <input type="number" id="monthlyCashflow" name="monthly_cashflow" class="form-input"
-                                    required placeholder="4,00,000">
-                            </div>
-
-                            <!-- Advanced Metrics -->
-                            <div class="form-group">
-                                <label for="ebitdaMargin" class="form-label">EBITDA Margin (%)</label>
-                                <input type="number" id="ebitdaMargin" name="ebitda_margin" class="form-input"
-                                    step="0.1" placeholder="e.g. 15">
-                                <div class="form-helper">Operating profit margin</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="totalDebt" class="form-label">Current Total Debt (₹)</label>
-                                <input type="number" id="totalDebt" name="total_debt" class="form-input" min="0"
-                                    value="0">
-                            </div>
-                            <div class="form-group">
-                                <label for="existingEmi" class="form-label">Existing Monthly EMI (₹)</label>
-                                <input type="number" id="existingEmi" name="existing_emi" class="form-input" min="0"
-                                    value="0">
-                            </div>
-                        </div>
-
-                        <!-- Collateral & Promoter -->
-                        <div class="card-header" style="margin-top: 2rem;">
-                            <h3 class="card-title">Promoter & Collateral</h3>
-                        </div>
-                        <div class="grid grid-2">
-                            <div class="form-group">
-                                <label for="promoterScore" class="form-label">Promoter Credit Score</label>
-                                <input type="number" id="promoterScore" name="promoter_credit_score" class="form-input"
-                                    min="300" max="900" required placeholder="e.g. 750">
-                                <!-- Hidden field for compatibility -->
-                                <input type="hidden" id="creditScore" name="credit_score">
-                            </div>
-                            <div class="form-group">
-                                <label for="promoterExp" class="form-label">Experience (Years)</label>
-                                <input type="number" id="promoterExp" name="promoter_exp_years" class="form-input"
-                                    min="0" placeholder="e.g. 10">
-                            </div>
-                            <div class="form-group">
-                                <label for="collateralType" class="form-label">Collateral Type</label>
-                                <select id="collateralType" name="collateral_type" class="form-select">
-                                    <option value="None">None (Unsecured)</option>
-                                    <option value="Real Estate">Real Estate</option>
-                                    <option value="Machinery">Machinery</option>
-                                    <option value="Inventory">Inventory</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="collateralValue" class="form-label">Collateral Value (₹)</label>
-                                <input type="number" id="collateralValue" name="collateral_value" class="form-input"
-                                    min="0" value="0">
-                            </div>
-                        </div>
-
-                        <div style="margin-top: 2rem;">
-                            <button type="submit" class="btn btn-lime" id="submitBtn"
-                                style="width: 100%; font-size: 1.1rem; padding: 1.25rem; box-shadow: var(--shadow-md);">
-                                <span id="btnText">✨ Run AI Risk Assessment</span>
-                                <span id="btnSpinner" class="spinner"
-                                    style="display: none; width: 24px; height: 24px; border-width: 3px;"></span>
-                            </button>
-                        </div>
-                        <p
-                            style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--color-text-muted);">
-                            By clicking Submit, you agree to our Terms. AI results are indicative.
-                        </p>
-                    </form>
+                <div class="step-item" id="step-header-2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Financials</div>
                 </div>
-
-                <!-- Success Message -->
-                <div id="successMessage" class="card"
-                    style="display: none; margin-top: 2rem; background: #06D6A0; color: white; border: none;">
-                    <div class="text-center">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
-                        <h3 style="margin-bottom: 1rem; color: white; font-size: 2rem;">Application Submitted!</h3>
-                        <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem; font-size: 1.1rem;"
-                            id="applicationIdText"></p>
-                        <div class="flex gap-md justify-center" style="flex-wrap: wrap;">
-                            <button class="btn" style="background: white; color: #06D6A0; font-weight: 700;"
-                                onclick="location.reload()">Submit Another</button>
-                            <button class="btn"
-                                style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; font-weight: 700;"
-                                id="evaluateBtn">View Evaluation</button>
-                        </div>
-                    </div>
+                <div class="step-item" id="step-header-3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Documents</div>
                 </div>
             </div>
+
+            <form id="applicationForm">
+                <!-- STEP 1: BUSINESS BASICS -->
+                <div class="step-content active" id="step-1">
+                    <div class="form-group">
+                        <label class="form-label">Business Name</label>
+                        <input type="text" class="form-input" name="business_name" required
+                            placeholder="e.g. Acme Corp">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Industry Type</label>
+                        <select class="form-select" name="industry_type" required>
+                            <option value="">Select industry...</option>
+                            <option value="Retail">Retail</option>
+                            <option value="Services">Services</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Tech">Technology</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Years in Operation</label>
+                        <input type="number" class="form-input" name="years_in_operation" required min="0">
+                        <div class="strength-meter">
+                            <div class="strength-fill" id="years-strength"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions" style="justify-content: flex-end;">
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next: Financials</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: FINANCIALS -->
+                <div class="step-content" id="step-2">
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Annual Revenue ($)</label>
+                            <input type="number" class="form-input" name="annual_revenue" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Requested Loan Amount ($)</label>
+                            <input type="number" class="form-input" name="loan_amount" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Monthly Operating Expenses ($)</label>
+                        <input type="number" class="form-input" name="operating_expenses" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="nextStep(1)">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next: Documents</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: DOCUMENTS -->
+                <div class="step-content" id="step-3">
+                    <div class="file-upload-zone" id="drop-zone">
+                        <div class="upload-icon">
+                            <ion-icon name="cloud-upload-outline"></ion-icon>
+                        </div>
+                        <h3>Upload Bank Statements</h3>
+                        <p style="color: var(--color-text-secondary);">Drag & drop PDF files here, or click to browse
+                        </p>
+                        <input type="file" id="fileInput" hidden multiple accept=".pdf">
+                    </div>
+
+                    <div id="file-list" style="margin-top: 20px;"></div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="nextStep(2)">Back</button>
+                        <button type="submit" class="btn btn-primary">Submit Application</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <!-- Shared Footer -->
-    <footer style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 4rem 0;">
-        <div class="container">
-            <div class="grid grid-2 gap-xl">
-                <div>
-                    <a href="index.html" class="navbar-logo" style="margin-bottom: 1.5rem; display: inline-flex;">
-                        <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                        <span style="font-size: 1.5rem;">Credit Evaluator</span>
-                    </a>
-                    <p style="color: var(--color-text-secondary); line-height: 1.6; max-width: 400px;">
-                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure
-                        evaluation.
-                    </p>
-                </div>
+    <script>
+        // Simple Stepper Logic
+        function nextStep(step) {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.step-item').forEach(el => {
+                el.classList.remove('active');
+                el.classList.remove('completed');
+            });
 
-                <div>
-                    <h3 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
+            document.getElementById('step-' + step).classList.add('active');
 
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?
-                        </h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness
-                            instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage
-                            to provide a real-time risk assessment without manual delays.
-                        </p>
-                    </div>
+            for (let i = 1; i <= step; i++) {
+                const header = document.getElementById('step-header-' + i);
+                if (i === step) {
+                    header.classList.add('active');
+                } else if (i < step) {
+                    header.classList.add('completed');
+                }
+            }
+        }
 
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the
-                            evaluation?</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            Our system is calibrated on thousands of historical credit records, achieving over 75%
-                            accuracy. While we provide a high-confidence "Decision Assistant," final approvals are
-                            always reviewed by human underwriters to ensure fairness and compliance.
-                        </p>
-                    </div>
-                </div>
-            </div>
+        // Strength Meter
+        document.querySelector('input[name="years_in_operation"]').addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            const bar = document.getElementById('years-strength');
+            if (val > 5) {
+                bar.style.width = '100%';
+                bar.style.backgroundColor = '#10B981';
+            } else if (val > 2) {
+                bar.style.width = '60%';
+                bar.style.backgroundColor = '#F59E0B';
+            } else {
+                bar.style.width = '30%';
+                bar.style.backgroundColor = '#EF4444';
+            }
+        });
 
-            <div
-                style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
-                &copy; 2025 Credit Evaluator. All rights reserved.
-            </div>
-        </div>
-    </footer>
+        // Mock Submission
+        document.getElementById('applicationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.location.href = 'dashboard.html?status=processing';
+        });
 
-    <script src="js/api.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/currency.js"></script>
+        // File Upload
+        const dropZone = document.getElementById('drop-zone');
+        dropZone.addEventListener('click', () => document.getElementById('fileInput').click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#5A45FF';
+        });
+
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = 'var(--color-border)';
+        });
+    </script>
 </body>
 
 </html>

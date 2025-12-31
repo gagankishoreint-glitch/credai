@@ -1,268 +1,160 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Methodology | AI Credit Evaluator</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Methodology | Underwrite.ai</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
 <body>
-    <!-- Floating Navigation Bar -->
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-logo">
-                <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                <span>Credit Evaluator</span>
-            </a>
-
-                                                            <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="application.html">Application</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="methodology.html">Docs</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">underwrite.ai</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" style="color: var(--color-white);">Our Technology</a>
+                    <div class="dropdown-menu">
+                        <a href="methodology.html" class="dropdown-item">Credit Evaluation</a>
+                    </div>
+                </li>
+                <li><a href="about.html" class="nav-link">About</a></li>
             </ul>
-
-                        <div class="navbar-actions">
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" style="margin-right: 0.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-                <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
-                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn" style="padding: 0.6rem 1.5rem;">Dashboard</a>
+            <div class="nav-actions">
+                <a href="application.html" class="btn btn-primary">Start for Free</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 60vh;">
-        <div class="hero-container">
-            <div class="hero-content">
-                <p class="hero-subtitle">Our Approach</p>
-                <h1 class="hero-title">
-                    Machine Learning <span class="hero-title-highlight">Methodology</span>
-                </h1>
-                <p class="hero-description">
-                    Understanding how our AI-powered credit evaluation system makes intelligent, explainable decisions.
-                </p>
+    <!-- HEADER -->
+    <div class="hero-section" style="padding: 160px 0 80px; text-align: center;">
+        <div class="container">
+            <p class="label-tag" style="margin-bottom: 24px;">Our Approach</p>
+            <h1 style="margin-bottom: 24px;">Machine Learning Methodology</h1>
+            <p style="font-size: 1.25rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto;">
+                Understanding how our AI-powered credit evaluation system makes intelligent, explainable decisions.
+            </p>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container" style="padding: 80px 20px; max-width: 900px;">
+        <!-- Section 1 -->
+        <div style="margin-bottom: 80px;">
+            <p class="label-tag" style="margin-bottom: 16px;">Data Foundation</p>
+            <h2 style="margin-bottom: 32px;">1. Data Processing Pipeline</h2>
+            <div class="feature-card" style="border-left: 3px solid var(--color-accent-purple);">
+                <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
+                    <li style="margin-bottom: 20px; padding-left: 24px; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                        <strong style="color: var(--color-white);">Data Cleaning:</strong> Handling missing values using
+                        median imputation.
+                    </li>
+                    <li style="margin-bottom: 20px; padding-left: 24px; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                        <strong style="color: var(--color-white);">Feature Engineering:</strong> Creating derived
+                        metrics like loan-to-revenue ratio and cash flow adequacy.
+                    </li>
+                    <li style="padding-left: 24px; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                        <strong style="color: var(--color-white);">Normalization:</strong> Scaling numerical features
+                        using StandardScaler.
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <!-- Methodology Content -->
-    <section class="content-section">
+        <!-- Section 2 -->
+        <div style="margin-bottom: 80px;">
+            <p class="label-tag" style="margin-bottom: 16px;">AI Models</p>
+            <h2 style="margin-bottom: 32px;">2. Machine Learning Models</h2>
+            <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <div class="feature-card glow-card">
+                    <div class="feature-icon">
+                        <ion-icon name="analytics-outline" style="font-size: 28px;"></ion-icon>
+                    </div>
+                    <h3 style="font-size: 1.25rem;">XGBoost</h3>
+                    <p style="color: var(--color-text-secondary);">Primary model achieving 99.4% accuracy. Handles
+                        complex non-linear relationships.</p>
+                </div>
+                <div class="feature-card glow-card">
+                    <div class="feature-icon">
+                        <ion-icon name="git-network-outline" style="font-size: 28px;"></ion-icon>
+                    </div>
+                    <h3 style="font-size: 1.25rem;">Random Forest</h3>
+                    <p style="color: var(--color-text-secondary);">Ensemble of decision trees providing robust
+                        predictions and natural feature importance.</p>
+                </div>
+                <div class="feature-card glow-card">
+                    <div class="feature-icon">
+                        <ion-icon name="stats-chart-outline" style="font-size: 28px;"></ion-icon>
+                    </div>
+                    <h3 style="font-size: 1.25rem;">Logistic Regression</h3>
+                    <p style="color: var(--color-text-secondary);">Baseline linear model for interpretable coefficients
+                        and comparison.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div style="margin-bottom: 80px;">
+            <p class="label-tag" style="margin-bottom: 16px;">Transparency</p>
+            <h2 style="margin-bottom: 32px;">3. Explainable AI (SHAP)</h2>
+            <div class="feature-card glow-card" style="border-left: 3px solid #10B981;">
+                <h3 style="margin-bottom: 24px; font-family: 'Inter', sans-serif; font-size: 1.25rem;">Transparent
+                    Decisions</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 24px; line-height: 1.7;">We use SHAP
+                    (SHapley Additive exPlanations) to provide:</p>
+                <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
+                    <li style="margin-bottom: 16px; padding-left: 32px; position: relative;">
+                        <ion-icon name="checkmark-circle"
+                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
+                        Global Explanations of feature importance.
+                    </li>
+                    <li style="margin-bottom: 16px; padding-left: 32px; position: relative;">
+                        <ion-icon name="checkmark-circle"
+                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
+                        Local Explanations for each individual applicant.
+                    </li>
+                    <li style="padding-left: 32px; position: relative;">
+                        <ion-icon name="checkmark-circle"
+                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
+                        Regulatory Compliance for fair lending.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
         <div class="container">
-            <div style="max-width: 900px; margin: 0 auto;">
-                <!-- Data Processing -->
-                <div class="card mb-xl">
-                    <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">1. Data Processing Pipeline</h3>
-                    <p style="margin-bottom: 1.5rem; color: var(--color-text-secondary); line-height: 1.8;">
-                        Our system begins with comprehensive data preprocessing to ensure accuracy and reliability:
-                    </p>
-                    <ul style="list-style: none; padding: 0;">
-                        <li
-                            style="padding: 1rem; background: var(--color-bg-secondary); border-radius: var(--radius-md); margin-bottom: 1rem;">
-                            <strong>Data Cleaning:</strong> Handling missing values using median imputation for
-                            numerical features and mode for categorical variables
-                        </li>
-                        <li
-                            style="padding: 1rem; background: var(--color-bg-secondary); border-radius: var(--radius-md); margin-bottom: 1rem;">
-                            <strong>Feature Engineering:</strong> Creating derived metrics like loan-to-revenue ratio,
-                            cash flow adequacy, and collateral coverage
-                        </li>
-                        <li
-                            style="padding: 1rem; background: var(--color-bg-secondary); border-radius: var(--radius-md); margin-bottom: 1rem;">
-                            <strong>Normalization:</strong> Scaling numerical features using StandardScaler for
-                            consistent model performance
-                        </li>
-                        <li
-                            style="padding: 1rem; background: var(--color-bg-secondary); border-radius: var(--radius-md);">
-                            <strong>Encoding:</strong> Converting categorical variables to numerical format using Label
-                            Encoding
-                        </li>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>underwrite.ai</h2>
+                    <p>The next generation of credit evaluation.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
-
-                <!-- ML Models -->
-                <div class="card mb-xl">
-                    <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">2. Machine Learning Models</h3>
-                    <p style="margin-bottom: 2rem; color: var(--color-text-secondary); line-height: 1.8;">
-                        We employ ensemble of three industry-standard algorithms:
-                    </p>
-
-                    <div style="display: grid; gap: 1.5rem;">
-                        <div
-                            style="padding: 1.5rem; background: var(--color-bg-secondary); border-radius: var(--radius-lg); border-left: 4px solid var(--color-accent-lime);">
-                            <h4 style="margin-bottom: 0.75rem; font-size: 1.25rem;">XGBoost (Primary Model)</h4>
-                            <p style="color: var(--color-text-secondary); line-height: 1.7;">
-                                Extreme Gradient Boosting achieves up to 99.4% accuracy in credit risk prediction.
-                                It handles complex non-linear relationships and provides superior performance with
-                                AUC-ROC scores of 0.89+.
-                            </p>
-                        </div>
-
-                        <div
-                            style="padding: 1.5rem; background: var(--color-bg-secondary); border-radius: var(--radius-lg); border-left: 4px solid var(--color-accent-sky);">
-                            <h4 style="margin-bottom: 0.75rem; font-size: 1.25rem;">Random Forest</h4>
-                            <p style="color: var(--color-text-secondary); line-height: 1.7;">
-                                Ensemble of 100-200 decision trees providing robust predictions and natural feature
-                                importance ranking.
-                            </p>
-                        </div>
-
-                        <div
-                            style="padding: 1.5rem; background: var(--color-bg-secondary); border-radius: var(--radius-lg); border-left: 4px solid var(--color-accent-coral);">
-                            <h4 style="margin-bottom: 0.75rem; font-size: 1.25rem;">Logistic Regression</h4>
-                            <p style="color: var(--color-text-secondary); line-height: 1.7;">
-                                Baseline linear model providing interpretable coefficients and probabilistic outputs for
-                                comparison.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Explainable AI -->
-                <div class="card mb-xl">
-                    <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">3. Explainable AI with SHAP</h3>
-                    <p style="margin-bottom: 1.5rem; color: var(--color-text-secondary); line-height: 1.8;">
-                        To address the "black box" nature of complex models and meet regulatory requirements, we use
-                        SHAP (SHapley Additive exPlanations):
-                    </p>
-                    <div
-                        style="padding: 2rem; background: linear-gradient(135deg, #E7F9F3, #E8F4FF); border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 1rem; color: var(--color-text-primary);">Key Benefits:</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin-bottom: 0.75rem; display: flex; align-items: start; gap: 0.75rem;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06D6A0"
-                                    stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span><strong>Global Explanations:</strong> Understanding overall feature importance
-                                    across all predictions</span>
-                            </li>
-                            <li style="margin-bottom: 0.75rem; display: flex; align-items: start; gap: 0.75rem;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06D6A0"
-                                    stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span><strong>Local Explanations:</strong> Identifying factors influencing each
-                                    individual prediction</span>
-                            </li>
-                            <li style="margin-bottom: 0.75rem; display: flex; align-items: start; gap: 0.75rem;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06D6A0"
-                                    stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span><strong>Regulatory Compliance:</strong> Meeting GDPR and ECOA requirements for
-                                    explainable credit decisions</span>
-                            </li>
-                            <li style="display: flex; align-items: start; gap: 0.75rem;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06D6A0"
-                                    stroke-width="2" style="flex-shrink: 0; margin-top: 0.25rem;">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span><strong>Transparency:</strong> Building trust with clear justifications for
-                                    approvals or denials</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Model Evaluation -->
-                <div class="card">
-                    <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">4. Model Evaluation Metrics</h3>
-                    <p style="margin-bottom: 2rem; color: var(--color-text-secondary); line-height: 1.8;">
-                        We use comprehensive metrics to ensure model quality:
-                    </p>
-                    <div class="grid grid-2" style="gap: 1.5rem;">
-                        <div
-                            style="text-align: center; padding: 2rem; background: var(--color-bg-secondary); border-radius: var(--radius-lg);">
-                            <div
-                                style="font-size: 3rem; font-weight: 900; color: var(--color-accent-lime); margin-bottom: 0.5rem;">
-                                0.89+</div>
-                            <p style="font-weight: 600; color: var(--color-text-primary);">AUC-ROC Score</p>
-                        </div>
-                        <div
-                            style="text-align: center; padding: 2rem; background: var(--color-bg-secondary); border-radius: var(--radius-lg);">
-                            <div
-                                style="font-size: 3rem; font-weight: 900; color: var(--color-accent-sky); margin-bottom: 0.5rem;">
-                                99.4%</div>
-                            <p style="font-weight: 600; color: var(--color-text-primary);">Accuracy</p>
-                        </div>
-                        <div
-                            style="text-align: center; padding: 2rem; background: var(--color-bg-secondary); border-radius: var(--radius-lg);">
-                            <div
-                                style="font-size: 3rem; font-weight: 900; color: var(--color-accent-coral); margin-bottom: 0.5rem;">
-                                50+</div>
-                            <p style="font-weight: 600; color: var(--color-text-primary);">Data Points Analyzed</p>
-                        </div>
-                        <div
-                            style="text-align: center; padding: 2rem; background: var(--color-bg-secondary); border-radius: var(--radius-lg);">
-                            <div
-                                style="font-size: 3rem; font-weight: 900; color: var(--color-accent-purple); margin-bottom: 0.5rem;">
-                                80%</div>
-                            <p style="font-weight: 600; color: var(--color-text-primary);">Faster Decisions</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-
-        <!-- Shared Footer -->
-    <footer style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 4rem 0;">
-        <div class="container">
-            <div class="grid grid-2 gap-xl">
-                <div>
-                    <a href="index.html" class="navbar-logo" style="margin-bottom: 1.5rem; display: inline-flex;">
-                        <img src="assets/logo.png" alt="CE Logo" class="logo-image">
-                        <span style="font-size: 1.5rem;">Credit Evaluator</span>
-                    </a>
-                    <p style="color: var(--color-text-secondary); line-height: 1.6; max-width: 400px;">
-                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure evaluation.
-                    </p>
-                </div>
-                
-                <div>
-                    <h3 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage to provide a real-time risk assessment without manual delays.
-                        </p>
-                    </div>
-
-                    <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the evaluation?</h4>
-                        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            Our system is calibrated on thousands of historical credit records, achieving over 75% accuracy. While we provide a high-confidence "Decision Assistant," final approvals are always reviewed by human underwriters to ensure fairness and compliance.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
-                &copy; 2025 Credit Evaluator. All rights reserved.
+            <div class="footer-bottom">
+                <p>&copy; 2025 Underwrite.ai Clone. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/theme.js"></script>
-    <script src="js/currency.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 
 </html>

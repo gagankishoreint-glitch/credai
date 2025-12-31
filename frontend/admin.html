@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underwriter Dashboard | Underwrite.ai</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div style="display: flex; gap: 32px; align-items: center;">
+                <span
+                    style="font-weight: 700; color: var(--color-white); font-family: 'Playfair Display', serif;">UNDERWRITER</span>
+                <a href="#" style="color: var(--color-text-secondary); font-size: 0.9rem;">Dashboard</a>
+                <a href="#" style="color: var(--color-white); font-size: 0.9rem; font-weight: 500;">Applications</a>
+                <a href="#" style="color: var(--color-text-secondary); font-size: 0.9rem;">Risk Models</a>
+            </div>
+            <div>
+                <span style="font-size: 0.9rem; color: var(--color-text-secondary);">Agent: Sarah Connor</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 140px; padding-bottom: 80px;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+            <div>
+                <p class="label-tag">Admin Portal</p>
+                <h2 style="margin-top: 12px;">Loan Applications Queue</h2>
+            </div>
+            <input type="text" placeholder="Search..." class="form-input" style="width: 300px; padding: 12px 20px;">
+        </div>
+
+        <!-- TABLE VIEW -->
+        <div class="feature-card" style="padding: 0; overflow: hidden;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead style="background: var(--color-bg-secondary); border-bottom: 1px solid var(--color-border);">
+                    <tr>
+                        <th
+                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Application ID</th>
+                        <th
+                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Business Name</th>
+                        <th
+                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Amount</th>
+                        <th
+                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            AI Score</th>
+                        <th
+                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Risk Level</th>
+                        <th
+                            style="text-align: right; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: 20px; color: var(--color-text-secondary);">#49210</td>
+                        <td style="padding: 20px; font-weight: 500;">Acme Corp</td>
+                        <td style="padding: 20px;">$50,000</td>
+                        <td style="padding: 20px;">
+                            <span style="font-weight: 600; color: var(--color-white);">720</span>
+                        </td>
+                        <td style="padding: 20px;">
+                            <span
+                                style="background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 6px 12px; border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 600;">Low
+                                Risk</span>
+                        </td>
+                        <td style="padding: 20px; text-align: right;">
+                            <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem;"
+                                onclick="toggleDetails(1)">Review</button>
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: 20px; color: var(--color-text-secondary);">#49211</td>
+                        <td style="padding: 20px; font-weight: 500;">CyberDyne Systems</td>
+                        <td style="padding: 20px;">$250,000</td>
+                        <td style="padding: 20px;">
+                            <span style="font-weight: 600; color: var(--color-white);">450</span>
+                        </td>
+                        <td style="padding: 20px;">
+                            <span
+                                style="background: rgba(239, 68, 68, 0.1); color: #EF4444; padding: 6px 12px; border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 600;">High
+                                Risk</span>
+                        </td>
+                        <td style="padding: 20px; text-align: right;">
+                            <button class="btn btn-outline"
+                                style="padding: 8px 20px; font-size: 0.85rem;">Review</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- DETAIL VIEW -->
+        <div id="detail-view" style="display: none; margin-top: 48px;">
+            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 32px;">
+                <!-- Left: Document Preview -->
+                <div class="feature-card"
+                    style="height: 600px; background: var(--color-bg-secondary); display: flex; align-items: center; justify-content: center;">
+                    <p style="color: var(--color-text-muted);">PDF Viewer Placeholder</p>
+                </div>
+
+                <!-- Right: AI Analysis -->
+                <div class="feature-card glow-card">
+                    <p class="label-tag">AI Analysis</p>
+                    <h3 style="margin-top: 12px; margin-bottom: 32px;">Risk Assessment Report</h3>
+
+                    <div style="margin-bottom: 32px;">
+                        <span
+                            style="font-size: 4rem; font-weight: 700; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">720</span>
+                        <span style="color: var(--color-text-muted); font-size: 1.5rem;">/ 900</span>
+                    </div>
+
+                    <h4 style="margin-bottom: 20px; font-family: 'Inter', sans-serif; font-size: 1rem;">Top Positive
+                        Factors</h4>
+                    <ul style="margin-bottom: 32px; list-style: none; padding: 0;">
+                        <li
+                            style="display: flex; justify-content: space-between; margin-bottom: 12px; padding: 12px; background: var(--color-bg-secondary); border-radius: var(--radius-md);">
+                            <span>Strong Cash Flow</span>
+                            <span style="color: #10B981; font-weight: 600;">+45 pts</span>
+                        </li>
+                        <li
+                            style="display: flex; justify-content: space-between; margin-bottom: 12px; padding: 12px; background: var(--color-bg-secondary); border-radius: var(--radius-md);">
+                            <span>Years in Business (>5)</span>
+                            <span style="color: #10B981; font-weight: 600;">+30 pts</span>
+                        </li>
+                    </ul>
+
+                    <h4 style="margin-bottom: 20px; font-family: 'Inter', sans-serif; font-size: 1rem;">Negative Factors
+                    </h4>
+                    <ul style="margin-bottom: 40px; list-style: none; padding: 0;">
+                        <li
+                            style="display: flex; justify-content: space-between; margin-bottom: 12px; padding: 12px; background: var(--color-bg-secondary); border-radius: var(--radius-md);">
+                            <span>High Industry Volatility</span>
+                            <span style="color: #EF4444; font-weight: 600;">-15 pts</span>
+                        </li>
+                    </ul>
+
+                    <div
+                        style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--color-border); display: flex; gap: 16px;">
+                        <button class="btn btn-primary">Approve Application</button>
+                        <button class="btn btn-outline"
+                            style="border-color: rgba(239, 68, 68, 0.3); color: #EF4444;">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(id) {
+            const detailView = document.getElementById('detail-view');
+            detailView.style.display = detailView.style.display === 'none' ? 'block' : 'none';
+            if (detailView.style.display === 'block') {
+                detailView.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+
+</html>
