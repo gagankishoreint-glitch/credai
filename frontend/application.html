@@ -172,13 +172,83 @@
             }
         });
 
+        // Document Upload Functionality
+        const uploadBox = document.getElementById('drop-zone'); // Changed from 'upload-box' to 'drop-zone' to match HTML
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('file-list');
+        let uploadedFiles = [];
+
+        // Click to browse
+        uploadBox.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        // Drag and drop
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.style.borderColor = 'var(--color-primary)';
+            uploadBox.style.background = 'rgba(147, 51, 234, 0.1)';
+        });
+
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.style.borderColor = 'var(--color-border)';
+            uploadBox.style.background = 'transparent';
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.style.borderColor = 'var(--color-border)';
+            uploadBox.style.background = 'transparent';
+            handleFiles(e.dataTransfer.files);
+        });
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (file.type === 'application/pdf') {
+                    uploadedFiles.push(file);
+                    displayFile(file);
+                } else {
+                    alert('Only PDF files are accepted');
+                }
+            });
+        }
+
+        function displayFile(file) {
+            const fileItem = document.createElement('div');
+            fileItem.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: 8px;';
+
+            fileItem.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <ion-icon name="document-text-outline" style="font-size: 24px; color: var(--color-primary);"></ion-icon>
+                    <div>
+                        <p style="margin: 0; font-weight: 500;">${file.name}</p>
+                        <p style="margin: 0; font-size: 0.875rem; color: var(--color-text-secondary);">${(file.size / 1024).toFixed(2)} KB</p>
+                    </div>
+                </div>
+                <button type="button" onclick="removeFile('${file.name}')" style="background: none; border: none; cursor: pointer; color: var(--color-danger);">
+                    <ion-icon name="close-circle-outline" style="font-size: 24px;"></ion-icon>
+                </button>
+            `;
+
+            fileList.appendChild(fileItem);
+        }
+
+        window.removeFile = function (filename) {
+            uploadedFiles = uploadedFiles.filter(f => f.name !== filename);
+            // Refresh display
+            fileList.innerHTML = '';
+            uploadedFiles.forEach(file => displayFile(file));
+        };
         // Mock Submission
-        document.getElementById('applicationForm').addEventListener('submit', (e) => {
+        document.getElementById('application-form').addEventListener('submit', (e) => { // Changed from 'applicationForm' to 'application-form' to match HTML
             e.preventDefault();
             window.location.href = 'dashboard.html?status=processing';
         });
-
-        // File Upload
         const dropZone = document.getElementById('drop-zone');
         dropZone.addEventListener('click', () => document.getElementById('fileInput').click());
 
