@@ -18,15 +18,36 @@
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- GLASSMORPHISM NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-brand">CredAi</a>
+
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Our Technology</a>
+                    <div class="dropdown-menu">
+                        <a href="methodology.html" class="dropdown-item">Credit Evaluation</a>
+                        <a href="risk-assessment.html" class="dropdown-item">Risk Assessment</a>
+                        <a href="automation.html" class="dropdown-item">Automation</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Use Cases</a>
+                    <div class="dropdown-menu">
+                        <a href="use-case-smb.html" class="dropdown-item">SMB Lending</a>
+                        <a href="use-case-consumer.html" class="dropdown-item">Consumer Lending</a>
+                        <a href="use-case-auto.html" class="dropdown-item">Auto Loans</a>
+                    </div>
+                </li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
             </ul>
+
             <div class="nav-actions">
-                <a href="dashboard.html" class="btn btn-outline">Dashboard</a>
+                <a href="login.html" class="btn btn-outline"
+                    style="margin-right: 12px; border: none; color: var(--color-white);">Sign In</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
             </div>
         </div>
     </nav>
