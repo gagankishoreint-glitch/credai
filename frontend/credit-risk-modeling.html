@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Modeling | CredAi</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">underwrite.ai</a>
+            <div class="nav-actions">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section" style="padding: 140px 0 60px;">
+        <div class="container">
+            <h1 class="text-gradient" style="max-width: 900px; margin-bottom: 24px;">Advanced Risk Modeling</h1>
+            <p style="font-size: 1.25rem; color: var(--color-text-secondary); max-width: 700px; margin-bottom: 40px;">
+                State-of-the-art architectures for predictive accuracy.
+            </p>
+        </div>
+    </div>
+
+    <div class="container" style="padding-bottom: 80px;">
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div>
+                <h3>XGBoost & Gradient Boosting</h3>
+                <p style="color: var(--color-text-secondary); margin-bottom: 24px;">
+                    We utilize ensemble learning techniques like XGBoost to build robust predictive models. Unlike
+                    simple decision trees, our gradient boosting framework optimizes for loss reduction at every step,
+                    resulting in highly calibrated probability-of-default (PD) estimates.
+                </p>
+
+                <h3>Dynamic Recalibration</h3>
+                <p style="color: var(--color-text-secondary);">
+                    Models degrade over time. Our infrastructure includes automated MLOps pipelines that monitor feature
+                    drift and retrain models on new loan performance data, ensuring your risk criteria stay relevant in
+                    changing economic conditions.
+                </p>
+            </div>
+
+            <div class="feature-card glow-card" style="padding: 24px;">
+                <h4 style="text-align: center; margin-bottom: 20px;">Model Performance (AUC)</h4>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple Chart Visualization -->
+    <script>
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Logistic Regression', 'CredAi (XGBoost)'],
+                datasets: [{
+                    label: 'AUC Score',
+                    data: [0.906, 0.958],
+                    backgroundColor: ['rgba(255, 255, 255, 0.2)', '#5A45FF'],
+                    borderWidth: 0,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true, max: 1.0, grid: { color: 'rgba(255,255,255,0.1)' } },
+                    x: { grid: { display: false } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>underwrite.ai</h2>
+                    <p>The next generation of credit evaluation, powered by artificial intelligence and machine
+                        learning.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Technology</h4>
+                    <ul class="footer-links">
+                        <li><a href="methodology.html">How It Works</a></li>
+                        <li><a href="use-cases.html">Use Cases</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="resources.html">Articles</a></li>
+                        <li><a href="ai-underwriting.html">AI Underwriting</a></li>
+                        <li><a href="credit-analysis.html">Credit Analysis</a></li>
+                        <li><a href="credit-risk-modeling.html">Credit Risk Modeling</a></li>
+                        <li><a href="credit-underwriting.html">Credit Underwriting</a></li>
+                        <li><a href="lending-underwriting.html">Lending Underwriting</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CredAi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

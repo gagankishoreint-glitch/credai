@@ -8,6 +8,11 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -87,28 +92,50 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h2>CredAi</h2>
-                    <p>The next generation of credit evaluation.</p>
+                    <h2>underwrite.ai</h2>
+                    <p>The next generation of credit evaluation, powered by artificial intelligence and machine
+                        learning.</p>
                 </div>
+
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul class="footer-links">
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-col">
-                    <h4>Connect</h4>
+                    <h4>Technology</h4>
                     <ul class="footer-links">
-                        <li><a href="https://www.linkedin.com/in/gagankishore/" target="_blank">LinkedIn</a></li>
+                        <li><a href="methodology.html">How It Works</a></li>
+                        <li><a href="use-cases.html">Use Cases</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="resources.html">Articles</a></li>
+                        <li><a href="ai-underwriting.html">AI Underwriting</a></li>
+                        <li><a href="credit-analysis.html">Credit Analysis</a></li>
+                        <li><a href="credit-risk-modeling.html">Credit Risk Modeling</a></li>
+                        <li><a href="credit-underwriting.html">Credit Underwriting</a></li>
+                        <li><a href="lending-underwriting.html">Lending Underwriting</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 CredAi. All rights reserved.</p>
+                <p>&copy; 2026 CredAi. All rights reserved.</p>
             </div>
         </div>
     </footer>
+    <!-- Firebase Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/navbar.js"></script>
 </body>
 

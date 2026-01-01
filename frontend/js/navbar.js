@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    const navActions = document.querySelector('.nav-actions');
 
     // Sticky Navbar on Scroll
     window.addEventListener('scroll', () => {
@@ -35,4 +36,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Dynamic Auth State
+    // Check if firebase and auth are available
+    if (typeof firebase !== 'undefined' && typeof auth !== 'undefined') {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is logged in
+                console.log('User logged in, updating navbar');
+                navActions.innerHTML = `
+                    <a href="dashboard.html" class="btn btn-outline" style="margin-right: 12px; border: none; color: var(--color-white);">Dashboard</a>
+                    <button onclick="authHelpers.signOut()" class="btn btn-primary">Sign Out</button>
+                `;
+            } else {
+                // User is logged out behavior (Default)
+                // We reset it just in case, but usually it starts as signed out
+                navActions.innerHTML = `
+                    <a href="login.html" class="btn btn-outline" style="margin-right: 12px; border: none; color: var(--color-white);">Sign In</a>
+                    <a href="signup.html" class="btn btn-primary">Start for Free</a>
+                `;
+            }
+        });
+    }
 });
