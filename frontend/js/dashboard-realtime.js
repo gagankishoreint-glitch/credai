@@ -9,11 +9,35 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!applicationId) {
         console.log('No application ID found');
         document.body.innerHTML = `
-            <div style="text-align: center; padding: 100px 20px;">
-                <h2>No Application Found</h2>
-                <p>Please submit an application first.</p>
-                <a href="application.html" class="btn btn-primary">Apply Now</a>
+            <style>
+                body {
+                    background: var(--color-bg-primary);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 100vh;
+                    margin: 0;
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                }
+            </style>
+            <div style="text-align: center; padding: 60px 40px; max-width: 600px;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 32px; background: linear-gradient(135deg, rgba(90, 69, 255, 0.2), rgba(147, 51, 234, 0.2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-border);">
+                    <ion-icon name="document-text-outline" style="font-size: 64px; color: var(--color-primary);"></ion-icon>
+                </div>
+                <h2 style="color: var(--color-white); font-size: 2rem; margin: 0 0 16px 0;">No Application Found</h2>
+                <p style="color: var(--color-text-secondary); font-size: 1.1rem; line-height: 1.7; margin: 0 0 32px 0;">
+                    You haven't submitted a loan application yet. Complete your application to access your personalized dashboard with real-time AI-powered credit analysis.
+                </p>
+                <a href="application.html" class="btn btn-primary" style="padding: 16px 32px; font-size: 1rem; text-decoration: none; display: inline-block; background: linear-gradient(135deg, #5A45FF, #9333EA); border: none; border-radius: 12px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+                    Apply for Credit Evaluation
+                </a>
+                <div style="margin-top: 40px; padding: 20px; background: rgba(90, 69, 255, 0.1); border-radius: 12px; border-left: 3px solid var(--color-primary);">
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin: 0;">
+                        <strong style="color: var(--color-white);">Quick Tip:</strong> Have your business financials and bank statements ready. The application takes about 5 minutes to complete.
+                    </p>
+                </div>
             </div>
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         `;
         return;
     }
@@ -73,10 +97,19 @@ document.addEventListener('DOMContentLoaded', function () {
             statusBadge.style.color = status.color;
         }
 
-        // 4. Update credit score
+        // 4. Update credit score dynamically
         const scoreElement = document.querySelector('h2[style*="font-size: 3.5rem"]');
-        if (scoreElement) {
-            scoreElement.textContent = data.aiScore || data.creditScore || '720';
+        if (scoreElement && window.riskCalculator) {
+            const calculatedScore = window.riskCalculator.calculateCreditScore(data);
+            scoreElement.textContent = calculatedScore;
+
+            // Update needle rotation based on score (300-850 range)
+            const needle = document.querySelector('[style*="transform-origin: bottom center"]');
+            if (needle) {
+                // Map 300-850 to -90deg to +90deg
+                const rotation = ((calculatedScore - 300) / 550) * 180 - 90;
+                needle.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
+            }
         }
 
         // 5. MOST IMPORTANT: Replace "Next Steps" with COMPLETE APPLICATION DATA
@@ -136,6 +169,72 @@ document.addEventListener('DOMContentLoaded', function () {
                     </p>
                 </div>
             `;
+        }
+
+        // 6. Update AI Risk Analysis Section with Dynamic Calculations
+        if (window.riskCalculator) {
+            const revenueStability = window.riskCalculator.calculateRevenueStability(data);
+            const marketPosition = window.riskCalculator.calculateMarketPosition(data);
+            const debtCoverage = window.riskCalculator.calculateDebtServiceCoverage(data);
+            const keyFactors = window.riskCalculator.generateKeyFactors(data, revenueStability, marketPosition, debtCoverage);
+
+            // Update the AI Risk Analysis section
+            const riskAnalysisContainer = document.querySelector('[style*="text-align: left"][style*="background: var(--color-bg-secondary)"]');
+            if (riskAnalysisContainer) {
+                riskAnalysisContainer.innerHTML = `
+                    <h4 style="margin-bottom: 16px; display: flex; align-items: center;">
+                        <ion-icon name="analytics-outline"
+                            style="color: var(--color-accent-purple); margin-right: 8px;"></ion-icon>
+                        AI Risk Analysis
+                    </h4>
+
+                    <div style="margin-bottom: 12px; font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span>Revenue Stability</span>
+                            <span style="color: ${revenueStability.color};">${revenueStability.rating}</span>
+                        </div>
+                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                            <div style="width: ${revenueStability.percentage}%; height: 100%; background: ${revenueStability.color}; border-radius: 3px;"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 12px; font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span>Market Position</span>
+                            <span style="color: ${marketPosition.color};">${marketPosition.rating}</span>
+                        </div>
+                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                            <div style="width: ${marketPosition.percentage}%; height: 100%; background: ${marketPosition.color}; border-radius: 3px;"></div>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span>Debt Service Coverage</span>
+                            <span style="color: ${debtCoverage.color};">${debtCoverage.rating}</span>
+                        </div>
+                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
+                            <div style="width: ${debtCoverage.percentage}%; height: 100%; background: ${debtCoverage.color}; border-radius: 3px;"></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Update Key Factors section
+            const keyFactorsContainer = document.querySelector('ul[style*="list-style: none"]');
+            if (keyFactorsContainer) {
+                keyFactorsContainer.innerHTML = keyFactors.map(factor => {
+                    const icon = factor.type === 'positive' ? 'checkmark-circle' : 'alert-circle';
+                    const color = factor.type === 'positive' ? '#10B981' : '#F59E0B';
+                    return `
+                        <li style="margin-bottom: 10px; display: flex; align-items: flex-start;">
+                            <ion-icon name="${icon}"
+                                style="color: ${color}; margin-right: 8px; margin-top: 2px;"></ion-icon>
+                            <span>${factor.text}</span>
+                        </li>
+                    `;
+                }).join('');
+            }
         }
     }
 

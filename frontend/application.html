@@ -157,8 +157,49 @@
     </div>
 
     <script>
-        // Simple Stepper Logic
+        // Enhanced Stepper Logic with Validation
+        function validateStep(stepNumber) {
+            const step = document.getElementById('step-' + stepNumber);
+            const inputs = step.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            let errorMessages = [];
+
+            inputs.forEach(input => {
+                // Remove previous error styling
+                input.style.borderColor = '';
+
+                if (!input.value || input.value.trim() === '') {
+                    isValid = false;
+                    input.style.borderColor = '#EF4444';
+                    const label = step.querySelector(`label[for="${input.id}"]`) ||
+                        input.previousElementSibling;
+                    const fieldName = label ? label.textContent : 'This field';
+                    errorMessages.push(`${fieldName} is required`);
+                }
+            });
+
+            if (!isValid) {
+                // Show error message
+                alert('Please fill in all required fields:\n\n' + errorMessages.join('\n'));
+            }
+
+            return isValid;
+        }
+
         function nextStep(step) {
+            // Get current step
+            const currentStep = document.querySelector('.step-content.active');
+            const currentStepNumber = parseInt(currentStep.id.replace('step-', ''));
+
+            // Validate current step before moving forward
+            if (step > currentStepNumber && !validateStep(currentStepNumber)) {
+                return; // Don't proceed if validation fails
+            }
+
+            // Save current step data to sessionStorage
+            saveStepData(currentStepNumber);
+
+            // Navigate to next step
             document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.step-item').forEach(el => {
                 el.classList.remove('active');
@@ -175,7 +216,48 @@
                     header.classList.add('completed');
                 }
             }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Save step data to sessionStorage
+        function saveStepData(stepNumber) {
+            const step = document.getElementById('step-' + stepNumber);
+            const inputs = step.querySelectorAll('input, select');
+            const data = {};
+
+            inputs.forEach(input => {
+                if (input.name) {
+                    data[input.name] = input.value;
+                }
+            });
+
+            sessionStorage.setItem('applicationStep' + stepNumber, JSON.stringify(data));
+        }
+
+        // Restore step data from sessionStorage
+        function restoreStepData() {
+            for (let i = 1; i <= 3; i++) {
+                const savedData = sessionStorage.getItem('applicationStep' + i);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    const step = document.getElementById('step-' + i);
+
+                    Object.keys(data).forEach(name => {
+                        const input = step.querySelector(`[name="${name}"]`);
+                        if (input && data[name]) {
+                            input.value = data[name];
+                        }
+                    });
+                }
+            }
+        }
+
+        // Restore data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            restoreStepData();
+        });
 
         // Strength Meter
         document.querySelector('input[name="years_in_operation"]').addEventListener('input', (e) => {
@@ -197,7 +279,7 @@
         const uploadBox = document.getElementById('drop-zone'); // Changed from 'upload-box' to 'drop-zone' to match HTML
         const fileInput = document.getElementById('fileInput');
         const fileList = document.getElementById('file-list');
-        let uploadedFiles = [];
+        window.uploadedFiles = []; // Make it globally accessible for validation
 
         // Click to browse
         uploadBox.addEventListener('click', () => {
@@ -231,7 +313,7 @@
         function handleFiles(files) {
             Array.from(files).forEach(file => {
                 if (file.type === 'application/pdf') {
-                    uploadedFiles.push(file);
+                    window.uploadedFiles.push(file);
                     displayFile(file);
                 } else {
                     alert('Only PDF files are accepted');
@@ -260,28 +342,11 @@
         }
 
         window.removeFile = function (filename) {
-            uploadedFiles = uploadedFiles.filter(f => f.name !== filename);
+            window.uploadedFiles = window.uploadedFiles.filter(f => f.name !== filename);
             // Refresh display
             fileList.innerHTML = '';
-            uploadedFiles.forEach(file => displayFile(file));
+            window.uploadedFiles.forEach(file => displayFile(file));
         };
-        // Mock Submission
-        document.getElementById('application-form').addEventListener('submit', (e) => { // Changed from 'applicationForm' to 'application-form' to match HTML
-            e.preventDefault();
-            window.location.href = 'dashboard.html?status=processing';
-        });
-        const dropZone = document.getElementById('drop-zone');
-        dropZone.addEventListener('click', () => document.getElementById('fileInput').click());
-
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = '#5A45FF';
-        });
-
-        dropZone.addEventListener('dragleave', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = 'var(--color-border)';
-        });
     </script>
 
     <!-- FOOTER -->
