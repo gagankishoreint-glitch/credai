@@ -298,27 +298,39 @@ const aiWidgetHTML = `
 </div>
 `;
 
-// Knowledge Base for Site Content
+// Extended Knowledge Base (The "Dataset")
 const knowledgeBase = {
     greeting: {
-        keywords: ['hello', 'hi', 'hey', 'start', 'begin', 'morning', 'evening'],
+        keywords: ['hello', 'hi', 'hey', 'start', 'begin', 'morning', 'evening', 'yo'],
         response: "Hello! I'm ready to help you analyze credit risks. How can I assist you today?"
     },
     about_site: {
-        keywords: ['what this site does', 'what is this', 'purpose', 'about', 'function', 'overview', 'summary'],
-        response: "CredAi is an **AI-Driven Credit Evaluation Platform**. We automate the lending underwriting process for SMBs and consumers, providing instant risk scores, fraud detection, and financial analysis reports."
+        keywords: ['what this site does', 'what is this site', 'purpose', 'about', 'function', 'overview', 'summary', 'explain this site', 'what is CredAi'],
+        response: "CredAi is an **AI-Driven Credit Evaluation Platform**. We automate the lending underwriting process for SMBs and consumers. Our system replaces manual underwriting (days) with AI (seconds) using XGBoost and Random Forest models with >80% accuracy."
+    },
+    methodology_steps: {
+        keywords: ['methodology', 'how it works', 'process', 'steps', 'approach'],
+        response: "Our methodology follows 4 steps: <br>1. **Data Preprocessing**: Cleaning and normalizing data.<br>2. **Document Analysis**: Optical Character Recognition (OCR) for PDFs.<br>3. **Model Development**: Risk scoring using XGBoost and Random Forest.<br>4. **Decision Logic**: Automated approval/rejection thresholds."
+    },
+    tech_stack: {
+        keywords: ['tech stack', 'technology', 'backend', 'frontend', 'python', 'react', 'database'],
+        response: "Our Tech Stack includes: <br>• **Backend**: Python (Flask/FastAPI) with Scikit-learn/TensorFlow.<br>• **Frontend**: HTML5, CSS3, JavaScript.<br>• **Data**: PostgreSQL/MongoDB and Firebase for realtime updates."
+    },
+    features: {
+        keywords: ['features', 'value', 'benefit', 'advantage', 'accuracy'],
+        response: "Key Features:<br>• **Greater Accuracy**: Analyzes thousands of data points.<br>• **Full Explainability**: Transparent reasoning for every score.<br>• **Proven Value**: 30% reduction in default rates."
     },
     navigate_apply: {
-        keywords: ['navigate', 'apply', 'application', 'sign up', 'register', 'start', 'loan'],
+        keywords: ['navigate', 'apply', 'application', 'sign up', 'register', 'start', 'loan', 'get started'],
         response: "I can help you get started. <br><br>👉 <a href='application.html' style='color: #3b82f6; text-decoration: none; font-weight: bold;'>Click here to Start a New Application</a>.<br>Or visit the <a href='signup.html' style='color: #06b6d4;'>Sign Up page</a> to create an account."
     },
     navigate_dashboard: {
-        keywords: ['dashboard', 'home', 'main', 'panel', 'board'],
+        keywords: ['dashboard', 'home', 'main', 'panel', 'board', 'login'],
         response: "You can view your active applications and analytics on the <a href='dashboard.html' style='color: #3b82f6; font-weight: bold;'>Dashboard</a>."
     },
     risk_model: {
-        keywords: ['risk', 'model', 'xgboost', 'accuracy', 'predict', 'score', 'algorithm', 'machine learning'],
-        response: "Our AI uses advanced **XGBoost** and **Random Forest** models to predict creditworthiness. We analyze key financial indicators like revenue stability, debt-to-income ratio, and cash flow patterns to generate a risk score with >80% accuracy."
+        keywords: ['risk', 'model', 'xgboost', 'random forest', 'logistic regression', 'algorithm', 'score'],
+        response: "We use three core models:<br>1. **XGBoost**: For high-performance classification.<br>2. **Random Forest**: For robust feature importance.<br>3. **Logistic Regression**: A baseline for linear interpretability."
     },
     pricing: {
         keywords: ['price', 'cost', 'plan', 'free', 'subscription', 'pay', 'money', 'charge'],
@@ -343,7 +355,7 @@ function initAIWidget() {
 
     // Inject Styles
     document.head.insertAdjacentHTML('beforeend', aiWidgetStyles);
-
+    
     // Inject HTML
     document.body.insertAdjacentHTML('beforeend', aiWidgetHTML);
 
@@ -372,7 +384,7 @@ function initAIWidget() {
     function appendMessage(text, sender) {
         const msgDiv = document.createElement('div');
         msgDiv.className = `ai-message ${sender}`;
-
+        
         let content = '';
         if (sender === 'bot') {
             content = `
@@ -384,7 +396,7 @@ function initAIWidget() {
         } else {
             content = `<div class="ai-message-content"><p>${text}</p></div>`;
         }
-
+        
         msgDiv.innerHTML = content;
         chatBody.appendChild(msgDiv);
         chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll
@@ -401,34 +413,49 @@ function initAIWidget() {
         // Bot Typing Simulation
         setTimeout(() => {
             let response = knowledgeBase.default.response;
-            let bestMatchWeight = 0;
+            let bestMatchScore = 0;
 
-            // Simple keyword matching with rudimentary scoring
+            // Advanced Token-Based Matching Logic
+            // This fixes the "hi" matching "this" bug by looking for word boundaries or exact phrase matches.
+            
             for (const [key, data] of Object.entries(knowledgeBase)) {
                 if (key === 'default') continue;
+                
+                let currentScore = 0;
+                
+                data.keywords.forEach(keyword => {
+                    const normalizedKeyword = keyword.toLowerCase();
 
-                // Check exact phrase matches first (higher priority)
-                // We split text into words and check overlap
-                let matchCount = 0;
+                    // 1. Exact Phrase Match (Highest Priority)
+                    if (text.includes(normalizedKeyword)) {
+                        currentScore += 10;
+                    } 
+                    // 2. Individual Word Match with Boundary Check (Medium Priority)
+                    else {
+                        // Split keyword into words (e.g., "what is")
+                        const words = normalizedKeyword.split(' ');
+                        let allWordsFound = true;
+                        
+                        // Check if ALL words in the keyword phrase exist as distinct words in user text
+                        for (const word of words) {
+                            // Regex: \bword\b matches whole word only. escape special chars just in case.
+                            // simpler check:
+                            const regex = new RegExp(\`\\\\b\${word}\\\\b\`, 'i');
+                            if (!regex.test(text)) {
+                                allWordsFound = false;
+                                break;
+                            }
+                        }
 
-                data.keywords.forEach(k => {
-                    if (text.includes(k.toLowerCase())) matchCount += 2; // Phrase match
+                        if (allWordsFound) {
+                            currentScore += 5;
+                        }
+                    }
                 });
 
-                if (matchCount > bestMatchWeight) {
-                    bestMatchWeight = matchCount;
+                if (currentScore > bestMatchScore) {
+                    bestMatchScore = currentScore;
                     response = data.response;
-                }
-            }
-
-            // If no weighted match, fallback to any simple inclusion
-            if (bestMatchWeight === 0) {
-                for (const [key, data] of Object.entries(knowledgeBase)) {
-                    if (key === 'default') continue;
-                    if (data.keywords.some(k => text.includes(k.toLowerCase()))) {
-                        response = data.response;
-                        break;
-                    }
                 }
             }
 
