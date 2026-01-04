@@ -135,21 +135,96 @@
                     </div>
                 </div>
 
-                <!-- STEP 3: DOCUMENTS -->
+                <!-- STEP 3: DOCUMENTS & ANALYSIS -->
                 <div class="step-content" id="step-3">
-                    <div class="file-upload-zone" id="drop-zone">
-                        <div class="upload-icon">
-                            <ion-icon name="cloud-upload-outline"></ion-icon>
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+                        <!-- Left: Upload -->
+                        <div>
+                            <div class="file-upload-zone" id="drop-zone">
+                                <div class="upload-icon">
+                                    <ion-icon name="cloud-upload-outline"></ion-icon>
+                                </div>
+                                <h3>Upload Bank Statements</h3>
+                                <p style="color: var(--color-text-secondary);">Drag & drop PDF files here, or click to
+                                    browse
+                                </p>
+                                <input type="file" id="fileInput" hidden multiple accept=".pdf">
+                            </div>
+
+                            <div id="file-list" style="margin-top: 20px;"></div>
                         </div>
-                        <h3>Upload Bank Statements</h3>
-                        <p style="color: var(--color-text-secondary);">Drag & drop PDF files here, or click to browse
-                        </p>
-                        <input type="file" id="fileInput" hidden multiple accept=".pdf">
+
+                        <!-- Right: AI Analysis Panel -->
+                        <div id="analysis-panel" class="feature-card"
+                            style="background: var(--color-bg-secondary); border: 1px dashed var(--color-border); min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center;">
+                            <!-- Empty State -->
+                            <div id="analysis-empty">
+                                <div
+                                    style="width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
+                                    <ion-icon name="scan-outline"
+                                        style="font-size: 30px; color: var(--color-text-muted);"></ion-icon>
+                                </div>
+                                <h4 style="color: var(--color-text-secondary);">Waiting for Documents</h4>
+                                <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-top: 8px;">
+                                    Upload your bank statements to see instant AI analysis of your cash flow.
+                                </p>
+                            </div>
+
+                            <!-- Loading State -->
+                            <div id="analysis-loading" style="display: none;">
+                                <ion-icon name="sync-outline"
+                                    style="font-size: 40px; color: var(--color-accent-blue); animation: spin 2s linear infinite; margin-bottom: 16px;"></ion-icon>
+                                <h4>Analyzing Document...</h4>
+                                <p style="font-size: 0.9rem; color: var(--color-text-muted);">Extracting financial data
+                                </p>
+                            </div>
+
+                            <!-- Result State -->
+                            <div id="analysis-result" style="display: none; width: 100%; text-align: left;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                    <h4 style="margin: 0; color: var(--color-accent-primary);">Analysis Complete</h4>
+                                    <span
+                                        style="font-size: 0.8rem; background: rgba(16, 185, 129, 0.2); color: #10B981; padding: 4px 8px; border-radius: 4px;">Verified</span>
+                                </div>
+
+                                <div style="margin-bottom: 16px;">
+                                    <p
+                                        style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 4px;">
+                                        Detected Monthly Revenue</p>
+                                    <h3 style="margin: 0;">₹ 12,50,000</h3>
+                                </div>
+
+                                <div class="grid"
+                                    style="grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                                    <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
+                                        <p
+                                            style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 4px;">
+                                            Avg Balance</p>
+                                        <strong style="color: var(--color-white);">₹ 4.2L</strong>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
+                                        <p
+                                            style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 4px;">
+                                            Bounces</p>
+                                        <strong style="color: #ef4444;">0 Detected</strong>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p style="font-size: 0.9rem; margin-bottom: 8px;">Health Score</p>
+                                    <div
+                                        style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px;">
+                                        <div
+                                            style="width: 85%; height: 100%; background: var(--gradient-primary); border-radius: 4px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="file-list" style="margin-top: 20px;"></div>
-
-                    <div class="form-actions">
+                    <div class="form-actions" style="margin-top: 32px;">
                         <button type="button" class="btn btn-outline" onclick="nextStep(2)">Back</button>
                         <button type="submit" class="btn btn-primary">Submit Application</button>
                     </div>
@@ -278,9 +353,14 @@
         });
 
         // Document Upload Functionality
-        const uploadBox = document.getElementById('drop-zone'); // Changed from 'upload-box' to 'drop-zone' to match HTML
+        const uploadBox = document.getElementById('drop-zone');
         const fileInput = document.getElementById('fileInput');
         const fileList = document.getElementById('file-list');
+        const analysisPanel = document.getElementById('analysis-panel');
+        const analysisEmpty = document.getElementById('analysis-empty');
+        const analysisLoading = document.getElementById('analysis-loading');
+        const analysisResult = document.getElementById('analysis-result');
+
         window.uploadedFiles = []; // Make it globally accessible for validation
 
         // Click to browse
@@ -317,6 +397,8 @@
                 if (file.type === 'application/pdf') {
                     window.uploadedFiles.push(file);
                     displayFile(file);
+                    // Trigger Analysis Simulation
+                    simulateAnalysis();
                 } else {
                     alert('Only PDF files are accepted');
                 }
@@ -348,7 +430,32 @@
             // Refresh display
             fileList.innerHTML = '';
             window.uploadedFiles.forEach(file => displayFile(file));
+
+            // Allow re-upload
+            if (window.uploadedFiles.length === 0) {
+                analysisPanel.style.borderStyle = 'dashed';
+                analysisPanel.style.background = 'var(--color-bg-secondary)';
+                analysisEmpty.style.display = 'block';
+                analysisResult.style.display = 'none';
+                analysisLoading.style.display = 'none';
+            }
         };
+
+        function simulateAnalysis() {
+            // UI State: Loading
+            analysisEmpty.style.display = 'none';
+            analysisResult.style.display = 'none';
+            analysisLoading.style.display = 'block';
+            analysisPanel.style.borderStyle = 'solid';
+            analysisPanel.style.borderColor = 'var(--color-accent-blue)';
+
+            setTimeout(() => {
+                // UI State: Complete
+                analysisLoading.style.display = 'none';
+                analysisResult.style.display = 'block';
+                analysisPanel.style.background = 'linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%)';
+            }, 2500);
+        }
     </script>
 
     <!-- FOOTER -->
