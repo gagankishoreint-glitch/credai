@@ -71,4 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
             navActions.classList.add('is-loaded'); // Reveal navbar actions
         });
     }
+
+    // Load AI Widget script dynamically if not present
+    if (!document.querySelector('script[src*="ai-widget.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'js/ai-widget.js';
+        document.body.appendChild(script);
+    }
 });
