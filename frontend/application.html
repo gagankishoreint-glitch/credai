@@ -154,33 +154,65 @@
                             <div id="file-list" style="margin-top: 20px;"></div>
                         </div>
 
-                        <!-- Right: AI Analysis Panel -->
+                        <!-- Right: AI Agent Analysis Panel -->
                         <div id="analysis-panel" class="feature-card"
-                            style="background: var(--color-bg-secondary); border: 1px dashed var(--color-border); min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center;">
+                            style="background: var(--color-bg-secondary); border: 1px dashed var(--color-border); min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden;">
+
+                            <!-- Agent Header (Hidden by default) -->
+                            <div id="agent-header"
+                                style="display: none; position: absolute; top: 0; left: 0; width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <div
+                                        style="width: 24px; height: 24px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <ion-icon name="sparkles" style="font-size: 14px; color: white;"></ion-icon>
+                                    </div>
+                                    <span
+                                        style="font-size: 0.8rem; font-weight: 600; color: var(--color-text-secondary);">CredAi
+                                        Agent</span>
+                                </div>
+                                <span
+                                    style="font-size: 0.7rem; background: rgba(59, 130, 246, 0.2); color: #3b82f6; padding: 2px 6px; border-radius: 4px;">ACTIVE</span>
+                            </div>
+
                             <!-- Empty State -->
                             <div id="analysis-empty">
                                 <div
-                                    style="width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
-                                    <ion-icon name="scan-outline"
-                                        style="font-size: 30px; color: var(--color-text-muted);"></ion-icon>
+                                    style="width: 70px; height: 70px; background: rgba(99, 102, 241, 0.1); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(99, 102, 241, 0.3);">
+                                    <ion-icon name="aperture-outline"
+                                        style="font-size: 32px; color: var(--color-accent-purple);"></ion-icon>
                                 </div>
-                                <h4 style="color: var(--color-text-secondary);">Waiting for Documents</h4>
-                                <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-top: 8px;">
-                                    Upload your bank statements to see instant AI analysis of your cash flow.
+                                <h4 style="color: var(--color-white); margin-bottom: 8px;">AI Agent Ready</h4>
+                                <p
+                                    style="font-size: 0.9rem; color: var(--color-text-secondary); max-width: 280px; margin: 0 auto;">
+                                    Upload your documents. Our agent will instantly scan, extract, and analyze your
+                                    financial health.
                                 </p>
                             </div>
 
-                            <!-- Loading State -->
+                            <!-- Loading State (Agent Processing) -->
                             <div id="analysis-loading" style="display: none;">
-                                <ion-icon name="sync-outline"
-                                    style="font-size: 40px; color: var(--color-accent-blue); animation: spin 2s linear infinite; margin-bottom: 16px;"></ion-icon>
-                                <h4>Analyzing Document...</h4>
-                                <p style="font-size: 0.9rem; color: var(--color-text-muted);">Extracting financial data
-                                </p>
+                                <div style="position: relative; width: 80px; height: 80px; margin: 0 auto 20px;">
+                                    <div
+                                        style="position: absolute; inset: 0; border: 3px solid var(--color-accent-blue); border-radius: 50%; border-top-color: transparent; animation: spin 1s linear infinite;">
+                                    </div>
+                                    <div
+                                        style="position: absolute; inset: 10px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);">
+                                        <ion-icon name="scan" style="font-size: 30px; color: white;"></ion-icon>
+                                    </div>
+                                </div>
+                                <h4 style="font-weight: 600;">Agent is analyzing...</h4>
+                                <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 12px;">
+                                    <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Reading PDF
+                                        content...</span>
+                                    <span style="font-size: 0.8rem; color: var(--color-text-muted);">identifying
+                                        transaction patterns...</span>
+                                </div>
                             </div>
 
                             <!-- Result State -->
-                            <div id="analysis-result" style="display: none; width: 100%; text-align: left;">
+                            <div id="analysis-result"
+                                style="display: none; width: 100%; text-align: left; padding: 20px; padding-top: 60px;">
+                                <!-- Padding top for header -->
                                 <div
                                     style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                                     <h4 style="margin: 0; color: var(--color-accent-primary);">Analysis Complete</h4>
