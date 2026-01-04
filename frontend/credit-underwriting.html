@@ -7,13 +7,19 @@
     <title>Credit Underwriting | CredAi</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">underwrite.ai</a>
+            <a href="index.html" class="nav-brand">CredAi</a>
+            
             <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                    <ion-icon name="sunny-outline" id="theme-icon"></ion-icon>
+                </button>
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="contact.html" class="btn btn-primary">Contact Us</a>
             </div>
@@ -61,7 +67,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h2>underwrite.ai</h2>
+                    <h2>CredAi</h2>
                     <p>The next generation of credit evaluation, powered by artificial intelligence and machine
                         learning.</p>
                 </div>
@@ -102,6 +108,9 @@
             </div>
         </div>
     </footer>
+    <script src="js/theme.js"></script>
 </body>
 
 </html>
+
+
