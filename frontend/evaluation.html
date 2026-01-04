@@ -15,39 +15,46 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-logo">
-                <div class="logo-icon">AI</div>
-                <span>CREDIT EVALUATOR</span>
-            </a>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">CredAi</a>
 
-                                    <ul class="navbar-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="application.html">Application</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="methodology.html">Docs</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Our Technology</a>
+                    <div class="dropdown-menu">
+                        <a href="methodology.html" class="dropdown-item">Credit Evaluation</a>
+                        <a href="risk-assessment.html" class="dropdown-item">Risk Assessment</a>
+                        <a href="automation.html" class="dropdown-item">Autonomous Finance</a>
+                        <a href="currency-trends.html" class="dropdown-item">Market Trends</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Use Cases</a>
+                    <div class="dropdown-menu">
+                        <a href="use-case-smb.html" class="dropdown-item">SMB Lending</a>
+                        <a href="use-case-consumer.html" class="dropdown-item">Consumer Lending</a>
+                        <a href="use-case-auto.html" class="dropdown-item">Auto Loans</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">About</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html" class="dropdown-item">About Us</a>
+                        <a href="contact.html" class="dropdown-item">Contact Us</a>
+                        <a href="resources.html" class="dropdown-item">Resources</a>
+                        <a href="faq.html" class="dropdown-item">FAQ</a>
+                    </div>
+                </li>
             </ul>
 
-            <div class="navbar-actions">
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" style="margin-right: 0.5rem;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                    <ion-icon name="sunny-outline" id="theme-icon"></ion-icon>
                 </button>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-                <a href="login.html" class="btn btn-ghost" id="navLoginBtn" style="padding: 0.6rem 1.5rem;">Login</a>
-                <a href="dashboard.html" class="btn btn-primary" id="navDashboardBtn"
-                    style="padding: 0.6rem 1.5rem;">Dashboard</a>
+                <a href="login.html" class="btn btn-outline"
+                    style="margin-right: 12px; border: none; color: var(--color-white);">Sign In</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
             </div>
-        </div>
         </div>
     </nav>
 
@@ -225,7 +232,7 @@
         </div>
     </main>
 
-        <!-- Shared Footer -->
+    <!-- Shared Footer -->
     <footer style="background: var(--color-bg-primary); border-top: 1px solid var(--color-border); padding: 4rem 0;">
         <div class="container">
             <div class="grid grid-2 gap-xl">
@@ -235,30 +242,38 @@
                         <span style="font-size: 1.5rem;">Credit Evaluator</span>
                     </a>
                     <p style="color: var(--color-text-secondary); line-height: 1.6; max-width: 400px;">
-                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure evaluation.
+                        Professional AI-driven credit assessment for modern businesses. Fast, transparent, and secure
+                        evaluation.
                     </p>
                 </div>
-                
+
                 <div>
                     <h3 style="margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
-                    
+
                     <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?</h4>
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">What is this site about?
+                        </h4>
                         <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage to provide a real-time risk assessment without manual delays.
+                            This platform uses advanced Machine Learning (XGBoost) to evaluate business creditworthiness
+                            instantly. We analyze financial parameters like revenue, EBITDA, and debt service coverage
+                            to provide a real-time risk assessment without manual delays.
                         </p>
                     </div>
 
                     <div style="margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the evaluation?</h4>
+                        <h4 style="margin-bottom: 0.5rem; color: var(--color-text-primary);">How trustworthy is the
+                            evaluation?</h4>
                         <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
-                            Our system is calibrated on thousands of historical credit records, achieving over 75% accuracy. While we provide a high-confidence "Decision Assistant," final approvals are always reviewed by human underwriters to ensure fairness and compliance.
+                            Our system is calibrated on thousands of historical credit records, achieving over 75%
+                            accuracy. While we provide a high-confidence "Decision Assistant," final approvals are
+                            always reviewed by human underwriters to ensure fairness and compliance.
                         </p>
                     </div>
                 </div>
             </div>
-            
-            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
+
+            <div
+                style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.9rem;">
                 &copy; 2025 Credit Evaluator. All rights reserved.
             </div>
         </div>
@@ -520,4 +535,3 @@
 </body>
 
 </html>
-

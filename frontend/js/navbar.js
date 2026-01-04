@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Navbar.js loaded - Version 2.0 (Dropdowns Active)');
     const navbar = document.querySelector('.navbar');
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     const navActions = document.querySelector('.nav-actions');
