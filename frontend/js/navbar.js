@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             navActions.innerHTML = actionsHtml;
+            navActions.classList.add('is-loaded'); // Reveal navbar actions
 
             // Re-initialize theme logic since we overwrote the DOM
             if (window.initTheme) {

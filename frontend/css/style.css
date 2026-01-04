@@ -183,6 +183,15 @@ h3 {
     display: flex;
     align-items: center;
     gap: 12px;
+    opacity: 0;
+    /* Hidden initially to prevent flicker */
+    transition: opacity 0.3s ease;
+    /* Smooth fade-in */
+}
+
+.nav-actions.is-loaded {
+    opacity: 1;
+    /* Shown when auth is ready */
 }
 
 .theme-toggle {
