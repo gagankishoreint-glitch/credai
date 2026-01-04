@@ -301,31 +301,39 @@ const aiWidgetHTML = `
 // Knowledge Base for Site Content
 const knowledgeBase = {
     greeting: {
-        keywords: ['hello', 'hi', 'hey', 'start', 'begin'],
+        keywords: ['hello', 'hi', 'hey', 'start', 'begin', 'morning', 'evening'],
         response: "Hello! I'm ready to help you analyze credit risks. How can I assist you today?"
     },
+    about_site: {
+        keywords: ['what this site does', 'what is this', 'purpose', 'about', 'function', 'overview', 'summary'],
+        response: "CredAi is an **AI-Driven Credit Evaluation Platform**. We automate the lending underwriting process for SMBs and consumers, providing instant risk scores, fraud detection, and financial analysis reports."
+    },
+    navigate_apply: {
+        keywords: ['navigate', 'apply', 'application', 'sign up', 'register', 'start', 'loan'],
+        response: "I can help you get started. <br><br>👉 <a href='application.html' style='color: #3b82f6; text-decoration: none; font-weight: bold;'>Click here to Start a New Application</a>.<br>Or visit the <a href='signup.html' style='color: #06b6d4;'>Sign Up page</a> to create an account."
+    },
+    navigate_dashboard: {
+        keywords: ['dashboard', 'home', 'main', 'panel', 'board'],
+        response: "You can view your active applications and analytics on the <a href='dashboard.html' style='color: #3b82f6; font-weight: bold;'>Dashboard</a>."
+    },
     risk_model: {
-        keywords: ['risk', 'model', 'xgboost', 'accuracy', 'predict', 'score'],
+        keywords: ['risk', 'model', 'xgboost', 'accuracy', 'predict', 'score', 'algorithm', 'machine learning'],
         response: "Our AI uses advanced **XGBoost** and **Random Forest** models to predict creditworthiness. We analyze key financial indicators like revenue stability, debt-to-income ratio, and cash flow patterns to generate a risk score with >80% accuracy."
     },
     pricing: {
-        keywords: ['price', 'cost', 'plan', 'free', 'subscription', 'pay'],
+        keywords: ['price', 'cost', 'plan', 'free', 'subscription', 'pay', 'money', 'charge'],
         response: "We offer a **Free Starter Plan** for basic evaluations. Our **Pro Plan** ($49/mo) includes detailed risk reports, API access, and priority support. You can view all options on our Pricing page."
     },
     security: {
-        keywords: ['security', 'safe', 'data', 'privacy', 'encrypt'],
+        keywords: ['security', 'safe', 'data', 'privacy', 'encrypt', 'gdpr'],
         response: "Your data security is our top priority. We use **256-bit AES encryption** for all stored data and strictly adhere to GDPR and SOC2 compliance standards."
     },
     contact: {
-        keywords: ['contact', 'support', 'email', 'help', 'human'],
+        keywords: ['contact', 'support', 'email', 'help', 'human', 'talk'],
         response: "You can reach our human support team at **support@credai.com**. We're available 24/7 for enterprise inquiries."
     },
-    features: {
-        keywords: ['feature', 'dashboard', 'report', 'analytics', 'tool'],
-        response: "Our platform provides a real-time **Dashboard** for monitoring applications, detailed **PDF Risk Reports**, and an **AI Analysis Panel** that breaks down positive and negative risk factors."
-    },
     default: {
-        response: "I'm trained specifically on CredAi's services. Try asking about **Risk Models**, **Pricing**, or **Security**."
+        response: "I'm trained specifically on CredAi's services. Try asking me to **'Navigate to Application'**, explain **'How it works'**, or check **'Pricing'**."
     }
 };
 
@@ -393,15 +401,34 @@ function initAIWidget() {
         // Bot Typing Simulation
         setTimeout(() => {
             let response = knowledgeBase.default.response;
-            let found = false;
+            let bestMatchWeight = 0;
 
-            // Simple keyword matching
+            // Simple keyword matching with rudimentary scoring
             for (const [key, data] of Object.entries(knowledgeBase)) {
                 if (key === 'default') continue;
-                if (data.keywords.some(k => text.includes(k))) {
+
+                // Check exact phrase matches first (higher priority)
+                // We split text into words and check overlap
+                let matchCount = 0;
+
+                data.keywords.forEach(k => {
+                    if (text.includes(k.toLowerCase())) matchCount += 2; // Phrase match
+                });
+
+                if (matchCount > bestMatchWeight) {
+                    bestMatchWeight = matchCount;
                     response = data.response;
-                    found = true;
-                    break;
+                }
+            }
+
+            // If no weighted match, fallback to any simple inclusion
+            if (bestMatchWeight === 0) {
+                for (const [key, data] of Object.entries(knowledgeBase)) {
+                    if (key === 'default') continue;
+                    if (data.keywords.some(k => text.includes(k.toLowerCase()))) {
+                        response = data.response;
+                        break;
+                    }
                 }
             }
 
