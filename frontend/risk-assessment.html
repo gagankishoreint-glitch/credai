@@ -21,7 +21,7 @@
             <a href="index.html" class="nav-brand">CredAi</a>
             <ul class="nav-menu">
                 <li class="dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">Our Technology</a>
+                    <a href="#" class="nav-link dropdown-toggle" style="color: var(--color-white);">Our Technology</a>
                     <div class="dropdown-menu">
                         <a href="methodology.html" class="dropdown-item">Credit Evaluation</a>
                         <a href="risk-assessment.html" class="dropdown-item">Risk Assessment</a>
@@ -39,7 +39,7 @@
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="resources.html" class="nav-link">Resources</a></li>
             </ul>
-            
+
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
                     <ion-icon name="sunny-outline" id="theme-icon"></ion-icon>
@@ -56,67 +56,99 @@
             <p class="label-tag" style="margin-bottom: 24px;">Our Technology</p>
             <h1 style="margin-bottom: 24px;">AI-Powered Risk Assessment</h1>
             <p style="font-size: 1.25rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto;">
-                Robust fraud detection and risk scoring with 99+% accuracy for safer lending decisions.
+                Robust fraud detection and risk scoring using structured credit datasets and predictive analytics.
             </p>
         </div>
     </div>
 
     <div class="container" style="padding: 80px 20px; max-width: 900px;">
+        <!-- INPUT PARAMETERS -->
         <div style="margin-bottom: 80px;">
-            <p class="label-tag" style="margin-bottom: 16px;">Accuracy</p>
-            <h2 style="margin-bottom: 32px;">99+% Document Analysis Accuracy</h2>
+            <p class="label-tag" style="margin-bottom: 16px;">Scoring Factors</p>
+            <h2 style="margin-bottom: 32px;">Structured Credit Evaluation</h2>
             <div class="feature-card glow-card" style="border-left: 3px solid var(--color-accent-purple);">
                 <p style="color: var(--color-text-secondary); margin-bottom: 24px; line-height: 1.7;">
-                    We orchestrate best-in-class AI models with domain-specific intelligence to deliver fully automated,
-                    audit-ready risk assessments.
+                    Our model analyzes a synthetic training dataset of 2,000–7,000 records to learn the complex
+                    relationships between key financial indicators:
                 </p>
-                <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
-                    <li style="margin-bottom: 20px; padding-left: 32px; position: relative;">
-                        <ion-icon name="checkmark-circle"
-                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
-                        Specialized language models fine-tuned for financial documents
-                    </li>
-                    <li style="margin-bottom: 20px; padding-left: 32px; position: relative;">
-                        <ion-icon name="checkmark-circle"
-                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
-                        Model orchestration for optimal accuracy
-                    </li>
-                    <li style="padding-left: 32px; position: relative;">
-                        <ion-icon name="checkmark-circle"
-                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
-                        Human-in-the-loop verification for edge cases
-                    </li>
-                </ul>
+
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-blue);">•</span>
+                            <strong style="color: var(--color-white);">Annual Revenue:</strong> Revenue in ₹ or $
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-blue);">•</span>
+                            <strong style="color: var(--color-white);">Years in Operation:</strong> Business stability
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-blue);">•</span>
+                            <strong style="color: var(--color-white);">Cashflow:</strong> Monthly avg. cash flow
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-blue);">•</span>
+                            <strong style="color: var(--color-white);">Credit Score:</strong> Numeric (300–900)
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-blue);">•</span>
+                            <strong style="color: var(--color-white);">Debt-to-Income:</strong> Financial health ratio
+                        </li>
+                    </ul>
+
+                    <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                            <strong style="color: var(--color-white);">Existing Loans:</strong> Active liabilities
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                            <strong style="color: var(--color-white);">Collateral Value:</strong> Asset value
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                            <strong style="color: var(--color-white);">Repayment History:</strong> Good/Avg/Poor
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                            <strong style="color: var(--color-white);">Default Flag:</strong> Target (0=No, 1=Yes)
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
+                            <strong style="color: var(--color-white);">Business Type:</strong> Mfg/Trading/Services
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div style="margin-bottom: 80px;">
-            <p class="label-tag" style="margin-bottom: 16px;">Fraud Detection</p>
-            <h2 style="margin-bottom: 32px;">Comprehensive Fraud Signals</h2>
+            <p class="label-tag" style="margin-bottom: 16px;">Output</p>
+            <h2 style="margin-bottom: 32px;">Actionable Risk Signals</h2>
             <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <ion-icon name="shield-outline" style="font-size: 28px;"></ion-icon>
                     </div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Tampering Detection</h3>
-                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Identify altered or manipulated
-                        documents with forensic AI analysis.</p>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Automated Decision</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Instant preliminary approval or
+                        rejection based on learned thresholds.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <ion-icon name="analytics-outline" style="font-size: 28px;"></ion-icon>
                     </div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Data-Level Fraud</h3>
-                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Detect mismatches, anomalies, and
-                        inconsistencies across data points.</p>
+                    <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Confidence Score</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">A probabilistic score (0-1)
+                        indicating the model's certainty.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <ion-icon name="people-outline" style="font-size: 28px;"></ion-icon>
                     </div>
                     <h3 style="font-size: 1.1rem; margin-bottom: 12px;">Human Escalation</h3>
-                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Flag high-risk submissions for
-                        expert review.</p>
+                    <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Review flags for marginal cases
+                        or data inconsistencies.</p>
                 </div>
             </div>
         </div>
@@ -176,5 +208,3 @@
 </body>
 
 </html>
-
-

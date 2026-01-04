@@ -178,32 +178,36 @@ h3 {
     gap: 32px;
 }
 
+/* Navbar Items Alignment */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .theme-toggle {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-pill);
-    padding: 10px;
-    /* Slightly larger area */
+    padding: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     color: var(--color-text-primary);
-    /* Ensure visible text/icon color */
     font-size: 1rem;
-    width: 40px;
-    /* Fixed width */
-    height: 40px;
-    /* Fixed height */
-    margin-right: 12px;
+    width: 42px;
+    /* Fixed, consistent size */
+    height: 42px;
+    margin: 0;
+    /* Let gap handle spacing */
+    flex-shrink: 0;
 }
 
 [data-theme="light"] .theme-toggle {
     background: #f3f4f6;
-    /* Distinct gray for light mode */
-    border-color: #d1d5db;
+    border-color: #e5e7eb;
     color: #1f2937;
 }
 
@@ -212,11 +216,29 @@ h3 {
     color: var(--color-white);
     border-color: var(--color-accent-blue);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(90, 69, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(90, 69, 255, 0.25);
 }
 
 .theme-toggle ion-icon {
     font-size: 20px;
+}
+
+/* Polished Apply Button */
+.btn-apply {
+    background: var(--color-accent-cyan);
+    color: #000;
+    font-weight: 600;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+}
+
+.btn-apply:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+    background: #22d3ee;
 }
 
 .nav-link {

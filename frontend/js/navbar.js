@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('User logged in, updating navbar');
                 actionsHtml = `
                     ${themeToggleHtml}
-                    <a href="application.html" class="btn btn-primary" style="margin-right: 12px; background: var(--color-accent-cyan);">Apply Now</a>
-                    <a href="dashboard.html" class="btn btn-outline" style="margin-right: 12px; border: none; color: var(--color-white);">Dashboard</a>
+                    <a href="application.html" class="btn btn-apply">Apply Now</a>
+                    <a href="dashboard.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Dashboard</a>
                     <button onclick="authHelpers.signOut()" class="btn btn-outline" style="border: 1px solid var(--color-border);">Sign Out</button>
                 `;
             } else {
                 // User is logged out behavior (Default)
                 actionsHtml = `
                     ${themeToggleHtml}
-                    <a href="login.html" class="btn btn-outline" style="margin-right: 12px; border: none; color: var(--color-white);">Sign In</a>
+                    <a href="login.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Sign In</a>
                     <a href="signup.html" class="btn btn-primary">Start for Free</a>
                 `;
             }

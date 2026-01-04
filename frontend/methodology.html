@@ -41,7 +41,7 @@
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="resources.html" class="nav-link">Resources</a></li>
             </ul>
-            
+
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
                     <ion-icon name="sunny-outline" id="theme-icon"></ion-icon>
@@ -59,96 +59,92 @@
             <p class="label-tag" style="margin-bottom: 24px;">Our Approach</p>
             <h1 style="margin-bottom: 24px;">Machine Learning Methodology</h1>
             <p style="font-size: 1.25rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto;">
-                Understanding how our AI-powered credit evaluation system makes intelligent, explainable decisions.
+                A rigorous, scientific approach to modernizing credit assessment with clean data and advanced models.
             </p>
         </div>
     </div>
 
     <!-- CONTENT -->
     <div class="container" style="padding: 80px 20px; max-width: 900px;">
-        <!-- Section 1 -->
+        <!-- Section 1: Methodology -->
         <div style="margin-bottom: 80px;">
-            <p class="label-tag" style="margin-bottom: 16px;">Data Foundation</p>
-            <h2 style="margin-bottom: 32px;">1. Data Processing Pipeline</h2>
+            <p class="label-tag" style="margin-bottom: 16px;">Step-by-Step</p>
+            <h2 style="margin-bottom: 32px;">1. Project Methodology</h2>
             <div class="feature-card" style="border-left: 3px solid var(--color-accent-purple);">
                 <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
                     <li style="margin-bottom: 20px; padding-left: 24px; position: relative;">
-                        <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
-                        <strong style="color: var(--color-white);">Data Cleaning:</strong> Handling missing values using
-                        median imputation.
+                        <span
+                            style="position: absolute; left: 0; color: var(--color-accent-purple); font-weight: bold;">1.</span>
+                        <strong style="color: var(--color-white);">Data Preprocessing:</strong> Cleaning missing or
+                        inconsistent values, normalization using StandardScaler, and feature engineering.
                     </li>
                     <li style="margin-bottom: 20px; padding-left: 24px; position: relative;">
-                        <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
-                        <strong style="color: var(--color-white);">Feature Engineering:</strong> Creating derived
-                        metrics like loan-to-revenue ratio and cash flow adequacy.
+                        <span
+                            style="position: absolute; left: 0; color: var(--color-accent-purple); font-weight: bold;">2.</span>
+                        <strong style="color: var(--color-white);">Document Analysis (Optional):</strong> OCR for PDF
+                        documents and NLP for extracting key financial indicators.
+                    </li>
+                    <li style="margin-bottom: 20px; padding-left: 24px; position: relative;">
+                        <span
+                            style="position: absolute; left: 0; color: var(--color-accent-purple); font-weight: bold;">3.</span>
+                        <strong style="color: var(--color-white);">Model Development:</strong> Implementing
+                        Classification and Regression models (Logistic Regression, Random Forest, XGBoost) for risk
+                        scoring.
                     </li>
                     <li style="padding-left: 24px; position: relative;">
-                        <span style="position: absolute; left: 0; color: var(--color-accent-purple);">•</span>
-                        <strong style="color: var(--color-white);">Normalization:</strong> Scaling numerical features
-                        using StandardScaler.
+                        <span
+                            style="position: absolute; left: 0; color: var(--color-accent-purple); font-weight: bold;">4.</span>
+                        <strong style="color: var(--color-white);">Decision Logic:</strong> Threshold-based
+                        approval/rejection and a confidence score for human underwriters.
                     </li>
                 </ul>
             </div>
         </div>
 
-        <!-- Section 2 -->
+        <!-- Section 2: Architecture -->
         <div style="margin-bottom: 80px;">
-            <p class="label-tag" style="margin-bottom: 16px;">AI Models</p>
-            <h2 style="margin-bottom: 32px;">2. Machine Learning Models</h2>
+            <p class="label-tag" style="margin-bottom: 16px;">Tech Stack</p>
+            <h2 style="margin-bottom: 32px;">2. System Architecture</h2>
+            <div class="grid" style="grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                <div class="feature-card glow-card">
+                    <div class="feature-icon">
+                        <ion-icon name="server-outline" style="font-size: 28px;"></ion-icon>
+                    </div>
+                    <h3 style="font-size: 1.25rem;">Backend & ML</h3>
+                    <p style="color: var(--color-text-secondary);">Python (Flask / FastAPI)</p>
+                    <p style="color: var(--color-text-secondary);">Scikit-learn / TensorFlow / PyTorch</p>
+                </div>
+                <div class="feature-card glow-card">
+                    <div class="feature-icon">
+                        <ion-icon name="layers-outline" style="font-size: 28px;"></ion-icon>
+                    </div>
+                    <h3 style="font-size: 1.25rem;">Frontend & Data</h3>
+                    <p style="color: var(--color-text-secondary);">HTML / CSS / JS / React</p>
+                    <p style="color: var(--color-text-secondary);">MySQL / PostgreSQL / MongoDB</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Models -->
+        <div style="margin-bottom: 80px;">
+            <p class="label-tag" style="margin-bottom: 16px;">Algorithms</p>
+            <h2 style="margin-bottom: 32px;">3. Model Selection</h2>
             <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
                 <div class="feature-card glow-card">
-                    <div class="feature-icon">
-                        <ion-icon name="analytics-outline" style="font-size: 28px;"></ion-icon>
-                    </div>
-                    <h3 style="font-size: 1.25rem;">XGBoost</h3>
-                    <p style="color: var(--color-text-secondary);">Primary model achieving 99.4% accuracy. Handles
-                        complex non-linear relationships.</p>
+                    <h3 style="font-size: 1.1rem; color: var(--color-accent-blue);">XGBoost</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">High-performance gradient boosting
+                        for accurate classification.</p>
                 </div>
                 <div class="feature-card glow-card">
-                    <div class="feature-icon">
-                        <ion-icon name="git-network-outline" style="font-size: 28px;"></ion-icon>
-                    </div>
-                    <h3 style="font-size: 1.25rem;">Random Forest</h3>
-                    <p style="color: var(--color-text-secondary);">Ensemble of decision trees providing robust
-                        predictions and natural feature importance.</p>
+                    <h3 style="font-size: 1.1rem; color: #10B981;">Random Forest</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Ensemble learning for robust
+                        predictions and feature importance.</p>
                 </div>
                 <div class="feature-card glow-card">
-                    <div class="feature-icon">
-                        <ion-icon name="stats-chart-outline" style="font-size: 28px;"></ion-icon>
-                    </div>
-                    <h3 style="font-size: 1.25rem;">Logistic Regression</h3>
-                    <p style="color: var(--color-text-secondary);">Baseline linear model for interpretable coefficients
-                        and comparison.</p>
+                    <h3 style="font-size: 1.1rem; color: var(--color-accent-purple);">Logistic Regression</h3>
+                    <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Baseline model for
+                        interpretability and linear relationships.</p>
                 </div>
-            </div>
-        </div>
-
-        <!-- Section 3 -->
-        <div style="margin-bottom: 80px;">
-            <p class="label-tag" style="margin-bottom: 16px;">Transparency</p>
-            <h2 style="margin-bottom: 32px;">3. Explainable AI (SHAP)</h2>
-            <div class="feature-card glow-card" style="border-left: 3px solid #10B981;">
-                <h3 style="margin-bottom: 24px; font-family: 'Inter', sans-serif; font-size: 1.25rem;">Transparent
-                    Decisions</h3>
-                <p style="color: var(--color-text-secondary); margin-bottom: 24px; line-height: 1.7;">We use SHAP
-                    (SHapley Additive exPlanations) to provide:</p>
-                <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
-                    <li style="margin-bottom: 16px; padding-left: 32px; position: relative;">
-                        <ion-icon name="checkmark-circle"
-                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
-                        Global Explanations of feature importance.
-                    </li>
-                    <li style="margin-bottom: 16px; padding-left: 32px; position: relative;">
-                        <ion-icon name="checkmark-circle"
-                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
-                        Local Explanations for each individual applicant.
-                    </li>
-                    <li style="padding-left: 32px; position: relative;">
-                        <ion-icon name="checkmark-circle"
-                            style="position: absolute; left: 0; color: #10B981; font-size: 20px;"></ion-icon>
-                        Regulatory Compliance for fair lending.
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
@@ -209,5 +205,3 @@
 </body>
 
 </html>
-
-
