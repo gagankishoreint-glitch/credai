@@ -428,6 +428,16 @@ function initAIWidget() {
         chatBody.appendChild(initialActions);
     }, 100);
 
+
+    // Simple Markdown Parser
+    function parseMarkdown(text) {
+        // Convert **bold** to <strong>bold</strong>
+        text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        // Convert <br> tags (already in responses)
+        // Links are already HTML, so they're fine
+        return text;
+    }
+
     // Chat Logic
     function appendMessage(text, sender, suggestions = []) {
         const msgDiv = document.createElement('div');
@@ -435,11 +445,12 @@ function initAIWidget() {
 
         let content = '';
         if (sender === 'bot') {
+            const formattedText = parseMarkdown(text);
             content = `
                 <div class="ai-avatar-small">
                     <ion-icon name="sparkles"></ion-icon>
                 </div>
-                <div class="ai-message-content"><p>${text}</p></div>
+                <div class="ai-message-content"><p>${formattedText}</p></div>
             `;
         } else {
             content = `<div class="ai-message-content"><p>${text}</p></div>`;
