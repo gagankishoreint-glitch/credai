@@ -37,7 +37,9 @@ const aiWidgetStyles = `
         right: 0;
         width: 380px;
         height: 550px; /* Fixed height for chat */
-        background: #0f172a; /* Dark Navy Background */
+        background: rgba(15, 23, 42, 0.85); /* Semi-transparent dark navy */
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
         border: 1px solid rgba(59, 130, 246, 0.3); /* Subtle Blue Border */
         border-radius: 16px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
