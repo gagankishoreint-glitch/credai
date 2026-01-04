@@ -36,6 +36,7 @@ const aiWidgetStyles = `
         bottom: 80px;
         right: 0;
         width: 380px;
+        height: 550px; /* Fixed height for chat */
         background: #0f172a; /* Dark Navy Background */
         border: 1px solid rgba(59, 130, 246, 0.3); /* Subtle Blue Border */
         border-radius: 16px;
@@ -60,6 +61,7 @@ const aiWidgetStyles = `
         padding: 20px;
         background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 70%);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        flex-shrink: 0;
     }
 
     .ai-title-row {
@@ -92,45 +94,30 @@ const aiWidgetStyles = `
         color: #94a3b8;
         font-size: 0.9rem;
         line-height: 1.5;
-        margin-bottom: 16px;
+        margin-bottom: 0;
     }
 
-    /* Features List */
-    .ai-features {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 20px 0;
-    }
-
-    .ai-features li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #64748b;
-        font-size: 0.85rem;
-        margin-bottom: 8px;
-    }
-
-    .ai-features li ion-icon {
-        color: #06b6d4; /* Cyan accent */
-    }
-
-    /* Chat Area */
+    /* Chat Scroll Area */
     .ai-chat-body {
-        padding: 0 20px 20px 20px;
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
         background: #0f172a;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
 
+    /* Status Indicator */
     .ai-status-indicator {
         display: flex;
         align-items: center;
         gap: 8px;
         font-size: 0.8rem;
-        color: white;
-        font-weight: 600;
-        margin-bottom: 12px;
-        padding-top: 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        color: #94a3b8;
+        font-weight: 500;
+        margin-bottom: 8px;
+        align-self: center;
     }
 
     .status-dot {
@@ -141,13 +128,21 @@ const aiWidgetStyles = `
         box-shadow: 0 0 8px #10b981;
     }
 
-    .ai-message-card {
-        background: rgba(30, 41, 59, 0.5); /* Lighter Navy */
-        border-radius: 12px;
-        padding: 16px;
+    /* Messages */
+    .ai-message {
         display: flex;
         gap: 12px;
-        align-items: flex-start;
+        max-width: 85%;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .ai-message.bot {
+        align-self: flex-start;
+    }
+
+    .ai-message.user {
+        align-self: flex-end;
+        flex-direction: row-reverse;
     }
 
     .ai-avatar-small {
@@ -161,19 +156,26 @@ const aiWidgetStyles = `
         justify-content: center;
         color: white;
         font-size: 14px;
+        flex-shrink: 0;
     }
 
-    .ai-message-text {
-        color: #e2e8f0;
+    .ai-message-content {
+        padding: 12px 16px;
+        border-radius: 12px;
         font-size: 0.9rem;
         line-height: 1.5;
     }
 
-    .ai-message-text p {
-        margin: 0 0 8px 0;
+    .ai-message.bot .ai-message-content {
+        background: #1e293b;
+        color: #e2e8f0;
+        border-top-left-radius: 2px;
     }
-    .ai-message-text p:last-child {
-        margin: 0;
+
+    .ai-message.user .ai-message-content {
+        background: #3b82f6;
+        color: white;
+        border-top-right-radius: 2px;
     }
 
     .ai-message-example {
@@ -184,11 +186,62 @@ const aiWidgetStyles = `
         font-size: 0.85rem;
     }
 
+    /* Input Area */
+    .ai-input-area {
+        padding: 16px;
+        background: #1e293b;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .ai-input {
+        flex: 1;
+        background: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 24px;
+        padding: 10px 16px;
+        color: white;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .ai-input:focus {
+        border-color: #3b82f6;
+    }
+
+    .ai-send-btn {
+        width: 40px;
+        height: 40px;
+        background: #3b82f6;
+        border: none;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .ai-send-btn:hover {
+        background: #2563eb;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Mobile Responsive */
     @media (max-width: 480px) {
         .ai-chat-window {
             width: calc(100vw - 40px);
-            right: 0; /* Align relative to container */
+            right: 0;
+            height: 500px;
+            bottom: 80px;
         }
         #ai-widget-container {
             right: 20px;
@@ -208,42 +261,34 @@ const aiWidgetHTML = `
                 </div>
                 <h3 class="ai-title">Meet Cai</h3>
             </div>
-            
             <p class="ai-description">
-                Your always-on AI Finance Assistant. Cai monitors risks, predicts payment behavior, and executes routine tasks autonomously.
+                Your AI Finance Assistant. Ask me about credit evaluation, risk models, or pricing.
             </p>
+        </div>
 
-            <ul class="ai-features">
-                <li>
-                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                    Conversational Analytics ("Hey Cai, what's our DSO?")
-                </li>
-                <li>
-                    <ion-icon name="flash-outline"></ion-icon>
-                    Proactive Alerts on High-Risk Accounts
-                </li>
-                <li>
-                    <ion-icon name="document-text-outline"></ion-icon>
-                    Auto-drafting Collection Emails
-                </li>
-            </ul>
+        <div class="ai-chat-body" id="aiChatBody">
+            <div class="ai-status-indicator">
+                <span class="status-dot"></span>
+                Cai is Online
+            </div>
 
-            <div class="ai-chat-body">
-                <div class="ai-status-indicator">
-                    <span class="status-dot"></span>
-                    Cai - Finance Assistant (Online)
+            <!-- Intro Message -->
+            <div class="ai-message bot">
+                <div class="ai-avatar-small">
+                    <ion-icon name="sparkles"></ion-icon>
                 </div>
-
-                <div class="ai-message-card">
-                    <div class="ai-avatar-small">
-                        <ion-icon name="sparkles"></ion-icon>
-                    </div>
-                    <div class="ai-message-text">
-                        <p>Hello! I'm Cai. I can analyze risk, predict payments, or draft collection emails. Try asking:</p>
-                        <span class="ai-message-example">"Check risk for TechCorp" or "Draft reminder for Invoice #1023"</span>
-                    </div>
+                <div class="ai-message-content">
+                    <p>Hello! I'm Cai. I can help guide you through our platform. Try asking:</p>
+                    <span class="ai-message-example">"How does the risk model work?" or "Is there a free trial?"</span>
                 </div>
             </div>
+        </div>
+
+        <div class="ai-input-area">
+            <input type="text" class="ai-input" id="aiChatInput" placeholder="Type a message..." autocomplete="off">
+            <button class="ai-send-btn" id="aiSendBtn">
+                <ion-icon name="send"></ion-icon>
+            </button>
         </div>
     </div>
 
@@ -253,27 +298,127 @@ const aiWidgetHTML = `
 </div>
 `;
 
-document.addEventListener('DOMContentLoaded', () => {
+// Knowledge Base for Site Content
+const knowledgeBase = {
+    greeting: {
+        keywords: ['hello', 'hi', 'hey', 'start', 'begin'],
+        response: "Hello! I'm ready to help you analyze credit risks. How can I assist you today?"
+    },
+    risk_model: {
+        keywords: ['risk', 'model', 'xgboost', 'accuracy', 'predict', 'score'],
+        response: "Our AI uses advanced **XGBoost** and **Random Forest** models to predict creditworthiness. We analyze key financial indicators like revenue stability, debt-to-income ratio, and cash flow patterns to generate a risk score with >80% accuracy."
+    },
+    pricing: {
+        keywords: ['price', 'cost', 'plan', 'free', 'subscription', 'pay'],
+        response: "We offer a **Free Starter Plan** for basic evaluations. Our **Pro Plan** ($49/mo) includes detailed risk reports, API access, and priority support. You can view all options on our Pricing page."
+    },
+    security: {
+        keywords: ['security', 'safe', 'data', 'privacy', 'encrypt'],
+        response: "Your data security is our top priority. We use **256-bit AES encryption** for all stored data and strictly adhere to GDPR and SOC2 compliance standards."
+    },
+    contact: {
+        keywords: ['contact', 'support', 'email', 'help', 'human'],
+        response: "You can reach our human support team at **support@credai.com**. We're available 24/7 for enterprise inquiries."
+    },
+    features: {
+        keywords: ['feature', 'dashboard', 'report', 'analytics', 'tool'],
+        response: "Our platform provides a real-time **Dashboard** for monitoring applications, detailed **PDF Risk Reports**, and an **AI Analysis Panel** that breaks down positive and negative risk factors."
+    },
+    default: {
+        response: "I'm trained specifically on CredAi's services. Try asking about **Risk Models**, **Pricing**, or **Security**."
+    }
+};
+
+function initAIWidget() {
+    // Prevent duplicate injection
+    if (document.getElementById('ai-widget-container')) return;
+
     // Inject Styles
     document.head.insertAdjacentHTML('beforeend', aiWidgetStyles);
 
     // Inject HTML
     document.body.insertAdjacentHTML('beforeend', aiWidgetHTML);
 
-    // Logic
+    // Elements
     const fab = document.getElementById('aiFabButton');
-    const window = document.getElementById('aiChatWindow');
+    const windowEl = document.getElementById('aiChatWindow');
     const icon = fab.querySelector('ion-icon');
+    const chatBody = document.getElementById('aiChatBody');
+    const chatInput = document.getElementById('aiChatInput');
+    const sendBtn = document.getElementById('aiSendBtn');
 
+    // Toggle Window
     fab.addEventListener('click', () => {
-        const isActive = window.classList.contains('active');
-
+        const isActive = windowEl.classList.contains('active');
         if (isActive) {
-            window.classList.remove('active');
+            windowEl.classList.remove('active');
             icon.setAttribute('name', 'chatbubbles-outline');
         } else {
-            window.classList.add('active');
+            windowEl.classList.add('active');
             icon.setAttribute('name', 'close-outline');
+            setTimeout(() => chatInput.focus(), 300); // Focus input on open
         }
     });
-});
+
+    // Chat Logic
+    function appendMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `ai-message ${sender}`;
+
+        let content = '';
+        if (sender === 'bot') {
+            content = `
+                <div class="ai-avatar-small">
+                    <ion-icon name="sparkles"></ion-icon>
+                </div>
+                <div class="ai-message-content"><p>${text}</p></div>
+            `;
+        } else {
+            content = `<div class="ai-message-content"><p>${text}</p></div>`;
+        }
+
+        msgDiv.innerHTML = content;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll
+    }
+
+    function processMessage() {
+        const text = chatInput.value.trim().toLowerCase();
+        if (!text) return;
+
+        // User Message
+        appendMessage(chatInput.value, 'user');
+        chatInput.value = '';
+
+        // Bot Typing Simulation
+        setTimeout(() => {
+            let response = knowledgeBase.default.response;
+            let found = false;
+
+            // Simple keyword matching
+            for (const [key, data] of Object.entries(knowledgeBase)) {
+                if (key === 'default') continue;
+                if (data.keywords.some(k => text.includes(k))) {
+                    response = data.response;
+                    found = true;
+                    break;
+                }
+            }
+
+            appendMessage(response, 'bot');
+        }, 600);
+    }
+
+    // Event Listeners for Chat
+    sendBtn.addEventListener('click', processMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') processMessage();
+    });
+}
+
+// **Fix for Race Condition**: Check if DOM is already ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAIWidget);
+} else {
+    initAIWidget(); // Run immediately if DOM is already loaded
+}
