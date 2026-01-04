@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // User is logged in
                 console.log('User logged in, updating navbar');
                 actionsHtml = `
-                    <a href="application.html" class="btn btn-apply">Apply Now</a>
-                    <a href="dashboard.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Dashboard</a>
+                    <a href="dashboard.html" class="btn btn-primary" style="margin-right: 12px;">Dashboard</a>
+                    <a href="application.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Apply Now</a>
                     
                     <a href="settings.html" class="btn btn-icon" title="Settings" style="color: var(--color-white); font-size: 1.5rem; padding: 8px;">
                         <ion-icon name="settings-outline"></ion-icon>
