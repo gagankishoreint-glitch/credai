@@ -27,9 +27,13 @@
                 <a href="risk-assessment.html" style="color: var(--color-text-secondary); font-size: 0.9rem;">Risk
                     Models</a>
             </div>
-            <div>
+            <div style="display: flex; align-items: center; gap: 16px;">
                 <span id="admin-user-display" style="font-size: 0.9rem; color: var(--color-text-secondary);">Admin
                     User</span>
+                <button onclick="window.authHelpers.signOut()" class="btn btn-outline"
+                    style="padding: 8px; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border-color: var(--color-border);">
+                    <ion-icon name="log-out-outline" style="font-size: 1.2rem;"></ion-icon>
+                </button>
             </div>
         </div>
     </nav>
@@ -98,7 +102,7 @@
 
                     <div style="margin-bottom: 32px;">
                         <span
-                            style="font-size: 4rem; font-weight: 700; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">720</span>
+                            style="font-size: 4rem; font-weight: 700; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">720</span>
                         <span style="color: var(--color-text-muted); font-size: 1.5rem;">/ 900</span>
                     </div>
 

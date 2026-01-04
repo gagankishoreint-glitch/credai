@@ -39,6 +39,9 @@
     --radius-sm: 6px;
     --radius-md: 12px;
     --radius-lg: 20px;
+    --radius-xl: 32px;
+    --radius-card: 24px;
+    /* Fixed: Was missing, causing sharp corners */
     --radius-pill: 50px;
 }
 

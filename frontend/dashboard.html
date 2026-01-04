@@ -46,17 +46,8 @@
                 <li><a href="resources.html" class="nav-link">Resources</a></li>
             </ul>
 
-            <div style="display: flex; gap: 16px; align-items: center;">
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme" style="margin-right: 8px;">
-                    <ion-icon name="sunny-outline" id="theme-icon"></ion-icon>
-                </button>
-                <div class="nav-user-container" style="display: flex; align-items: center; gap: 12px;">
-                    <span id="user-display-name" style="font-size: 0.9rem; color: var(--color-text-secondary);">Welcome,
-                        User</span>
-                    <button onclick="window.authHelpers.signOut()" class="btn btn-outline"
-                        style="padding: 8px 20px; font-size: 0.9rem; border: 1px solid var(--color-border);">Sign
-                        Out</button>
-                </div>
+            <div class="nav-actions">
+                <!-- Content injected dynamically by navbar.js -->
             </div>
         </div>
     </nav>
@@ -142,7 +133,7 @@
 
                 <div style="margin-top: -32px; margin-bottom: 32px;">
                     <h2
-                        style="font-size: 3.5rem; margin-bottom: 0; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        style="font-size: 3.5rem; margin-bottom: 0; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                         720</h2>
                     <p style="color: var(--color-text-secondary);">Pending Final Review</p>
                 </div>
