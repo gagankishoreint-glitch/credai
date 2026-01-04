@@ -186,6 +186,34 @@ const aiWidgetStyles = `
         font-size: 0.85rem;
     }
 
+    /* Quick Action Buttons */
+    .ai-quick-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+        align-self: flex-start;
+        max-width: 85%;
+    }
+
+    .ai-quick-btn {
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: #3b82f6;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+
+    .ai-quick-btn:hover {
+        background: rgba(59, 130, 246, 0.2);
+        border-color: #3b82f6;
+        transform: translateY(-2px);
+    }
+
     /* Input Area */
     .ai-input-area {
         padding: 16px;
@@ -355,7 +383,7 @@ function initAIWidget() {
 
     // Inject Styles
     document.head.insertAdjacentHTML('beforeend', aiWidgetStyles);
-    
+
     // Inject HTML
     document.body.insertAdjacentHTML('beforeend', aiWidgetHTML);
 
@@ -380,11 +408,31 @@ function initAIWidget() {
         }
     });
 
+    // Add initial quick action buttons
+    setTimeout(() => {
+        const initialActions = document.createElement('div');
+        initialActions.className = 'ai-quick-actions';
+
+        const initialSuggestions = ['How does it work?', 'Pricing', 'Start Application'];
+        initialSuggestions.forEach(suggestion => {
+            const btn = document.createElement('button');
+            btn.className = 'ai-quick-btn';
+            btn.textContent = suggestion;
+            btn.onclick = () => {
+                chatInput.value = suggestion;
+                processMessage();
+            };
+            initialActions.appendChild(btn);
+        });
+
+        chatBody.appendChild(initialActions);
+    }, 100);
+
     // Chat Logic
-    function appendMessage(text, sender) {
+    function appendMessage(text, sender, suggestions = []) {
         const msgDiv = document.createElement('div');
         msgDiv.className = `ai-message ${sender}`;
-        
+
         let content = '';
         if (sender === 'bot') {
             content = `
@@ -396,9 +444,29 @@ function initAIWidget() {
         } else {
             content = `<div class="ai-message-content"><p>${text}</p></div>`;
         }
-        
+
         msgDiv.innerHTML = content;
         chatBody.appendChild(msgDiv);
+
+        // Add Quick Action Buttons if provided
+        if (suggestions.length > 0) {
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'ai-quick-actions';
+
+            suggestions.forEach(suggestion => {
+                const btn = document.createElement('button');
+                btn.className = 'ai-quick-btn';
+                btn.textContent = suggestion;
+                btn.onclick = () => {
+                    chatInput.value = suggestion;
+                    processMessage();
+                };
+                actionsDiv.appendChild(btn);
+            });
+
+            chatBody.appendChild(actionsDiv);
+        }
+
         chatBody.scrollTop = chatBody.scrollHeight; // Auto-scroll
     }
 
@@ -417,30 +485,30 @@ function initAIWidget() {
 
             // Advanced Token-Based Matching Logic
             // This fixes the "hi" matching "this" bug by looking for word boundaries or exact phrase matches.
-            
+
             for (const [key, data] of Object.entries(knowledgeBase)) {
                 if (key === 'default') continue;
-                
+
                 let currentScore = 0;
-                
+
                 data.keywords.forEach(keyword => {
                     const normalizedKeyword = keyword.toLowerCase();
 
                     // 1. Exact Phrase Match (Highest Priority)
                     if (text.includes(normalizedKeyword)) {
                         currentScore += 10;
-                    } 
+                    }
                     // 2. Individual Word Match with Boundary Check (Medium Priority)
                     else {
                         // Split keyword into words (e.g., "what is")
                         const words = normalizedKeyword.split(' ');
                         let allWordsFound = true;
-                        
+
                         // Check if ALL words in the keyword phrase exist as distinct words in user text
                         for (const word of words) {
                             // Regex: \bword\b matches whole word only. escape special chars just in case.
                             // simpler check:
-                            const regex = new RegExp(\`\\\\b\${word}\\\\b\`, 'i');
+                            const regex = new RegExp('\\b' + word + '\\b', 'i');
                             if (!regex.test(text)) {
                                 allWordsFound = false;
                                 break;
@@ -459,7 +527,22 @@ function initAIWidget() {
                 }
             }
 
-            appendMessage(response, 'bot');
+            // Determine suggestions based on response type
+            let suggestions = [];
+            if (bestMatchScore === 0) {
+                // Default fallback - show common options
+                suggestions = ['How does it work?', 'Pricing', 'Start Application'];
+            } else if (response.includes('XGBoost')) {
+                suggestions = ['What is XGBoost?', 'View Tech Stack', 'Start Application'];
+            } else if (response.includes('Free Starter')) {
+                suggestions = ['Sign Up', 'View Features', 'Contact Support'];
+            } else if (response.includes('Application')) {
+                suggestions = ['Go to Dashboard', 'View Pricing', 'Contact Support'];
+            } else {
+                suggestions = ['Tell me more', 'Pricing', 'Start Application'];
+            }
+
+            appendMessage(response, 'bot', suggestions);
         }, 600);
     }
 
