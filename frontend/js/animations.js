@@ -1,76 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. Custom Cursor Logic
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorCircle = document.querySelector('.cursor-circle');
-
-    // Initial hiding until mouse moves
-    cursorDot.style.opacity = '0';
-    cursorCircle.style.opacity = '0';
-
-    document.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-
-        // Move dot instantly
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-        cursorDot.style.opacity = '1';
-
-        // Move circle with slight delay (handled by CSS transition usually, but let's ensure it follows)
-        // With CSS transitions on left/top, we just set the coordinates.
-        cursorCircle.style.left = `${posX}px`;
-        cursorCircle.style.top = `${posY}px`;
-        cursorCircle.style.opacity = '1';
-    });
-
-    // Hover interactions for cursor
-    const interactiveElements = document.querySelectorAll('a, button, .list-row, .grid-item');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            document.body.classList.add('hovering');
-        });
-        el.addEventListener('mouseleave', () => {
-            document.body.classList.remove('hovering');
-        });
-    });
-
-    // 2. Scroll Reveal (Intersection Observer)
+    // Scroll Animation Observer
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px'
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
     };
 
-    const scrollObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Optional: trigger child animations if needed
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target); // Only animate once
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll('.reveal-up, .hero-meta').forEach(el => {
-        scrollObserver.observe(el);
+    // Auto-add animation classes to common elements if they don't have them
+    const cards = document.querySelectorAll('.feature-card, .footer-col, .step-item');
+    cards.forEach((card, index) => {
+        card.classList.add('animate-on-scroll');
+        // Add staggered delays based on index (modulo 3 for simple grid staggering)
+        const delay = (index % 3) * 100;
+        card.style.transitionDelay = `${delay}ms`;
+        observer.observe(card);
     });
 
-    // 3. Smooth Anchor Scrolling (Tab Selection Movement)
-    document.querySelectorAll('.nav-links a').forEach(anchor => {
+    // Also observe any manually added .animate-on-scroll elements
+    const manualElements = document.querySelectorAll('.animate-on-scroll');
+    manualElements.forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetDiv = document.getElementById(targetId);
-            if (targetDiv) {
-                targetDiv.scrollIntoView({
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
-            // Update active state
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-link'));
-            this.classList.add('active-link');
         });
     });
 });
