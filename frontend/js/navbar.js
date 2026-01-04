@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 actionsHtml = `
                     <a href="application.html" class="btn btn-apply">Apply Now</a>
                     <a href="dashboard.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Dashboard</a>
+                    <a href="settings.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Settings</a>
                     <button onclick="authHelpers.signOut()" class="btn btn-outline" style="border: 1px solid var(--color-border);">Sign Out</button>
                     ${themeToggleHtml}
                 `;

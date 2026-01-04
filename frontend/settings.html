@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredAi | Settings</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .settings-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-accent-blue);
+            box-shadow: 0 0 0 2px rgba(90, 69, 255, 0.2);
+        }
+
+        .form-control:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .section-header {
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .btn-save {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10B981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transform: translateY(100px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        .toast.error {
+            background: #EF4444;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">CredAi</a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" style="color: var(--color-white);">Our Technology</a>
+                    <div class="dropdown-menu">
+                        <a href="methodology.html" class="dropdown-item">Credit Evaluation</a>
+                        <a href="risk-assessment.html" class="dropdown-item">Risk Assessment</a>
+                        <a href="automation.html" class="dropdown-item">Autonomous Finance</a>
+                        <a href="currency-trends.html" class="dropdown-item">Market Trends</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Use Cases</a>
+                    <div class="dropdown-menu">
+                        <a href="use-case-smb.html" class="dropdown-item">SMB Lending</a>
+                        <a href="use-case-consumer.html" class="dropdown-item">Consumer Lending</a>
+                        <a href="use-case-auto.html" class="dropdown-item">Auto Loans</a>
+                    </div>
+                </li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Dynamically populated by JS -->
+            </div>
+        </div>
+    </nav>
+
+    <div style="padding-top: 100px;">
+        <div class="settings-container">
+            <h1 style="margin-bottom: 32px;">Account Settings</h1>
+
+            <!-- Profile Settings -->
+            <div class="settings-card">
+                <div class="section-header">
+                    <h2 style="font-size: 1.5rem; margin: 0;">Profile Details</h2>
+                    <p style="color: var(--color-text-secondary); margin-top: 4px;">Update your personal information</p>
+                </div>
+
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label class="form-label">Full Name / Business Name</label>
+                        <input type="text" id="display-name" class="form-control" placeholder="Enter name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" disabled title="Email cannot be changed">
+                        <small style="color: var(--color-text-muted); display: block; margin-top: 4px;">Contact support
+                            to change your email.</small>
+                    </div>
+
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="settings-card">
+                <div class="section-header">
+                    <h2 style="font-size: 1.5rem; margin: 0;">Security</h2>
+                    <p style="color: var(--color-text-secondary); margin-top: 4px;">Manage your password and
+                        authentication</p>
+                </div>
+
+                <form id="password-form">
+                    <div class="form-group">
+                        <label class="form-label">New Password</label>
+                        <input type="password" id="new-password" class="form-control" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confirm New Password</label>
+                        <input type="password" id="confirm-password" class="form-control" required minlength="6">
+                    </div>
+
+                    <button type="submit" class="btn-save"
+                        style="background: var(--color-bg-secondary); border: 1px solid var(--color-border);">Update
+                        Password</button>
+                </form>
+            </div>
+
+            <!-- Preferences (Mock) -->
+            <div class="settings-card">
+                <div class="section-header">
+                    <h2 style="font-size: 1.5rem; margin: 0;">Preferences</h2>
+                    <p style="color: var(--color-text-secondary); margin-top: 4px;">Customize your platform experience
+                    </p>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                    <div>
+                        <h4 style="margin: 0;">Email Notifications</h4>
+                        <p style="color: var(--color-text-muted); font-size: 0.9rem; margin: 0;">Receive updates about
+                            your application status</p>
+                    </div>
+                    <label class="switch" style="position: relative; display: inline-block; width: 50px; height: 26px;">
+                        <input type="checkbox" checked onchange="showToast('Notification preferences saved')">
+                        <span class="slider round"
+                            style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px;"></span>
+                        <style>
+                            .switch input {
+                                opacity: 0;
+                                width: 0;
+                                height: 0;
+                            }
+
+                            .slider:before {
+                                position: absolute;
+                                content: "";
+                                height: 18px;
+                                width: 18px;
+                                left: 4px;
+                                bottom: 4px;
+                                background-color: white;
+                                transition: .4s;
+                                border-radius: 50%;
+                            }
+
+                            input:checked+.slider {
+                                background-color: var(--color-accent-blue);
+                            }
+
+                            input:checked+.slider:before {
+                                transform: translateX(24px);
+                            }
+                        </style>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Profile updated successfully</div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/settings.js"></script>
+    <script>
+        // Protect Page
+        window.authHelpers.protectPage();
+    </script>
+</body>
+
+</html>
