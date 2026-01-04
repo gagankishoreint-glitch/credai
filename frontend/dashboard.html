@@ -59,186 +59,71 @@
             <h2 style="margin-top: 16px;">Application Status</h2>
         </div>
 
-        <div class="grid" style="grid-template-columns: 2fr 1fr; gap: 32px;">
-            <!-- Main Status Card -->
-            <div class="feature-card glow-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-                    <div>
-                        <h3 style="margin: 0;">Loan Application #49210</h3>
-                        <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 8px;">Submitted on
-                            Dec 31, 2025</p>
-                    </div>
-                    <span
-                        style="background: rgba(90, 69, 255, 0.1); color: #5A45FF; padding: 8px 16px; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 600;">Processing</span>
-                </div>
-
-                <!-- Status Tracker -->
-                <div style="position: relative; display: flex; justify-content: space-between; margin-bottom: 48px;">
-                    <div
-                        style="position: absolute; top: 16px; left: 0; width: 100%; height: 2px; background: var(--color-border); z-index: 0;">
-                    </div>
-
-                    <div style="z-index: 1; text-align: center;">
-                        <div
-                            style="width: 40px; height: 40px; background: #10B981; border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: white;">
-                            <ion-icon name="checkmark"></ion-icon>
-                        </div>
-                        <span style="font-size: 0.85rem; font-weight: 600;">Received</span>
-                    </div>
-
-                    <div style="z-index: 1; text-align: center;">
-                        <div
-                            style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: white; box-shadow: var(--shadow-glow);">
-                            <ion-icon name="sync"></ion-icon>
-                        </div>
-                        <span style="font-size: 0.85rem; font-weight: 600; color: #5A45FF;">Analyzing</span>
-                    </div>
-
-                    <div style="z-index: 1; text-align: center;">
-                        <div
-                            style="width: 40px; height: 40px; background: var(--color-bg-card); border: 2px solid var(--color-border); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;">
-                            <span style="font-size: 0.85rem; color: var(--color-text-muted);">3</span>
-                        </div>
-                        <span style="font-size: 0.85rem; color: var(--color-text-muted);">Decision</span>
-                    </div>
-                </div>
-
-                <div style="background: var(--color-bg-secondary); padding: 28px; border-radius: var(--radius-lg);">
-                    <h4 style="margin-bottom: 12px;">Next Steps</h4>
-                    <p style="color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.7;">
-                        Our AI models are currently analyzing your documents and financial inputs.
-                        This process typically takes 2-5 minutes. You will receive an email notification once the
-                        decision is ready.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Risk Gauge Card -->
-            <div class="feature-card glow-card" style="text-align: center;">
-                <h3 style="margin-bottom: 32px;">Credit Health</h3>
-
-                <div
-                    style="width: 200px; height: 100px; border-top-left-radius: 100px; border-top-right-radius: 100px; background: var(--color-bg-secondary); margin: 0 auto; position: relative; overflow: hidden;">
-                    <div
-                        style="width: 100%; height: 100%; background: conic-gradient(from 180deg, #EF4444 0deg, #F59E0B 60deg, #10B981 120deg, #10B981 180deg); opacity: 0.3;">
-                    </div>
-                    <div
-                        style="position: absolute; bottom: 0; left: 50%; width: 160px; height: 80px; background: var(--color-bg-card); transform: translateX(-50%); border-top-left-radius: 80px; border-top-right-radius: 80px;">
-                    </div>
-
-                    <!-- Needle -->
-                    <div
-                        style="position: absolute; bottom: 0; left: 50%; width: 4px; height: 90px; background: var(--gradient-primary); transform-origin: bottom center; transform: translateX(-50%) rotate(-45deg); box-shadow: 0 0 10px rgba(90, 69, 255, 0.5);">
-                    </div>
-                </div>
-
-                <div style="margin-top: -32px; margin-bottom: 32px;">
-                    <h2
-                        style="font-size: 3.5rem; margin-bottom: 0; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        720</h2>
-                    <p style="color: var(--color-text-secondary);">Pending Final Review</p>
-                </div>
-
-                <!-- AI Insights Section (New) -->
-                <div
-                    style="text-align: left; background: var(--color-bg-secondary); padding: 20px; border-radius: 16px;">
-                    <h4 style="margin-bottom: 16px; display: flex; align-items: center;">
-                        <ion-icon name="analytics-outline"
-                            style="color: var(--color-accent-purple); margin-right: 8px;"></ion-icon>
-                        AI Risk Analysis
-                    </h4>
-
-                    <div style="margin-bottom: 12px; font-size: 0.9rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                            <span>Revenue Stability</span>
-                            <span style="color: #10B981;">Strong</span>
-                        </div>
-                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
-                            <div style="width: 85%; height: 100%; background: #10B981; border-radius: 3px;"></div>
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom: 12px; font-size: 0.9rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                            <span>Market Position</span>
-                            <span style="color: #F59E0B;">Good</span>
-                        </div>
-                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
-                            <div style="width: 70%; height: 100%; background: #F59E0B; border-radius: 3px;"></div>
-                        </div>
-                    </div>
-
-                    <div style="font-size: 0.9rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                            <span>Debt Service Coverage</span>
-                            <span style="color: #5A45FF;">Excellent</span>
-                        </div>
-                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
-                            <div style="width: 92%; height: 100%; background: #5A45FF; border-radius: 3px;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 20px; text-align: left;">
-                    <h5
-                        style="color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
-                        Key Factors</h5>
-                    <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--color-text-secondary);">
-                        <li style="margin-bottom: 10px; display: flex; align-items: flex-start;">
-                            <ion-icon name="checkmark-circle"
-                                style="color: #10B981; margin-right: 8px; margin-top: 2px;"></ion-icon>
-                            <span>Positive annual revenue growth trend</span>
-                        </li>
-                        <li style="margin-bottom: 10px; display: flex; align-items: flex-start;">
-                            <ion-icon name="checkmark-circle"
-                                style="color: #10B981; margin-right: 8px; margin-top: 2px;"></ion-icon>
-                            <span>Low debt-to-income ratio</span>
-                        </li>
-                        <li style="display: flex; align-items: flex-start;">
-                            <ion-icon name="alert-circle"
-                                style="color: #F59E0B; margin-right: 8px; margin-top: 2px;"></ion-icon>
-                            <span>Industry volatility detected (Tech)</span>
-                        </li>
-                    </ul>
-                </div>
+        <div id="dashboard-content">
+            <!-- Content will be injected by dashboard-realtime.js -->
+            <div style="text-align: center; padding: 40px; color: var(--color-text-secondary);">
+                <ion-icon name="sync"
+                    style="font-size: 24px; animation: spin 1s linear infinite; margin-bottom: 16px;"></ion-icon>
+                <p>Loading your applications...</p>
             </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>CredAi</h2>
+                    <p>The next generation of credit evaluation, powered by artificial intelligence and machine
+                        learning.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Technology</h4>
+                    <ul class="footer-links">
+                        <li><a href="methodology.html">How It Works</a></li>
+                        <li><a href="use-cases.html">Use Cases</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="resources.html">Articles</a></li>
+                        <li><a href="ai-underwriting.html">AI Underwriting</a></li>
+                        <li><a href="credit-analysis.html">Credit Analysis</a></li>
+                        <li><a href="credit-risk-modeling.html">Credit Risk Modeling</a></li>
+                        <li><a href="credit-underwriting.html">Credit Underwriting</a></li>
+                        <li><a href="lending-underwriting.html">Lending Underwriting</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CredAi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Firebase Scripts -->
     <script src="js/firebase-config.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/dashboard-realtime.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/animations.js"></script>
     <script>
         // Protect page
         window.authHelpers.protectPage();
-
-        // Logout handler
-        document.querySelector('.btn-outline').addEventListener('click', (e) => {
-            if (e.target.textContent.trim() === 'Logout') {
-                e.preventDefault();
-                window.authHelpers.signOut();
-            }
-        });
-
-        // Update user name
-        // Update user name
-        auth.onAuthStateChanged((user) => {
-            if (user && user.displayName) {
-                const nameSpan = document.getElementById('user-display-name');
-                if (nameSpan) {
-                    nameSpan.textContent = `Welcome, ${user.displayName}`;
-                }
-            } else if (user && user.email) {
-                const nameSpan = document.getElementById('user-display-name');
-                if (nameSpan) {
-                    nameSpan.textContent = `Welcome, ${user.email.split('@')[0]}`;
-                }
-            }
-        });
     </script>
-    <script src="js/theme.js"></script>
-    <script src="js/animations.js"></script>
 </body>
 
 </html>
