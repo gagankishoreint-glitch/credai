@@ -1,63 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import 'animations.css';
 
 :root {
-    /* Yucca Inspired Palette */
-    --color-bg-dark: #12271D;
-    /* Deep Forest Green */
-    --color-bg-card: #1A3326;
-    /* Slightly lighter green for cards */
-    --color-bg-secondary: #234030;
+    /* Single Theme Palette based on Money Tree Image */
+    /* Deep Teal/Blue Background handled by image, but efficient fallback: */
+    --color-bg-dark: #0f1c2e;
 
-    --color-text-primary: #F0F2E9;
-    /* Off-white for readability */
-    --color-text-secondary: #BFC0AC;
-    /* Sage/Beige accent text */
-    --color-text-muted: #8A9E95;
+    /* Transparent Glass Cards to show the backdrop */
+    --color-bg-card: rgba(15, 28, 46, 0.6);
+    --color-bg-secondary: rgba(255, 255, 255, 0.05);
 
-    --color-accent-primary: #BFC0AC;
-    /* The core brand gold/sage */
-    --color-accent-blue: #BFC0AC;
-    /* Override old blue to brand color */
-    --color-accent-blue-dim: rgba(191, 192, 172, 0.2);
-    --color-accent-cyan: #E0E2D5;
-    /* Lighter sage */
-    --color-accent-purple: #D4D6C8;
-    /* Muted stone */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #e2e8f0;
+    /* Lighter Slate for better contrast */
+    --color-text-muted: #94a3b8;
 
-    --color-border: rgba(191, 192, 172, 0.2);
+    /* Accents pulled from the Money Tree (Green/Cyan) */
+    --color-accent-primary: #4ade80;
+    /* Bright Money Green */
+    --color-accent-blue: #38bdf8;
+    /* Cyan Sky */
+    --color-accent-purple: #818cf8;
+    /* Soft Indigo */
+
+    --color-border: rgba(255, 255, 255, 0.15);
 
     --color-white: #ffffff;
-    --color-black: #0A1610;
+    --color-black: #000000;
 
-    --gradient-primary: linear-gradient(135deg, #BFC0AC 0%, #8F917E 100%);
-    --shadow-glow: 0 0 20px rgba(191, 192, 172, 0.15);
+    --gradient-primary: linear-gradient(135deg, #4ade80 0%, #38bdf8 100%);
+    --shadow-glow: 0 0 30px rgba(74, 222, 128, 0.2);
 
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    /* Slightly sharper corners */
-    --radius-lg: 12px;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
     --radius-pill: 50px;
-
-    /* Light Mode Overrides (If user toggles) - Keeping Earthy */
-    --bg-light: #F0F2E9;
-    --text-light-primary: #12271D;
-    --text-light-secondary: #4A5D53;
-    --card-light: #FFFFFF;
-    --border-light: #D1D6CC;
 }
 
-[data-theme="light"] {
-    --color-bg-dark: var(--bg-light);
-    --color-bg-card: var(--card-light);
-    --color-bg-secondary: #E6E9E0;
-    --color-text-primary: var(--text-light-primary);
-    --color-text-secondary: var(--text-light-secondary);
-    --color-border: var(--border-light);
-    --color-white: #12271D;
-    /* Invert for icons etc */
-    --color-accent-primary: #12271D;
-}
+/* Remove Light Mode overrides - Single Theme Enforced */
 
 * {
     margin: 0;
@@ -66,12 +46,46 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--color-bg-dark);
+    /* Apple-style System Font Stack */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* Default Professional Gradient for non-home pages (Aurora Effect) */
+    background: radial-gradient(circle at top left, #1a3c34 0%, #0f1c2e 40%, #0a0f1c 100%);
+    background-attachment: fixed;
+
     color: var(--color-text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Homepage Specific Backdrop */
+.page-home {
+    background-image: url('../assets/bg-theme.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* Reset background color to fallback */
+    background-color: var(--color-bg-dark);
+}
+
+/* Add overlay only on homepage */
+.page-home::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 15, 30, 0.85);
+    /* Darker overlay for better text pop */
+    backdrop-filter: blur(2px);
+    /* Slight blur to abstract the image */
+    -webkit-backdrop-filter: blur(2px);
+    z-index: -1;
 }
 
 h1,
@@ -80,16 +94,17 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Playfair Display', serif;
-    /* Elegant headings */
-    font-weight: 600;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
     line-height: 1.2;
     color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    /* Tighten headings for modern look */
 }
 
 h1 {
     font-size: 3.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
 }
 
 h2 {
@@ -103,11 +118,20 @@ h3 {
 a {
     text-decoration: none;
     color: inherit;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 ul {
     list-style: none;
+}
+
+/* Ensure card glassmorphism */
+.feature-card,
+.settings-card,
+.dropdown-menu {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* --- COMPONENTS --- */

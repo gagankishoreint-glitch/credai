@@ -43,13 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         auth.onAuthStateChanged((user) => {
             let actionsHtml = '';
 
-            // Shared Theme Toggle Button
-            const themeToggleHtml = `
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
-                    <ion-icon name="sunny-outline" id="theme-icon"></ion-icon>
-                </button>
-            `;
-
             if (user) {
                 // User is logged in
                 console.log('User logged in, updating navbar');
@@ -58,24 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="dashboard.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Dashboard</a>
                     <a href="settings.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Settings</a>
                     <button onclick="authHelpers.signOut()" class="btn btn-outline" style="border: 1px solid var(--color-border);">Sign Out</button>
-                    ${themeToggleHtml}
                 `;
             } else {
                 // User is logged out behavior (Default)
                 actionsHtml = `
                     <a href="login.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Sign In</a>
                     <a href="signup.html" class="btn btn-primary">Start for Free</a>
-                    ${themeToggleHtml}
                 `;
             }
 
             navActions.innerHTML = actionsHtml;
             navActions.classList.add('is-loaded'); // Reveal navbar actions
-
-            // Re-initialize theme logic since we overwrote the DOM
-            if (window.initTheme) {
-                window.initTheme();
-            }
         });
     }
 });
