@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Synthetic Data "Database" ---
     const MOCK_DB = {
-        'TechCorp': { score: 780, risk: 'Low', dso: 32, limit: '$500,000', behavior: 'Pays 2 days early' },
-        'Acme': { score: 620, risk: 'Medium', dso: 45, limit: '$50,000', behavior: 'Pays on due date' },
-        'GlobalTrade': { score: 450, risk: 'High', dso: 65, limit: '$10,000', behavior: 'Avg 15 days late' }
+        'TechCorp': { score: 780, risk: 'Low', dso: 32, limit_usd: '$500,000', limit_inr: '₹4,15,00,000', behavior: 'Pays 2 days early' },
+        'Acme': { score: 620, risk: 'Medium', dso: 45, limit_usd: '$50,000', limit_inr: '₹41,50,000', behavior: 'Pays on due date' },
+        'GlobalTrade': { score: 450, risk: 'High', dso: 65, limit_usd: '$10,000', limit_inr: '₹8,30,000', behavior: 'Avg 15 days late' }
     };
+
+    let currentCurrency = 'USD'; // Default
 
     // --- Event Listeners ---
     sendBtn.addEventListener('click', handleSendMessage);
@@ -45,6 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateAIResponse(input) {
         const lowerInput = input.toLowerCase();
 
+        // Intent: Switch Currency
+        if (lowerInput.includes('rupee') || lowerInput.includes('inr') || lowerInput.includes('india')) {
+            currentCurrency = 'INR';
+            return "I've switched my financial reporting to <strong>Indian Rupees (₹)</strong>. Ask me to analyze a company now.";
+        }
+        if (lowerInput.includes('dollar') || lowerInput.includes('usd')) {
+            currentCurrency = 'USD';
+            return "I've switched my financial reporting to <strong>US Dollars ($)</strong>.";
+        }
+
         // Intent: Greeting
         if (lowerInput.match(/\b(hi|hello|hey|greetings)\b/)) {
             return "Hello! I'm ready to assist with your financial operations. You can ask me to analyze a company or draft emails.";
@@ -58,11 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entity) {
                 const data = MOCK_DB[entity];
                 let color = data.risk === 'Low' ? '#10B981' : (data.risk === 'Medium' ? '#F59E0B' : '#EF4444');
+                const limit = currentCurrency === 'INR' ? data.limit_inr : data.limit_usd;
+
                 return `
                     <strong>Analysis for ${entity}:</strong><br>
                     • Credit Score: ${data.score} <br>
                     • Risk Level: <span style="color: ${color}; font-weight: bold;">${data.risk}</span><br>
-                    • Recommended Limit: ${data.limit}<br>
+                    • Recommended Limit: <strong>${limit}</strong><br>
                     • Behavior: ${data.behavior}
                 `;
             } else {
