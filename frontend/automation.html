@@ -99,27 +99,47 @@
                 </div>
                 <div style="position: relative;">
                     <!-- Mock Chat Interface -->
-                    <div
-                        style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08);">
-                        <div style="display: flex; gap: 12px; margin-bottom: 20px;">
-                            <div style="width: 32px; height: 32px; background: #333; border-radius: 50%;"></div>
+                    <!-- Interactive Chat Interface -->
+                    <div id="cai-chat-container"
+                        style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08); height: 400px; display: flex; flex-direction: column;">
+                        <!-- Chat Header -->
+                        <div
+                            style="padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
                             <div
-                                style="background: #333; padding: 12px 16px; border-radius: 12px 12px 12px 0; max-width: 80%;">
-                                <p style="font-size: 0.9rem; margin: 0; color: #eee;">Review the credit limit for Acme
-                                    Corp.</p>
+                                style="width: 10px; height: 10px; background: #10B981; border-radius: 50%; box-shadow: 0 0 10px #10B981;">
+                            </div>
+                            <span style="font-size: 0.9rem; font-weight: 600; color: white;">Cai - Finance Assistant
+                                (Online)</span>
+                        </div>
+
+                        <!-- Chat Messages Area -->
+                        <div id="chat-messages"
+                            style="flex: 1; overflow-y: auto; margin-bottom: 16px; padding-right: 8px;">
+                            <!-- Bot Welcome Message -->
+                            <div class="message-bot" style="display: flex; gap: 12px; margin-bottom: 20px;">
+                                <div
+                                    style="width: 32px; height: 32px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <ion-icon name="sparkles" style="font-size: 16px; color: white;"></ion-icon>
+                                </div>
+                                <div
+                                    style="background: rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 0 12px 12px 12px; max-width: 85%;">
+                                    <p style="font-size: 0.9rem; margin: 0; color: #eee;">Hello! I'm Cai. I can analyze
+                                        risk, predict payments, or draft collection emails. Try asking:
+                                        <br><br><em>"Check risk for TechCorp"</em> or <em>"Draft reminder for Invoice
+                                            #1023"</em>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div style="display: flex; gap: 12px; flex-direction: row-reverse;">
-                            <div
-                                style="width: 32px; height: 32px; background: var(--color-accent-cyan); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <ion-icon name="sparkles" style="font-size: 16px; color: #000;"></ion-icon>
-                            </div>
-                            <div
-                                style="background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.3); padding: 12px 16px; border-radius: 12px 12px 0 12px; max-width: 90%;">
-                                <p style="font-size: 0.9rem; margin: 0; color: var(--color-accent-cyan);">Acme Corp's
-                                    payment behavior has improved. Predictive score is 85/100. I recommend increasing
-                                    limit to $50k.</p>
-                            </div>
+
+                        <!-- Chat Input Area -->
+                        <div style="display: flex; gap: 12px; position: relative;">
+                            <input type="text" id="chat-input" placeholder="Ask Cai anything..."
+                                style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 30px; color: white; outline: none; transition: all 0.3s ease;">
+                            <button id="chat-send-btn"
+                                style="background: var(--color-accent-cyan); border: none; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s;">
+                                <ion-icon name="send" style="color: black; font-size: 18px;"></ion-icon>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -243,6 +263,7 @@
     <script src="js/navbar.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/animations.js"></script>
+    <script src="js/ai-agent.js"></script>
 </body>
 
 </html>
