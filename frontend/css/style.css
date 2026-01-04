@@ -23,9 +23,10 @@
     /* Compatibility alias */
     --color-accent-blue: #3b82f6;
     /* Royal Blue */
-    --color-accent-purple: #6366f1;
     /* Indigo */
 
+    --color-bg-primary: transparent;
+    /* Fix for hero/features to show body gradient */
     --color-border: rgba(148, 163, 184, 0.1);
 
     --color-white: #ffffff;
@@ -227,10 +228,12 @@ ul {
 }
 
 .navbar.is-sticky {
-    background: rgba(18, 39, 29, 0.95);
-    /* Dark Green opaque */
+    background: rgba(2, 6, 23, 0.9);
+    /* Deep Space Navy with transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 16px 0;
-    border-bottom: 1px solid rgba(191, 192, 172, 0.1);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 [data-theme="light"] .navbar.is-sticky {
