@@ -235,42 +235,75 @@ h3 {
 /* Dropdown */
 .dropdown {
     position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .dropdown-menu {
     position: absolute;
-    top: calc(100% + 16px);
+    top: calc(100% + 24px);
     left: 50%;
-    transform: translateX(-50%);
-    background: rgba(30, 30, 46, 0.95);
-    backdrop-filter: blur(20px);
+    transform: translateX(-50%) translateY(10px);
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: 12px;
-    min-width: 200px;
-    box-shadow: var(--shadow-card);
+    padding: 16px;
+    min-width: 500px;
+    /* Wider for grid */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    z-index: 1100;
 }
 
-.dropdown.is-active .dropdown-menu {
+[data-theme="light"] .dropdown-menu {
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Connect the hover gap */
+.dropdown::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: 0;
+    width: 100%;
+    height: 24px;
 }
 
 .dropdown-item {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 12px 16px;
     color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 12px;
+    /* Slightly more rounded */
     transition: all 0.2s ease;
 }
 
 .dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--color-white);
+    background: rgba(90, 69, 255, 0.1);
+    /* Purple tint */
+    color: var(--color-accent-blue);
+}
+
+[data-theme="light"] .dropdown-item:hover {
+    background: #f3f4f6;
+    color: var(--color-accent-blue);
 }
 
 /* Pill Buttons */

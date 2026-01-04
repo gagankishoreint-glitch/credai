@@ -41,20 +41,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if firebase and auth are available
     if (typeof firebase !== 'undefined' && typeof auth !== 'undefined') {
         auth.onAuthStateChanged((user) => {
+            let actionsHtml = '';
+
+            // Shared Theme Toggle Button
+            const themeToggleHtml = `
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                    <ion-icon name="sunny-outline" id="theme-icon"></ion-icon>
+                </button>
+            `;
+
             if (user) {
                 // User is logged in
                 console.log('User logged in, updating navbar');
-                navActions.innerHTML = `
+                actionsHtml = `
+                    ${themeToggleHtml}
+                    <a href="application.html" class="btn btn-primary" style="margin-right: 12px; background: var(--color-accent-cyan);">Apply Now</a>
                     <a href="dashboard.html" class="btn btn-outline" style="margin-right: 12px; border: none; color: var(--color-white);">Dashboard</a>
-                    <button onclick="authHelpers.signOut()" class="btn btn-primary">Sign Out</button>
+                    <button onclick="authHelpers.signOut()" class="btn btn-outline" style="border: 1px solid var(--color-border);">Sign Out</button>
                 `;
             } else {
                 // User is logged out behavior (Default)
-                // We reset it just in case, but usually it starts as signed out
-                navActions.innerHTML = `
+                actionsHtml = `
+                    ${themeToggleHtml}
                     <a href="login.html" class="btn btn-outline" style="margin-right: 12px; border: none; color: var(--color-white);">Sign In</a>
                     <a href="signup.html" class="btn btn-primary">Start for Free</a>
                 `;
+            }
+
+            navActions.innerHTML = actionsHtml;
+
+            // Re-initialize theme logic since we overwrote the DOM
+            if (window.initTheme) {
+                window.initTheme();
             }
         });
     }
