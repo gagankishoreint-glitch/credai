@@ -2,34 +2,38 @@
 @import 'animations.css';
 
 :root {
-    /* Single Theme Palette based on Money Tree Image */
-    /* Deep Teal/Blue Background handled by image, but efficient fallback: */
-    --color-bg-dark: #0f1c2e;
+    /* Cosmic Horizon Palette (Blue/Cyan/Space) */
 
-    /* Transparent Glass Cards to show the backdrop */
-    --color-bg-card: rgba(15, 28, 46, 0.6);
-    --color-bg-secondary: rgba(255, 255, 255, 0.05);
+    /* Deep Space Navy */
+    --color-bg-dark: #020617;
 
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #e2e8f0;
-    /* Lighter Slate for better contrast */
-    --color-text-muted: #94a3b8;
+    /* Glassmorphism: Blue tint for cards */
+    --color-bg-card: rgba(15, 23, 42, 0.6);
+    --color-bg-secondary: rgba(30, 41, 59, 0.4);
 
-    /* Accents pulled from the Money Tree (Green/Cyan) */
-    --color-accent-primary: #4ade80;
-    /* Bright Money Green */
-    --color-accent-blue: #38bdf8;
-    /* Cyan Sky */
-    --color-accent-purple: #818cf8;
-    /* Soft Indigo */
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    /* Blue-grey slate */
+    --color-text-muted: #64748b;
 
-    --color-border: rgba(255, 255, 255, 0.15);
+    /* Accents: Electric Cyan & Neon Blue */
+    --color-accent-primary: #06b6d4;
+    /* Cyan */
+    --color-accent-cyan: #06b6d4;
+    /* Compatibility alias */
+    --color-accent-blue: #3b82f6;
+    /* Royal Blue */
+    --color-accent-purple: #6366f1;
+    /* Indigo */
+
+    --color-border: rgba(148, 163, 184, 0.1);
 
     --color-white: #ffffff;
     --color-black: #000000;
 
-    --gradient-primary: linear-gradient(135deg, #4ade80 0%, #38bdf8 100%);
-    --shadow-glow: 0 0 30px rgba(74, 222, 128, 0.2);
+    /* New Gradient: Cyan to Indigo */
+    --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%);
+    --shadow-glow: 0 0 25px rgba(6, 182, 212, 0.25);
 
     --radius-sm: 6px;
     --radius-md: 12px;
@@ -49,8 +53,8 @@ body {
     /* Apple-style System Font Stack */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-    /* Default Professional Gradient for non-home pages (Aurora Effect) */
-    background: radial-gradient(circle at top left, #1a3c34 0%, #0f1c2e 40%, #0a0f1c 100%);
+    /* Deep Space Gradient for non-home pages */
+    background: radial-gradient(circle at top center, #1e293b 0%, #020617 80%);
     background-attachment: fixed;
 
     color: var(--color-text-primary);
@@ -249,7 +253,7 @@ ul {
 }
 
 .nav-brand {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--color-text-primary);
@@ -684,7 +688,7 @@ ul {
 }
 
 .footer-brand h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--color-white);
     margin-bottom: 16px;
 }
