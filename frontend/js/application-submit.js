@@ -48,11 +48,20 @@ document.addEventListener('DOMContentLoaded', function () {
         submitBtn.disabled = true;
 
         try {
+            // Check if user is authenticated
+            const user = auth.currentUser;
+            if (!user) {
+                alert('❌ Please sign in to submit an application.');
+                window.location.href = 'login.html';
+                return;
+            }
+
             // Get form data - using name attributes as fallback if IDs don't exist
             const formData = {
+                userId: user.uid,  // Link application to user
                 businessName: document.querySelector('[name="business_name"]').value,
                 industry: document.querySelector('[name="industry_type"]').value,
-                applicantEmail: document.querySelector('[name="email"]')?.value || 'demo@example.com',
+                applicantEmail: document.querySelector('[name="email"]')?.value || user.email || 'demo@example.com',
                 phoneNumber: document.querySelector('[name="phone"]')?.value || 'N/A',
                 loanAmount: parseFloat(document.querySelector('[name="loan_amount"]').value),
                 annualRevenue: parseFloat(document.querySelector('[name="annual_revenue"]').value),
