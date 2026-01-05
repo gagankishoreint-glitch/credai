@@ -5,7 +5,6 @@
 ## 📌 Project Overview
 The **AI-Driven Smart Credit Evaluation System** is a modern web application designed to automate and enhance the creditworthiness assessment process for business loans. By leveraging Machine Learning techniques, the system analyzes applicant data to generate instant, consistent, and data-driven risk scores, significantly reducing the manual effort required by human underwriters.
 
-**Live Demo:** [https://credit-evaluation-system.vercel.app](https://credit-evaluation-system.vercel.app)
 
 ---
 
@@ -98,7 +97,6 @@ python backend/generate_dataset.py
 # Run API Server
 python backend/main.py
 ```
-*Server runs at http://localhost:8000*
 
 ### 3. Frontend Setup
 Simply open `frontend/index.html` in your browser, or serve using:
