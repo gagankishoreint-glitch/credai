@@ -195,7 +195,6 @@ def submit_application(current_user_id):
         insights.append({'type': 'positive', 'text': f'High Confidence Analysis ({(confidence*100):.1f}%)'})
     
     # Add engineered features based strictly on inputs for feedback
-    # Note: Ideally this logic lives in specific rules engine, but keeping here for simplicity matching node
     try:
         rev = float(app_data.get('annualRevenue', 0))
         loan = float(amount)
@@ -217,10 +216,6 @@ def submit_application(current_user_id):
     cur = conn.cursor()
     
     try:
-        # Note: psycopg2 adapts dict to jsonb automatically if using Json adapter, 
-        # but often it's safer to pass as string or use Json wrapper. 
-        # With RealDictCursor and modern psycopg2, direct dict often works for JSONB columns,
-        # but explicitly dumping to json string is safest for compatibility.
         import json
         
         cur.execute(
@@ -235,8 +230,29 @@ def submit_application(current_user_id):
     except Exception as e:
         conn.rollback()
         print(e)
-        import traceback
-        traceback.print_exc()
+        return jsonify({'message': 'Server error'}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+# --- Admin Routes ---
+@app.route('/api/admin/applications', methods=['GET'])
+# @token_required # In a real app, verify admin role. For demo, allowing access or basic auth.
+def get_all_applications():
+    # Allow querying all applications for the Underwriter Dashboard
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute("""
+            SELECT a.*, u.email, u.full_name 
+            FROM applications a
+            JOIN users u ON a.user_id = u.id
+            ORDER BY a.created_at DESC
+        """)
+        apps = cur.fetchall()
+        return jsonify(apps)
+    except Exception as e:
+        print(e)
         return jsonify({'message': 'Server error'}), 500
     finally:
         cur.close()

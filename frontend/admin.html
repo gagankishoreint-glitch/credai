@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CredAi | Admin Dashboard</title>
+    <title>CredAi | Underwriter Dashboard</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/polish.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <!-- Core Scripts -->
+    <script src="js/api-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navbar.js"></script>
+    <!-- Admin Logic -->
+    <script src="js/admin-panel.js"></script>
 </head>
 
 <body>
@@ -21,161 +24,41 @@
     <nav class="navbar">
         <div class="nav-container">
             <div style="display: flex; gap: 32px; align-items: center;">
-                <span style="font-weight: 700; color: var(--color-white);">CREDAI
-                    ADMIN</span>
-                <a href="#" style="color: var(--color-text-secondary); font-size: 0.9rem;">Dashboard</a>
-                <a href="#" style="color: var(--color-white); font-size: 0.9rem; font-weight: 500;">Applications</a>
-                <a href="risk-assessment.html" style="color: var(--color-text-secondary); font-size: 0.9rem;">Risk
-                    Models</a>
+                <a href="index.html" class="nav-brand" style="font-size: 1.5rem;">CredAi Admin</a>
+                <a href="application.html" style="color: var(--color-text-secondary); font-size: 0.9rem;">Submission</a>
+                <a href="dashboard.html" style="color: var(--color-text-secondary); font-size: 0.9rem;">Risk Scores</a>
+                <a href="admin.html"
+                    style="color: var(--color-white); font-size: 0.9rem; font-weight: 500;">Underwriter</a>
             </div>
-            <div style="display: flex; align-items: center; gap: 16px;">
-                <span id="admin-user-display" style="font-size: 0.9rem; color: var(--color-text-secondary);">Admin
-                    User</span>
-                <button onclick="window.authHelpers.signOut()" class="btn btn-outline"
-                    style="padding: 8px; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border-color: var(--color-border);">
-                    <ion-icon name="log-out-outline" style="font-size: 1.2rem;"></ion-icon>
-                </button>
+
+            <div class="nav-actions">
+                <!-- Populated by navbar.js -->
             </div>
         </div>
     </nav>
 
-    <div class="container" style="padding-top: 180px; padding-bottom: 80px;">
+    <div class="container" style="padding-top: 140px; padding-bottom: 80px;">
         <!-- Header -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
             <div>
-                <p class="label-tag">Admin Portal</p>
-                <h2 style="margin-top: 12px;">Loan Applications Queue</h2>
+                <p class="label-tag">Underwriter Dashboard</p>
+                <h2 style="margin-top: 12px;">Review Applications</h2>
+                <p style="color: var(--color-text-secondary);">AI-prioritized queue of new credit applications</p>
             </div>
-            <input type="text" placeholder="Search..." class="form-input" style="width: 300px; padding: 12px 20px;">
+            <div style="display: flex; gap: 12px;">
+                <input type="text" placeholder="Search applicants..." class="form-input" style="width: 300px;">
+                <button class="btn btn-outline" style="min-width: unset; padding: 0 16px;"><ion-icon
+                        name="filter-outline"></ion-icon></button>
+            </div>
         </div>
 
-        <!-- TABLE VIEW -->
-        <div class="feature-card" style="padding: 0; overflow: hidden;">
-            <table style="width: 100%; border-collapse: collapse;">
-                <thead style="background: var(--color-bg-secondary); border-bottom: 1px solid var(--color-border);">
-                    <tr>
-                        <th
-                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Application ID</th>
-                        <th
-                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Business Name</th>
-                        <th
-                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Amount</th>
-                        <th
-                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-                            AI Score</th>
-                        <th
-                            style="text-align: left; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Risk Level</th>
-                        <th
-                            style="text-align: right; padding: 20px; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Action</th>
-                    </tr>
-                </thead>
-                <tbody id="applications-tbody">
-                    <!-- Applications loaded from Firebase in real-time -->
-                    <tr>
-                        <td colspan="6" style="padding: 40px; text-align: center; color: var(--color-text-muted);">
-                            <ion-icon name="sync-outline"
-                                style="font-size: 32px; margin-bottom: 12px; animation: spin 2s linear infinite;"></ion-icon>
-                            <div>Loading applications from Firebase...</div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- DETAIL VIEW -->
-        <div id="detail-view" style="display: none; margin-top: 48px;">
-            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 32px;">
-                <!-- Left: Document Preview -->
-                <div class="feature-card"
-                    style="height: 600px; background: var(--color-bg-secondary); display: flex; align-items: center; justify-content: center;">
-                    <p style="color: var(--color-text-muted);">PDF Viewer Placeholder</p>
-                </div>
-
-                <!-- Right: AI Analysis -->
-                <div class="feature-card glow-card">
-                    <p class="label-tag">AI Analysis</p>
-                    <h3 style="margin-top: 12px; margin-bottom: 32px;">Risk Assessment Report</h3>
-
-                    <div style="margin-bottom: 32px;">
-                        <span
-                            style="font-size: 4rem; font-weight: 700; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">720</span>
-                        <span style="color: var(--color-text-muted); font-size: 1.5rem;">/ 900</span>
-                    </div>
-
-                    <h4 style="margin-bottom: 20px; font-family: 'Inter', sans-serif; font-size: 1rem;">Top Positive
-                        Factors</h4>
-                    <ul style="margin-bottom: 32px; list-style: none; padding: 0;">
-                        <li
-                            style="display: flex; justify-content: space-between; margin-bottom: 12px; padding: 12px; background: var(--color-bg-secondary); border-radius: var(--radius-md);">
-                            <span>Strong Cash Flow</span>
-                            <span style="color: #10B981; font-weight: 600;">+45 pts</span>
-                        </li>
-                        <li
-                            style="display: flex; justify-content: space-between; margin-bottom: 12px; padding: 12px; background: var(--color-bg-secondary); border-radius: var(--radius-md);">
-                            <span>Years in Business (>5)</span>
-                            <span style="color: #10B981; font-weight: 600;">+30 pts</span>
-                        </li>
-                    </ul>
-
-                    <h4 style="margin-bottom: 20px; font-family: 'Inter', sans-serif; font-size: 1rem;">Negative Factors
-                    </h4>
-                    <ul style="margin-bottom: 40px; list-style: none; padding: 0;">
-                        <li
-                            style="display: flex; justify-content: space-between; margin-bottom: 12px; padding: 12px; background: var(--color-bg-secondary); border-radius: var(--radius-md);">
-                            <span>High Industry Volatility</span>
-                            <span style="color: #EF4444; font-weight: 600;">-15 pts</span>
-                        </li>
-                    </ul>
-
-                    <div
-                        style="margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--color-border); display: flex; gap: 16px;">
-                        <button class="btn btn-primary">Approve Application</button>
-                        <button class="btn btn-outline"
-                            style="border-color: rgba(239, 68, 68, 0.3); color: #EF4444;">Reject</button>
-                    </div>
-                </div>
+        <!-- content loaded by JS -->
+        <div class="admin-queue-container" style="min-height: 400px;">
+            <div class="applications-grid">
+                <!-- Cards injected here -->
             </div>
         </div>
     </div>
-
-    <script>
-        function toggleDetails() {
-            const detailView = document.getElementById('detail-view');
-            if (detailView.style.display === 'none' || detailView.style.display === '') {
-                detailView.style.display = 'block';
-                detailView.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                detailView.style.display = 'none';
-            }
-        }
-    </script>
-
-    <!-- Firebase Scripts -->
-    <script src="js/firebase-config.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/admin-panel.js"></script>
-    <script>
-        // Protect page (Admin only)
-        // For MVP, we'll allow any logged in user for now, but in real app would check role
-        window.authHelpers.protectPage();
-
-        // Logout handler
-        const logoutBtn = document.querySelector('.nav-user .btn-outline');
-        if (logoutBtn) {
-            logoutBtn.onclick = (e) => {
-                e.preventDefault();
-                window.authHelpers.signOut();
-            };
-        }
-    </script>
-    <script src="js/theme.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/ai-widget.js"></script>
 </body>
 
 </html>
