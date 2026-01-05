@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadUserApplications(userId) {
         db.collection('applications')
             .where('userId', '==', userId)
-            .orderBy('submittedAt', 'desc')
             .onSnapshot((snapshot) => {
                 const container = document.getElementById('dashboard-content');
 
@@ -27,10 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 container.innerHTML = ''; // Clear loading state or old data
 
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const appId = doc.id;
-                    const card = createApplicationCard(appId, data);
+                // Convert to array and sort client-side to avoid index requirement
+                const docs = [];
+                snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+
+                // Sort by submittedAt desc
+                docs.sort((a, b) => {
+                    const timeA = a.submittedAt ? a.submittedAt.seconds : 0;
+                    const timeB = b.submittedAt ? b.submittedAt.seconds : 0;
+                    return timeB - timeA;
+                });
+
+                docs.forEach(data => {
+                    const card = createApplicationCard(data.id, data);
                     container.appendChild(card);
                 });
 
