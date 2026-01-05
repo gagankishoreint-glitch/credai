@@ -51,11 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="dashboard.html" class="btn btn-primary" style="margin-right: 12px;">Dashboard</a>
                     <a href="application.html" class="btn btn-outline" style="border: none; color: var(--color-white);">Apply Now</a>
                     
-                    <a href="settings.html" class="btn btn-icon" title="Settings" style="color: var(--color-white); font-size: 1.5rem; padding: 8px;">
+                    <a href="settings.html" class="btn btn-icon" title="Settings" style="display: inline-flex; align-items: center; justify-content: center; color: var(--color-white); font-size: 1.5rem; padding: 8px; margin-left: 8px;">
                         <ion-icon name="settings-outline"></ion-icon>
                     </a>
                     
-                    <button onclick="authHelpers.signOut()" class="btn btn-icon" title="Sign Out" style="background: none; border: none; color: var(--color-white); font-size: 1.5rem; padding: 8px; cursor: pointer;">
+                    <button onclick="authHelpers.signOut()" class="btn btn-icon" title="Sign Out" style="display: inline-flex; align-items: center; justify-content: center; background: none; border: none; color: var(--color-white); font-size: 1.5rem; padding: 8px; cursor: pointer;">
                         <ion-icon name="log-out-outline"></ion-icon>
                     </button>
                 `;
