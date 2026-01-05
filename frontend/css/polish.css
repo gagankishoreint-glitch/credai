@@ -1,0 +1,13 @@
+
+/* Professional Polish Fixes */
+.theme-toggle {
+    display: none !important;
+}
+
+.feature-card {
+    margin-bottom: 32px;
+}
+
+.footer-links li {
+    margin-bottom: 16px;
+}
