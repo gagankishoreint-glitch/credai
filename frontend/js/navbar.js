@@ -39,9 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Dynamic Auth State
-    // Check if firebase and auth are available
-    if (typeof firebase !== 'undefined' && typeof auth !== 'undefined') {
-        auth.onAuthStateChanged((user) => {
+    // Check if authHelpers is available (from new auth.js)
+    if (window.authHelpers && typeof window.authHelpers.getCurrentUser === 'function') {
+        const user = window.authHelpers.getCurrentUser();
+        const navActions = document.querySelector('.nav-actions');
+
+        if (navActions) {
             let actionsHtml = '';
 
             if (user) {
@@ -55,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <ion-icon name="settings-outline"></ion-icon>
                     </a>
                     
-                    <button onclick="authHelpers.signOut()" class="btn btn-icon" title="Sign Out" style="display: inline-flex; align-items: center; justify-content: center; background: none; border: none; color: var(--color-white); font-size: 1.5rem; padding: 8px; cursor: pointer;">
+                    <button id="nav-logout-btn" class="btn btn-icon" title="Sign Out" style="display: inline-flex; align-items: center; justify-content: center; background: none; border: none; color: var(--color-white); font-size: 1.5rem; padding: 8px; cursor: pointer;">
                         <ion-icon name="log-out-outline"></ion-icon>
                     </button>
                 `;
@@ -68,8 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             navActions.innerHTML = actionsHtml;
-            navActions.classList.add('is-loaded'); // Reveal navbar actions
-        });
+            navActions.classList.add('is-loaded');
+
+            // Attach event listener only if button exists
+            const logoutBtn = document.getElementById('nav-logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.authHelpers.signOut();
+                });
+            }
+        }
     }
 
     // Load AI Widget script dynamically if not present

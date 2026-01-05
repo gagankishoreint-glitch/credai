@@ -49,45 +49,59 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Check if user is authenticated
-            const user = auth.currentUser;
-            if (!user) {
+            const user = window.authHelpers.getCurrentUser();
+            const token = localStorage.getItem('token');
+
+            if (!user || !token) {
                 alert('❌ Please sign in to submit an application.');
                 window.location.href = 'login.html';
                 return;
             }
 
+            const businessName = document.querySelector('[name="business_name"]').value;
+            const amount = parseFloat(document.querySelector('[name="loan_amount"]').value);
+
             // Get form data - using name attributes as fallback if IDs don't exist
             const formData = {
-                userId: user.uid,  // Link application to user
-                businessName: document.querySelector('[name="business_name"]').value,
-                industry: document.querySelector('[name="industry_type"]').value,
+                userId: user.id || user.uid,
                 applicantEmail: document.querySelector('[name="email"]')?.value || user.email || 'demo@example.com',
                 phoneNumber: document.querySelector('[name="phone"]')?.value || 'N/A',
-                loanAmount: parseFloat(document.querySelector('[name="loan_amount"]').value),
                 annualRevenue: parseFloat(document.querySelector('[name="annual_revenue"]').value),
                 yearsInBusiness: parseInt(document.querySelector('[name="years_in_operation"]').value),
                 employeeCount: parseInt(document.querySelector('[name="employees"]')?.value) || 0,
                 creditScore: parseInt(document.querySelector('[name="credit_score"]')?.value) || 0,
                 loanPurpose: document.querySelector('[name="purpose"]')?.value || 'Business expansion',
                 operatingExpenses: parseFloat(document.querySelector('[name="operating_expenses"]')?.value) || 0,
-                status: 'received',
-                submittedAt: firebase.firestore.FieldValue.serverTimestamp(),
-                analyzedAt: null,
-                decision: 'pending',
-                aiScore: null,
-                riskLevel: null
+                industry: document.querySelector('[name="industry_type"]').value,
             };
 
-            console.log('📤 Submitting application:', formData);
+            const API_BASE_URL = window.API_CONFIG ? window.API_CONFIG.BASE_URL : '/api';
 
-            // Add to Firestore
-            const docRef = await db.collection('applications').add(formData);
+            console.log('📤 Submitting application to API:', formData);
 
-            console.log('✅ Application submitted with ID:', docRef.id);
+            // Send to API
+            const response = await fetch(`${API_BASE_URL}/applications`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    businessName: businessName,
+                    amount: amount,
+                    data: formData // Store detailed properties in JSONB column
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Submission failed: ' + response.statusText);
+            }
+
+            const result = await response.json();
+            console.log('✅ Application submitted with ID:', result.id);
 
             // Store application ID in localStorage for dashboard
-            localStorage.setItem('applicationId', docRef.id);
-            localStorage.setItem('userEmail', formData.applicantEmail);
+            localStorage.setItem('applicationId', result.id);
 
             // Clear session storage (draft data)
             for (let i = 1; i <= 3; i++) {
@@ -98,22 +112,12 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('✅ Application submitted successfully! Redirecting to dashboard...');
 
             // Redirect to dashboard
-            window.location.href = `dashboard.html?id=${docRef.id}`;
+            window.location.href = `dashboard.html?id=${result.id}`;
 
         } catch (error) {
             console.error('❌ Error submitting application:', error);
 
-            // Show detailed error message
-            let errorMsg = 'Error submitting application. ';
-            if (error.code === 'permission-denied') {
-                errorMsg += 'Please check your Firebase permissions.';
-            } else if (error.code === 'unavailable') {
-                errorMsg += 'Network connection issue. Please check your internet connection.';
-            } else {
-                errorMsg += error.message || 'Unknown error occurred.';
-            }
-
-            alert('❌ ' + errorMsg);
+            alert('❌ Error submitting application. Please try again.');
 
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;

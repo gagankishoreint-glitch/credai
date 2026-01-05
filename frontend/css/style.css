@@ -314,6 +314,8 @@ ul {
     flex-direction: column;
     gap: 4px;
     z-index: 1100;
+    pointer-events: none;
+    /* Prevent accidental clicks when hidden */
 }
 
 [data-theme="light"] .dropdown-menu {
@@ -322,10 +324,13 @@ ul {
     border-color: rgba(0, 0, 0, 0.08);
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown.is-active .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+    /* Enable clicks only when visible */
 }
 
 /* Connect the hover gap */
@@ -1090,5 +1095,6 @@ ul {
     height: 100%;
     width: 0;
     transition: width 0.3s, background-color 0.3s;
-}.theme-toggle
- display: none !important; 
+}
+
+.theme-toggle display: none !important;

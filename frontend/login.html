@@ -11,9 +11,8 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- API Config -->
+    <script src="js/api-config.js"></script>
 </head>
 
 <body>
@@ -72,7 +71,7 @@
     </div>
 
     <!-- Firebase Scripts -->
-    <script src="js/firebase-config.js"></script>
+
     <script src="js/auth.js"></script>
     <script>
         document.getElementById('login-form').addEventListener('submit', async (e) => {
@@ -117,12 +116,10 @@
         });
 
         // Redirect if already logged in
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                // If on login page and already logged in, go to dashboard
-                // But check if we just logged in vs page load
-            }
-        });
+        // Redirect if already logged in
+        if (window.authHelpers.getCurrentUser()) {
+            window.location.href = 'dashboard.html';
+        }
     </script>
     <script src="js/theme.js"></script>
     <script src="js/animations.js"></script>

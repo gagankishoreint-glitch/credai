@@ -1,56 +1,54 @@
 // Dashboard Real-Time Updates - ENHANCED to show ALL client data
 // Listens to Firestore for application status changes and displays complete application details
 
-document.addEventListener('DOMContentLoaded', function () {
+const API_BASE_URL = window.API_CONFIG ? window.API_CONFIG.BASE_URL : '/api';
+
+document.addEventListener('DOMContentLoaded', async function () {
     // Wait for auth to be ready
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            console.log('User logged in:', user.uid);
-            loadUserApplications(user.uid);
-        } else {
-            console.log('No user logged in, redirecting...');
-            window.location.href = 'login.html';
-        }
-    });
+    try {
+        const user = await window.authHelpers.checkAuth();
+        console.log('User logged in:', user.email);
+        loadUserApplications(user.id); // Use ID from postgres
+    } catch (err) {
+        console.log('No user logged in, redirecting...');
+        window.location.href = 'login.html';
+    }
 
-    function loadUserApplications(userId) {
-        db.collection('applications')
-            .where('userId', '==', userId)
-            .onSnapshot((snapshot) => {
-                const container = document.getElementById('dashboard-content');
+    async function loadUserApplications(userId) {
+        const container = document.getElementById('dashboard-content');
 
-                if (snapshot.empty) {
-                    renderEmptyState(container);
-                    return;
+        try {
+            const response = await fetch(`${API_BASE_URL}/applications`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
-
-                container.innerHTML = ''; // Clear loading state or old data
-
-                // Convert to array and sort client-side to avoid index requirement
-                const docs = [];
-                snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
-
-                // Sort by submittedAt desc
-                docs.sort((a, b) => {
-                    const timeA = a.submittedAt ? a.submittedAt.seconds : 0;
-                    const timeB = b.submittedAt ? b.submittedAt.seconds : 0;
-                    return timeB - timeA;
-                });
-
-                docs.forEach(data => {
-                    const card = createApplicationCard(data.id, data);
-                    container.appendChild(card);
-                });
-
-            }, (error) => {
-                console.error('Error fetching applications:', error);
-                document.getElementById('dashboard-content').innerHTML = `
-                    <div style="text-align: center; color: var(--color-danger); padding: 40px;">
-                        <ion-icon name="alert-circle-outline" style="font-size: 32px; margin-bottom: 16px;"></ion-icon>
-                        <p>Error loading applications. Please refresh.</p>
-                    </div>
-                `;
             });
+
+            if (!response.ok) throw new Error('Failed to fetch applications');
+
+            const docs = await response.json();
+
+            if (docs.length === 0) {
+                renderEmptyState(container);
+                return;
+            }
+
+            container.innerHTML = ''; // Clear loading state or old data
+
+            docs.forEach(data => {
+                const card = createApplicationCard(data.id, data);
+                container.appendChild(card);
+            });
+
+        } catch (error) {
+            console.error('Error fetching applications:', error);
+            container.innerHTML = `
+                <div style="text-align: center; color: #EF4444; padding: 40px;">
+                    <ion-icon name="alert-circle-outline" style="font-size: 32px; margin-bottom: 16px;"></ion-icon>
+                    <p>Error loading applications. Please refresh.</p>
+                </div>
+            `;
+        }
     }
 
     function renderEmptyState(container) {
@@ -67,10 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function createApplicationCard(appId, data) {
-        // Formatted Date
+        // Formatted Date (SQL Timestamp)
         let dateStr = 'Just now';
-        if (data.submittedAt && data.submittedAt.toDate) {
-            dateStr = data.submittedAt.toDate().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+        if (data.created_at) {
+            dateStr = new Date(data.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        } else if (data.submittedAt) { // Fallback
+            dateStr = new Date(data.submittedAt).toLocaleDateString();
         }
 
         // Status Logic
@@ -160,32 +161,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <!-- AI Insights Section -->
                 <div style="text-align: left; background: var(--color-bg-secondary); padding: 20px; border-radius: 16px;">
-                    <h4 style="margin-bottom: 16px; display: flex; align-items: center;">
+                    <h4 style="margin-bottom: 20px; display: flex; align-items: center;">
                         <ion-icon name="analytics-outline" style="color: var(--color-accent-purple); margin-right: 8px;"></ion-icon>
-                        AI Risk Analysis
+                        AI Risk Assessment
                     </h4>
 
-                    <div style="margin-bottom: 12px; font-size: 0.9rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                            <span>Revenue Stability</span>
-                            <span style="color: #10B981;">Strong</span>
+                    ${data.data && data.data.ml_metadata ? `
+                        <div style="margin-bottom: 16px; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 0.85rem; color: var(--color-text-secondary);">Model Confidence</span>
+                                <span style="font-size: 0.85rem; color: #10B981; font-weight: 600;">${(data.data.ml_metadata.confidence * 100).toFixed(0)}%</span>
+                            </div>
+                            <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
+                                <div style="width: ${data.data.ml_metadata.confidence * 100}%; height: 100%; background: #10B981; border-radius: 2px;"></div>
+                            </div>
                         </div>
-                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
-                            <div style="width: 85%; height: 100%; background: #10B981; border-radius: 3px;"></div>
-                        </div>
-                    </div>
+                    ` : ''}
 
-                    <div style="margin-bottom: 12px; font-size: 0.9rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                            <span>Market Position</span>
-                            <span style="color: #F59E0B;">Good</span>
-                        </div>
-                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px;">
-                            <div style="width: 70%; height: 100%; background: #F59E0B; border-radius: 3px;"></div>
-                        </div>
-                    </div>
+                    ${renderInsights(data.data ? data.data.insights : [])}
                 </div>
             </div>
+        `;
+        return card;
+    }
+
+    function renderInsights(insights) {
+        if (!insights || insights.length === 0) {
+            return `
+                <div style="margin-bottom: 12px; font-size: 0.9rem; color: var(--color-text-secondary);">
+                    <p>Analysis in progress. AI is evaluating your financial data points.</p>
+                </div>
+             `;
+        }
+
+        return insights.map(i => {
+            const color = i.type === 'positive' ? '#10B981' : '#EF4444';
+            const icon = i.type === 'positive' ? 'trending-up' : 'alert-circle';
+            return `
+                <div style="margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 10px;">
+                    <ion-icon name="${icon}" style="color: ${color}; font-size: 1.1rem; min-width: 20px; margin-top: 2px;"></ion-icon>
+                    <div>
+                        <span style="color: var(--color-white); display: block; margin-bottom: 2px;">${i.text}</span>
+                    </div>
+                </div>
+             `;
+        }).join('');
+    }
+            </div >
         `;
         return card;
     }
