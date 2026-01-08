@@ -1,5 +1,5 @@
 import React from 'react';
-import '../design-system.css';
+import '../theme.css';
 
 /**
  * Premium Decision Card Component

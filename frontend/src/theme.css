@@ -66,6 +66,22 @@
     /* Motion */
     --duration-base: 300ms;
     --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+
+    /* Legacy Mappings */
+    --color-blue: var(--color-accent-blue);
+    --color-blue-dark: #1e3a8a;
+    --color-gray-50: var(--color-bg-dark);
+    --color-gray-200: var(--color-border);
+    --color-gray-300: var(--color-border);
+    --color-gray-400: var(--color-text-muted);
+    --color-gray-500: var(--color-text-secondary);
+    --color-gray-600: var(--color-text-secondary);
+    --color-white: var(--color-bg-card);
+    --color-red: var(--color-critical);
+    --color-green: var(--color-success);
+    --color-green-dark: #14532d;
+    --color-yellow: var(--color-warning);
+    --color-charcoal: var(--color-text-primary);
 }
 
 /* ============================================
@@ -73,8 +89,7 @@
    ============================================ */
 
 body {
-    background: radial-gradient(circle at top center, #1e293b 0%, #020617 80%);
-    background-attachment: fixed;
+    background-color: var(--color-bg-dark);
     color: var(--color-text-primary);
     font-family: var(--font-sans);
     line-height: 1.6;
@@ -266,6 +281,10 @@ textarea:focus {
     grid-template-columns: 1fr 1fr;
 }
 
+.grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 /* Text Utilities */
 .text-primary {
     color: var(--color-text-primary);
@@ -281,16 +300,12 @@ textarea:focus {
 
 .text-gradient {
     background: var(--gradient-primary);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-
+/* Animations */
 @keyframes reveal {
     from {
         opacity: 0;
@@ -313,35 +328,11 @@ textarea:focus {
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Staggered animations - Optimized for performance and cognitive load */
 .stagger-item {
     animation: reveal var(--duration-base) var(--ease-out);
     animation-fill-mode: both;
 }
 
-/* Cap at 10 items to prevent cognitive overload */
 .stagger-item:nth-child(1) {
     animation-delay: 0ms;
 }
@@ -358,211 +349,9 @@ textarea:focus {
     animation-delay: 90ms;
 }
 
-.stagger-item:nth-child(5) {
-    animation-delay: 120ms;
-}
-
-.stagger-item:nth-child(6) {
-    animation-delay: 150ms;
-}
-
-.stagger-item:nth-child(7) {
-    animation-delay: 180ms;
-}
-
-.stagger-item:nth-child(8) {
-    animation-delay: 210ms;
-}
-
-.stagger-item:nth-child(9) {
-    animation-delay: 240ms;
-}
-
-.stagger-item:nth-child(10) {
-    animation-delay: 270ms;
-}
-
-/* Items beyond 10 get no delay - instant reveal */
-.stagger-item:nth-child(n+11) {
-    animation-delay: 0ms;
-}
-
-/* ============================================
-   UTILITIES
-   ============================================ */
-
-/* Spacing */
-.mt-1 {
-    margin-top: var(--space-1);
-}
-
-.mt-2 {
-    margin-top: var(--space-2);
-}
-
-.mt-3 {
-    margin-top: var(--space-3);
-}
-
-.mt-4 {
-    margin-top: var(--space-4);
-}
-
-.mt-6 {
-    margin-top: var(--space-6);
-}
-
-.mt-8 {
-    margin-top: var(--space-8);
-}
-
-.mt-12 {
-    margin-top: var(--space-12);
-}
-
-.mb-1 {
-    margin-bottom: var(--space-1);
-}
-
-.mb-2 {
-    margin-bottom: var(--space-2);
-}
-
-.mb-3 {
-    margin-bottom: var(--space-3);
-}
-
-.mb-4 {
-    margin-bottom: var(--space-4);
-}
-
-.mb-6 {
-    margin-bottom: var(--space-6);
-}
-
-.mb-8 {
-    margin-bottom: var(--space-8);
-}
-
-.mb-12 {
-    margin-bottom: var(--space-12);
-}
-
-.p-4 {
-    padding: var(--space-4);
-}
-
-.p-6 {
-    padding: var(--space-6);
-}
-
-.p-8 {
-    padding: var(--space-8);
-}
-
-/* Flexbox */
-.flex {
-    display: flex;
-}
-
-.flex-col {
-    flex-direction: column;
-}
-
-.items-center {
-    align-items: center;
-}
-
-.justify-center {
-    justify-content: center;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.gap-2 {
-    gap: var(--space-2);
-}
-
-.gap-4 {
-    gap: var(--space-4);
-}
-
-.gap-6 {
-    gap: var(--space-6);
-}
-
-/* Grid */
-.grid {
-    display: grid;
-}
-
-.grid-cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.grid-cols-3 {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
-
 /* Focus States */
 *:focus-visible {
-    outline: 2px solid var(--color-trust-light);
+    outline: 2px solid var(--color-trust);
     outline-offset: 2px;
     border-radius: var(--radius-md);
-}
-
-/* Reduced Motion - Respects user preference while maintaining essential feedback */
-@media (prefers-reduced-motion: reduce) {
-
-    /* Disable decorative animations */
-    .stagger-item {
-        animation: none !important;
-    }
-
-    /* Shorten essential transitions (feedback, not decoration) */
-    *,
-    *::before,
-    *::after {
-        animation-duration: 50ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 50ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    /* Disable infinite animations */
-    @keyframes fillMeter {
-
-        from,
-        to {
-            transform: scaleX(1);
-        }
-    }
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
-@media (max-width: 768px) {
-    :root {
-        --container-margin: 24px;
-    }
-
-    .display-xl {
-        font-size: 48px;
-    }
-
-    .display-lg {
-        font-size: 40px;
-    }
-
-    .display-md {
-        font-size: 32px;
-    }
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Lock, User } from 'lucide-react';
-import '../design-system.css';
+
 
 export default function Login() {
     const [username, setUsername] = useState('');
