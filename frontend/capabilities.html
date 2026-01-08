@@ -16,16 +16,18 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="landing-nav">
+    <nav class="landing-nav" style="backdrop-filter: blur(var(--blur-strength)); background: rgba(255,255,255,0.85);">
         <a href="index.html" class="brand-logo">CredAi</a>
         <ul class="nav-links">
-            <li><a href="assessment.html">Assessment</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="capabilities.html" class="active">Capabilities</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="assessment.html">Product</a></li>
+            <li><a href="capabilities.html" style="color: var(--primary-color);">Technology</a></li>
+            <li><a href="about.html">About</a></li>
+            <li id="nav-dashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="index.html" class="btn-signin">Back to Home</a>
+            <a href="login.html" id="nav-signin" class="btn-signin" style="color: var(--text-secondary);">Sign In</a>
+            <a href="#" id="nav-signout" class="btn-signin hidden">Sign Out</a>
+            <a href="assessment.html" class="btn-start" style="border-radius: var(--radius-sm);">Start Demo</a>
         </div>
     </nav>
 
