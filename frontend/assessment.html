@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit AI - Assessment Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="AI-Powered Credit Assessment Portal">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="landing-nav">
+        <a href="index.html" class="brand-logo">CreditAI</a>
+        <ul class="nav-links">
+            <li><a href="assessment.html" class="active">Assessment</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="capabilities.html">Capabilities</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <div class="nav-actions">
+            <!-- Conditional content could go here, for now static -->
+            <a href="index.html" class="btn-signin">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <section class="intro-section reveal">
+            <h2>AI-Powered Credit Decision Engine</h2>
+            <p>Utilizing advanced machine learning algorithms to provide instant, accurate credit risk assessments.
+                Enter applicant details below to generate a real-time risk profile.</p>
+        </section>
+
+        <!-- View 1: Application Form -->
+        <div id="application-view" class="reveal delay-100">
+            <section class="form-panel" style="max-width: 800px; margin: 0 auto;">
+                <div class="info-banner">
+                    <p><strong>&#9432; How this works:</strong> Our AI analyzes your application and provides a
+                        recommendation. All decisions are reviewed by human underwriters to ensure fairness. This is not
+                        an automated decision.</p>
+                </div>
+                <div class="panel-header" style="border-bottom: none; padding-bottom: 0;">
+                    <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Step 1: Application Details</h2>
+                    <p style="color: #94a3b8; margin-top: 0;">Please provide accurate information. All fields are
+                        required.</p>
+                </div>
+                <form id="credit-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicant_id">Applicant ID (Optional)</label>
+                            <input type="text" id="applicant_id" name="applicant_id"
+                                placeholder="Auto-generated if empty">
+                        </div>
+                        <div class="form-group">
+                            <label for="business_type">Business Type</label>
+                            <select id="business_type" name="business_type">
+                                <option value="Other">Other</option>
+                                <option value="Retail">Retail</option>
+                                <option value="IT">IT</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Real Estate">Real Estate</option>
+                                <option value="Manufacturing">Manufacturing</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age <span class="required">*</span></label>
+                            <input type="number" id="age" name="age" required min="18" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="credit_score">Credit Score <span class="required">*</span></label>
+                            <input type="number" id="credit_score" name="credit_score" required min="300" max="850">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="annual_income">Annual Income ($) <span class="required">*</span></label>
+                            <input type="number" id="annual_income" name="annual_income" required min="0" step="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="total_debt">Total Debt ($) <span class="required">*</span></label>
+                            <input type="number" id="total_debt" name="total_debt" required min="0" step="100">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="monthly_debt_obligations">Monthly Obligations ($)</label>
+                            <input type="number" id="monthly_debt_obligations" name="monthly_debt_obligations" min="0"
+                                step="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="assets_total">Total Assets ($)</label>
+                            <input type="number" id="assets_total" name="assets_total" min="0" step="1000">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="submit-btn" class="btn-primary">Continue to Documents</button>
+                    </div>
+                </form>
+                <div id="error-message" class="error-banner hidden"></div>
+            </section>
+        </div>
+
+        <!-- View 2: Premium Results (Hidden by default) -->
+        <div id="results-view" class="hidden" style="max-width: 700px; margin: 0 auto;">
+            <section class="results-panel">
+                <!-- Header Section -->
+                <div style="margin-bottom: 2rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; margin-bottom: 5px; color: #94a3b8; font-size: 0.9rem;">
+                        <span>Estimated Default Risk:</span>
+                        <span>Confidence:</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600;">
+                        <span id="risk-label" style="color: #f87171;">Higher Risk</span>
+                        <span id="confidence-label" style="color: white;">High</span>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-track">
+                        <div id="risk-bar" class="progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; margin-top: 5px; color: #64748b; font-size: 0.8rem;">
+                        <span>0%</span>
+                        <span>25%</span>
+                        <span>50%</span>
+                        <span>75%</span>
+                        <span>100%</span>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="info-box-dark">
+                    <p style="margin: 0; font-size: 0.9rem; color: #94a3b8;">
+                        &#9432; Estimated range: <span id="risk-range">--</span>
+                    </p>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #64748b; line-height: 1.4;">
+                        This assessment represents the model's estimate of credit risk based on the provided
+                        information.
+                        The range reflects statistical uncertainty. All decisions are subject to human review.
+                    </p>
+                </div>
+
+                <!-- Why This Decision -->
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; font-size: 1.1rem;">
+                        &#9432; Why this decision?
+                    </h3>
+                    <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                        Our AI analyzed several factors in your application. Here's what influenced the decision:
+                    </p>
+
+                    <div style="margin-bottom: 1rem;">
+                        <h4 style="font-size: 0.9rem; color: white; margin-bottom: 10px;">Key Factors</h4>
+                        <div id="factors-container" style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- Factors injected here -->
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="font-size: 0.9rem; color: white; margin-bottom: 10px;">Important:</h4>
+                        <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5;">
+                            This explanation is generated by AI and represents one interpretation of your application.
+                            A human underwriter will review all factors before making a final decision.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Success Banner (Conditional) -->
+                <div id="status-banner" class="status-banner hidden">
+                    <h3 id="status-title" style="margin: 0 0 5px 0; font-size: 1.1rem;">Preliminary Approval</h3>
+                    <p id="status-desc" style="margin: 0; font-size: 0.95rem;">
+                        Congratulations! Your application shows strong indicators. Final approval pending underwriter
+                        review.
+                    </p>
+                </div>
+
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button id="reset-btn" class="btn-action-secondary">Submit New Application</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Credit AI Model. Inspired by QCIF.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

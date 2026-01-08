@@ -1,13 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredAI - Smart Credit Evaluation</title>
+    <link rel="stylesheet" href="landing.css">
+    <!-- Google Fonts: Inter (Body) & Playfair Display (Headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="landing-page">
+    <!-- Navbar -->
+    <nav class="landing-nav">
+        <a href="index.html" class="brand-logo">CredAi</a>
+        <ul class="nav-links">
+            <li><a href="assessment.html">Application Submission</a></li>
+            <li><a href="dashboard.html">Risk Score Visualization</a></li>
+            <li><a href="dashboard.html">Underwriter Dashboard</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="assessment.html" class="btn-signin">Sign In</a>
+            <a href="assessment.html" class="btn-start">Start for Free</a>
+        </div>
+    </nav>
+
+    <div class="landing-container">
+        <!-- Glow Effect -->
+        <div class="glow-effect"></div>
+
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title reveal">
+                    <span class="gradient-text">AI-Driven</span> Smart<br>
+                    Credit Evaluation
+                </h1>
+                <p class="hero-description reveal delay-100">
+                    Automate your lending decisions with 80% accuracy.
+                    Reduce manual underwriting time from days to seconds using advanced machine learning.
+                </p>
+                <div class="hero-actions reveal delay-200">
+                    <a href="assessment.html" class="btn-action-primary">Start for Free</a>
+                    <a href="capabilities.html" class="btn-action-secondary">How it Works</a>
+                </div>
+            </div>
+        </header>
+
+    </div>
+</body>
+
 </html>

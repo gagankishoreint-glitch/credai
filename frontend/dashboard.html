@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underwriter Dashboard - Credit AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="landing-nav">
+        <a href="index.html" class="brand-logo">CreditAI <span
+                style="font-size: 0.5em; font-weight: 400; opacity: 0.7;">| Underwriter</span></a>
+        <ul class="nav-links">
+            <li><a href="assessment.html">New Application</a></li>
+            <li><a href="dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div style="width: 32px; height: 32px; background: #334155; border-radius: 50%;"></div>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <div class="intro-section">
+            <h2>Application Review: APP-20260108-XYZ</h2>
+            <p>Priority Review • Submitted 10 mins ago • Source: Web Portal</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Left Column: Risk Analysis -->
+            <div class="analysis-section">
+                <!-- AI Decision Widget -->
+                <div class="metric-card reveal delay-100" style="border-left: 5px solid #ffbc00;"> <!-- Review Color -->
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4>AI Recommendation</h4>
+                            <h2 style="color: #f57f17; font-size: 2rem; margin: 0.5rem 0;">REVIEW REQUIRED</h2>
+                            <p class="text-small">Risk Score (PD): <strong>28.4%</strong></p>
+                        </div>
+                        <div style="text-align: right;">
+                            <h4 style="color: #666;">Confidence</h4>
+                            <h3 style="color: var(--primary-color);">85%</h3>
+                            <div class="confidence-band" style="width: 120px;">
+                                <div class="confidence-level"></div>
+                            </div>
+                            <p class="text-small">Calibrated (Isotonic)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Drivers -->
+                <div class="metric-card reveal delay-200">
+                    <h3>Key Risk Drivers (LIME/SHAP)</h3>
+                    <div class="risk-factor-item negative">
+                        <span>High Credit Utilization</span>
+                        <span>-15 pts</span>
+                    </div>
+                    <div class="risk-factor-item negative">
+                        <span>Recent Inquiries (Last 6m)</span>
+                        <span>-10 pts</span>
+                    </div>
+                    <div class="risk-factor-item positive">
+                        <span>Stable Employment History (5y)</span>
+                        <span>+20 pts</span>
+                    </div>
+                    <div class="risk-factor-item positive">
+                        <span>Verified Income Match</span>
+                        <span>+15 pts</span>
+                    </div>
+                </div>
+
+                <!-- Counterfactuals -->
+                <div class="metric-card">
+                    <h3>Counterfactual Analysis</h3>
+                    <p><em>"What specific changes would change the decision to APPROVE?"</em></p>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.2rem; color: #555;">
+                        <li>Reduce total debt by <strong>$5,000</strong>.</li>
+                        <li>Reduce credit utilization from 45% to <strong>30%</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: Applicant Details & Actions -->
+            <div class="details-section">
+                <div class="metric-card reveal delay-300">
+                    <h3>Applicant Summary</h3>
+                    <p><strong>Name:</strong> John Doe</p>
+                    <p><strong>Age:</strong> 34</p>
+                    <p><strong>Credit Score:</strong> 640</p>
+                    <p><strong>Annual Income:</strong> $65,000</p>
+                    <p><strong>DTI Ratio:</strong> 42%</p>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Document Validation</h3>
+                    <div class="risk-factor-item">
+                        <span>Identity (PAN/Aadhaar)</span>
+                        <span style="color: green;">Verified &#10004;</span>
+                    </div>
+                    <div class="risk-factor-item">
+                        <span>Bank Statements</span>
+                        <span style="color: green;">Verified &#10004;</span>
+                    </div>
+                    <div class="risk-factor-item">
+                        <span>Tax Returns (ITR)</span>
+                        <span style="color: orange;">Missing</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <h3>Decision Action</h3>
+                    <p class="text-small" style="margin-bottom: 1rem;">All overrides are logged in the immutable audit
+                        trail.</p>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <button class="btn-primary"
+                            style="background-color: #388e3c; border: none; width: 100%;">Approve Application</button>
+                        <button class="btn-primary"
+                            style="background-color: #f57f17; border: none; width: 100%;">Request More Info</button>
+                        <button class="btn-primary"
+                            style="background-color: #d32f2f; border: none; width: 100%;">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Credit AI Model. Authorized Personnel Only.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

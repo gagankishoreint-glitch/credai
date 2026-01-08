@@ -1,0 +1,79 @@
+/* Dashboard Dark Theme */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+/* Metric Card Override (already inherits base style but needs specific resets if any) */
+.metric-card {
+    margin-bottom: 1.5rem;
+    /* Background and border handled by styles.css .metric-card now */
+}
+
+/* Confidence Band */
+.confidence-band {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.confidence-level {
+    height: 100%;
+    background: var(--primary-gradient);
+    width: 85%;
+    /* Mock value */
+}
+
+/* Risk Factors */
+.risk-factor-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--glass-border);
+    color: var(--text-muted);
+}
+
+.risk-factor-item.negative {
+    color: #f87171;
+    /* lighter red for dark mode */
+}
+
+.risk-factor-item.positive {
+    color: #34d399;
+    /* lighter green for dark mode */
+}
+
+/* Text Overrides */
+h3,
+h4 {
+    color: white;
+    margin-top: 0;
+}
+
+p {
+    color: var(--text-muted);
+}
+
+/* Review Banner logic handled by inline styles or classes? 
+   Dashboard.html had inline styles for colors. We might need to override them or just accept them. 
+   Let's add classes to support the dashboard html structure */
+
+.text-small {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.action-bar {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

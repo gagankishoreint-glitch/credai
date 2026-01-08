@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Underwriting - CredAi</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="landing-nav">
+        <a href="index.html" class="brand-logo">CredAi</a>
+        <ul class="nav-links">
+            <li><a href="assessment.html">Assessment</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="capabilities.html" class="active">Capabilities</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="index.html" class="btn-signin">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="container main-content" style="padding-top: 4rem;">
+        <div class="intro-section reveal">
+            <h1 style="font-family: var(--font-heading); font-size: 3.5rem; font-weight: 500; margin-bottom: 1rem;">AI
+                Underwriting</h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto;">
+                What It Does and How It Works. How machine learning is replacing rule-based systems in credit decisions.
+            </p>
+        </div>
+
+        <div class="reveal delay-100" style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: #334155;">
+
+            <p style="margin-bottom: 2rem;">
+                CredAi uses machine learning to evaluate loan applications. Instead of relying on a limited, defined set
+                of rules, these systems learn patterns from historical lending data. They analyze more variables, find
+                nonlinear relationships, and often make better predictions than traditional scorecards.
+            </p>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                How AI Underwriting Differs from Traditional Scoring</h3>
+            <p>Traditional credit scoring uses logistic regression models with a handful of variables. FICOTM scores,
+                for example, are based on five categories: payment history, amounts owed, length of credit history, new
+                credit, and credit mix. These categories combine into a single number between 300 and 850.</p>
+            <p>This approach works reasonably well. It's been the industry standard for decades. But it has limitations.
+            </p>
+            <p>Logistic regression assumes linear relationships. It can't easily capture interactions between variables
+                or threshold effects. It uses only the variables humans chose to include. And it requires a human
+                analyst to identify and encode any nonlinear patterns.</p>
+            <p>Machine learning models work differently. Given enough historical data, they find patterns automatically.
+                A gradient boosting model might discover that borrowers who opened three or more credit cards in the
+                past six months while also increasing their credit utilization above 80% default at unusually high
+                rates. No human programmed that rule. The algorithm found it.</p>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                What Machine Learning Adds</h3>
+            <p>Machine learning brings three capabilities traditional scoring lacks.</p>
+            <ul style="list-style-position: inside; margin-left: 1rem;">
+                <li><strong>First, it processes more variables.</strong> Traditional scorecards might use 15-20 factors.
+                    Machine learning models can analyze hundreds. More data points mean more information about each
+                    borrower.</li>
+                <li style="margin-top: 0.5rem;"><strong>Second, it finds nonlinear relationships.</strong> The
+                    connection between debt-to-income ratio and default risk isn't a straight line. Default probability
+                    might be flat below 35% DTI, then increase sharply above 40%. Machine learning models capture these
+                    threshold effects automatically.</li>
+                <li style="margin-top: 0.5rem;"><strong>Third, it discovers interactions.</strong> Variables that seem
+                    unimportant individually might be highly predictive in combination. High credit utilization plus
+                    recent inquiries plus short credit history might signal risk that none of those factors would
+                    indicate alone. Machine learning finds these combinations without being told to look for them.</li>
+            </ul>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                Performance in Practice</h3>
+            <p>CredAi began working with an online installment lender whose first payment default rate was 32.8%.
+                Overall defaults exceeded 60%. By implementing a machine learning model as their sole underwriting
+                methodology, the default rate for the first three payments dropped to 8.5%.</p>
+            <p>In a study of the Korean credit market, CredAi compared a highly efficient logistic regression model
+                against a gradient boosting approach. The logistic regression, already well-tuned with carefully
+                selected variables, achieved an AUC of 0.906. The machine learning model achieved 0.958.</p>
+            <p>These aren't outlier results. Machine learning consistently outperforms traditional scoring when trained
+                on sufficient historical data. The gains come from capturing patterns that linear models miss.</p>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                The Explainability Requirement</h3>
+            <p>Regulators require lenders to explain credit decisions. When an application is declined, the borrower has
+                a right to know why. This creates a challenge for AI underwriting.</p>
+            <p>Some machine learning models are difficult to interpret. A neural network with multiple hidden layers
+                produces accurate predictions but can't easily articulate which factors drove a specific decision. These
+                "black box" models create compliance problems.</p>
+            <p>Explainable AI addresses this. Techniques like SHAP (SHapley Additive exPlanations) decompose predictions
+                into contributions from individual variables. For any given application, the system can report: credit
+                utilization contributed +0.08 to predicted default probability, recent inquiries contributed +0.05,
+                length of credit history contributed -0.03.</p>
+            <p>CredAi's models maintain full explainability. Every decision includes documentation of which factors
+                influenced the outcome. This satisfies regulatory requirements while preserving the predictive power of
+                nonlinear algorithms.</p>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                Fair Lending Compliance</h3>
+            <p>Fair lending laws prohibit discrimination based on protected characteristics. Race, gender, national
+                origin, religion, and similar factors cannot influence credit decisions.</p>
+            <p>Machine learning creates subtle compliance risks. A model might not explicitly use race as a variable,
+                but if it uses zip code, and zip codes correlate with race due to historical housing segregation, the
+                model could produce discriminatory outcomes indirectly.</p>
+            <p>Disparate impact testing checks for this. The analysis compares approval rates and other outcomes across
+                demographic groups. If protected groups receive systematically different treatment after controlling for
+                legitimate credit factors, the model may have compliance problems.</p>
+            <p>CredAi provides disparate impact analysis tools. Their models are designed to avoid using data that
+                proxies for protected classes. The platform generates reports showing whether outcomes differ across
+                demographic groups, allowing lenders to identify and address potential bias before deployment.</p>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                Data Sources</h3>
+            <p>Credit bureau data provides the foundation for most AI underwriting. Payment histories, existing debts,
+                credit inquiries, account ages, and utilization patterns all contribute to default prediction.</p>
+            <p>Alternative data expands what models can evaluate. Bank transaction records show actual cash flows.
+                Utility and rent payment histories reveal payment behavior not captured by credit bureaus. Employment
+                verification confirms income stability.</p>
+            <p>These alternative sources help with thin-file borrowers who lack extensive credit histories. Traditional
+                scoring struggles with these applicants because the data simply isn't there. AI underwriting can
+                incorporate non-traditional signals to assess creditworthiness.</p>
+            <p>CredAi has successfully modeled credit risk for populations with limited or no credit bureau data,
+                including unbanked borrowers in rural Mexico and less developed provinces of the Philippines. The
+                nonlinear approach works even when traditional data is sparse.</p>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                Speed and Automation</h3>
+            <p>Traditional underwriting often requires human review. An underwriter examines the application, pulls
+                credit reports, verifies income, and makes a judgment call. This takes time and costs money.</p>
+            <p>AI underwriting automates routine decisions. The model evaluates the application, checks it against
+                lending criteria, and returns a decision in milliseconds. A UK auto lender working with CredAi reduced
+                decision time from 2-3 days to 2-3 milliseconds while maintaining prediction accuracy above 98%.</p>
+            <p>Speed matters for customer acquisition. Borrowers shopping for loans often accept the first approval they
+                receive. A multi-day delay means lost business to faster competitors.</p>
+            <p>Automation also reduces costs. Staff that previously reviewed routine applications can focus on
+                exceptions that genuinely require human judgment. Volume scales without proportional headcount
+                increases.</p>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                When AI Underwriting Makes Sense</h3>
+            <p>AI underwriting delivers the most value when:</p>
+            <ul style="list-style-position: inside; margin-left: 1rem;">
+                <li><strong>Volume is high.</strong> The fixed costs of model development spread across many decisions.
+                    A lender processing thousands of applications monthly gets more leverage than one processing dozens.
+                </li>
+                <li style="margin-top: 0.5rem;"><strong>Historical data exists.</strong> Machine learning requires
+                    examples to learn from. Lenders with years of performance data can train accurate models. New
+                    lenders without track records may need to start with industry-standard approaches.</li>
+                <li style="margin-top: 0.5rem;"><strong>Traditional scoring leaves room to improve.</strong> If current
+                    methods already achieve excellent separation between good and bad borrowers, machine learning may
+                    add little. The biggest gains come when existing models underperform.</li>
+                <li style="margin-top: 0.5rem;"><strong>Speed matters competitively.</strong> Markets where response
+                    time influences customer choice benefit most from automation. Consumer lending and auto financing
+                    fit this profile.</li>
+            </ul>
+
+            <h3
+                style="font-family: var(--font-heading); font-size: 2rem; margin-top: 3rem; margin-bottom: 1rem; color: var(--text-main);">
+                Implementation Considerations</h3>
+            <p>Deploying AI underwriting requires clean historical data. The model needs application records linked to
+                loan outcomes. Incomplete data, inconsistent definitions, or missing variables limit what the model can
+                learn.</p>
+            <p>Integration with existing systems requires planning. The AI model must connect to your loan origination
+                platform, pull data from credit bureaus and verification services, and return decisions in a format
+                downstream systems can process.</p>
+            <p>Ongoing monitoring ensures the model stays accurate. Borrower behavior changes over time. Economic
+                conditions shift. Regular validation checks whether predictions still match actual outcomes.</p>
+            <p>CredAi handles model development and maintenance. Clients provide anonymized loan and application data.
+                CredAi builds a custom model calibrated to that specific portfolio and lending environment. The 30-day
+                free trial lets lenders test performance before committing.</p>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 CredAi Model.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
