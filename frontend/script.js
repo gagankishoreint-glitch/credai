@@ -13,23 +13,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const navSignOut = document.getElementById('nav-signout');
 
         if (token) {
-            // Logged In
+            // Logged In - Show Dashboard & Sign Out, Hide Sign In
             if (navDashboard) navDashboard.classList.remove('hidden');
             if (navSignIn) navSignIn.classList.add('hidden');
             if (navSignOut) {
                 navSignOut.classList.remove('hidden');
-                navSignOut.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    localStorage.removeItem('auth_token');
-                    localStorage.removeItem('user_role');
-                    window.location.href = 'index.html';
-                });
+                navSignOut.style.display = 'inline-block'; // Force visibility
+                // Attach logout handler (only once)
+                if (!navSignOut.hasAttribute('data-listener')) {
+                    navSignOut.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        localStorage.removeItem('auth_token');
+                        localStorage.removeItem('user_role');
+                        window.location.href = 'index.html';
+                    });
+                    navSignOut.setAttribute('data-listener', 'true');
+                }
             }
         } else {
-            // Guest
+            // Guest - Hide Dashboard & Sign Out, Show Sign In
             if (navDashboard) navDashboard.classList.add('hidden');
             if (navSignIn) navSignIn.classList.remove('hidden');
-            if (navSignOut) navSignOut.classList.add('hidden');
+            if (navSignOut) {
+                navSignOut.classList.add('hidden');
+                navSignOut.style.display = 'none';
+            }
         }
     }
 

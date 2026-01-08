@@ -357,7 +357,26 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+/* Auth Buttons (ensure consistent sizing) */
+#nav-signout,
+#nav-signin {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm, 8px);
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+#nav-signout {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-secondary);
+}
+
+#nav-signout:hover {
+    background: var(--bg-subtle);
 }
 
 .decision-banner h2 {
