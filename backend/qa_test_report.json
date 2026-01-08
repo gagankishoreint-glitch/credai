@@ -1,0 +1,287 @@
+{
+  "total": 5,
+  "passed": true,
+  "failed": 4,
+  "success_rate": 20.0,
+  "results": [
+    {
+      "test": "Safe Applicant",
+      "checks": {
+        "Status Code": false,
+        "PD < 0.20": false,
+        "Tier = Approve": false,
+        "Confidence > 0.70": false,
+        "Has Factors": false,
+        "Has Model Version": false,
+        "Has Decision ID": false
+      },
+      "passed": false,
+      "result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "applicant_id"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 42,
+              "annual_income": 95000,
+              "credit_score": 750,
+              "total_debt": 15000,
+              "business_type": "IT",
+              "employment_years": 8,
+              "recent_inquiries": 1,
+              "delinquency_count": 0,
+              "payment_history_months": 60,
+              "credit_utilization": 0.15
+            }
+          },
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "monthly_debt_obligations"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 42,
+              "annual_income": 95000,
+              "credit_score": 750,
+              "total_debt": 15000,
+              "business_type": "IT",
+              "employment_years": 8,
+              "recent_inquiries": 1,
+              "delinquency_count": 0,
+              "payment_history_months": 60,
+              "credit_utilization": 0.15
+            }
+          }
+        ]
+      }
+    },
+    {
+      "test": "Borderline Applicant",
+      "checks": {
+        "Status Code": false,
+        "PD in Gray Zone (0.20-0.45)": false,
+        "Tier = Review": false,
+        "Confidence > 0.40": false,
+        "Has Explanation": false,
+        "Reason Flag Present": false,
+        "Has Counterfactuals": false
+      },
+      "passed": false,
+      "result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "applicant_id"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 35,
+              "annual_income": 75000,
+              "credit_score": 680,
+              "total_debt": 35000,
+              "business_type": "Construction",
+              "employment_years": 5,
+              "recent_inquiries": 2,
+              "delinquency_count": 1,
+              "payment_history_months": 36,
+              "credit_utilization": 0.47
+            }
+          },
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "monthly_debt_obligations"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 35,
+              "annual_income": 75000,
+              "credit_score": 680,
+              "total_debt": 35000,
+              "business_type": "Construction",
+              "employment_years": 5,
+              "recent_inquiries": 2,
+              "delinquency_count": 1,
+              "payment_history_months": 36,
+              "credit_utilization": 0.47
+            }
+          }
+        ]
+      }
+    },
+    {
+      "test": "High-Risk Applicant",
+      "checks": {
+        "Status Code": false,
+        "PD > 0.45": false,
+        "Tier = Reject": false,
+        "Confidence > 0.70": false,
+        "Has Negative Factors": false,
+        "Reason Code Present": false
+      },
+      "passed": false,
+      "result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "applicant_id"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 28,
+              "annual_income": 35000,
+              "credit_score": 520,
+              "total_debt": 45000,
+              "business_type": "Retail",
+              "employment_years": 1,
+              "recent_inquiries": 5,
+              "delinquency_count": 4,
+              "payment_history_months": 12,
+              "credit_utilization": 0.95
+            }
+          },
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "monthly_debt_obligations"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 28,
+              "annual_income": 35000,
+              "credit_score": 520,
+              "total_debt": 45000,
+              "business_type": "Retail",
+              "employment_years": 1,
+              "recent_inquiries": 5,
+              "delinquency_count": 4,
+              "payment_history_months": 12,
+              "credit_utilization": 0.95
+            }
+          }
+        ]
+      }
+    },
+    {
+      "test": "Missing Data",
+      "checks": {
+        "Handled Gracefully": true,
+        "Error Message Present": true
+      },
+      "passed": true,
+      "result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "applicant_id"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 35,
+              "annual_income": 75000,
+              "total_debt": 35000,
+              "business_type": "Construction"
+            }
+          },
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "credit_score"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 35,
+              "annual_income": 75000,
+              "total_debt": 35000,
+              "business_type": "Construction"
+            }
+          },
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "monthly_debt_obligations"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 35,
+              "annual_income": 75000,
+              "total_debt": 35000,
+              "business_type": "Construction"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "test": "Edge Case Values",
+      "checks": {
+        "Status Code": false,
+        "PD is Valid (0-1)": false,
+        "Confidence is Valid (0-1)": false,
+        "Tier is Valid": false,
+        "No NaN/Inf Values": true
+      },
+      "passed": false,
+      "result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "applicant_id"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 18,
+              "annual_income": 250000,
+              "credit_score": 850,
+              "total_debt": 0,
+              "business_type": "IT",
+              "employment_years": 0,
+              "recent_inquiries": 0,
+              "delinquency_count": 0,
+              "payment_history_months": 6,
+              "credit_utilization": 0.0
+            }
+          },
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "monthly_debt_obligations"
+            ],
+            "msg": "Field required",
+            "input": {
+              "age": 18,
+              "annual_income": 250000,
+              "credit_score": 850,
+              "total_debt": 0,
+              "business_type": "IT",
+              "employment_years": 0,
+              "recent_inquiries": 0,
+              "delinquency_count": 0,
+              "payment_history_months": 6,
+              "credit_utilization": 0.0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

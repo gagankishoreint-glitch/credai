@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "K:\credit-ai-model\backend\tests\test_main.py", line 61, in <module>
+    test_decision_endpoint()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "K:\credit-ai-model\backend\tests\test_main.py", line 29, in test_decision_endpoint
+    print("\u274c TEST FAILED: Endpoint returned error.")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gagan Kishore\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>
+Loading model from k:/credit-ai-model\model\credit_risk_model.joblib...
+Model loaded successfully.
+Status Code: 404
+Response: {'detail': 'Not Found'}

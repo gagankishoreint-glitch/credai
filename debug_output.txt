@@ -1,0 +1,52 @@
+K:\credit-ai-model\backend\app\schemas\decision.py:4: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  class CreditApplication(BaseModel):
+K:\credit-ai-model\backend\app\db\base.py:3: MovedIn20Warning: The ``declarative_base()`` function is now available as sqlalchemy.orm.declarative_base(). (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  Base = declarative_base()
+K:\credit-ai-model\backend\app\core\security.py:23: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+K:\credit-ai-model\backend\app\api\api_v1\endpoints\decisions.py:63: PydanticDeprecatedSince20: The `dict` method is deprecated; use `model_dump` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+  data = application.dict()
+C:\Users\Gagan Kishore\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\schema.py:3624: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+K:\credit-ai-model\backend\app\services\audit_log.py:15: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  timestamp=datetime.utcnow()
+Traceback (most recent call last):
+  File "K:\credit-ai-model\backend\tests\verify_full_system.py", line 89, in test_e2e_flow
+    review = db.query(ManualReview).filter(ManualReview.decision_id == db_decision.id).first()
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'ManualReview' has no attribute 'decision_id'
+F
+Loading model from k:/credit-ai-model\model\credit_risk_model.joblib...
+Model loaded successfully.
+
+--- STARTING E2E VERIFICATION ---
+[1] Testing Authentication...
+    -> Token received.
+[2] Testing Document Upload...
+    -> Extracted Income: $60000.0
+[3] Testing Decision Engine...
+    -> AI Decision: Approve (Score: 0.185)
+    -> Reason Codes: Solid Approval (Standard)
+[4] Testing Manual Override...
+    -> Override Successful.
+======================================================================
+FAIL: test_e2e_flow (__main__.TestFullSystem.test_e2e_flow)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "K:\credit-ai-model\backend\tests\verify_full_system.py", line 89, in test_e2e_flow
+    review = db.query(ManualReview).filter(ManualReview.decision_id == db_decision.id).first()
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'ManualReview' has no attribute 'decision_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "K:\credit-ai-model\backend\tests\verify_full_system.py", line 98, in test_e2e_flow
+    self.fail("E2E Test Failed")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: E2E Test Failed
+
+----------------------------------------------------------------------
+Ran 1 test in 8.744s
+
+FAILED (failures=1)

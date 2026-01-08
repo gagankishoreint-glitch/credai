@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+pydantic
+joblib
+scikit-learn
+xgboost
+pandas
+numpy
+shap
+sqlalchemy
+alembic
+psycopg2-binary
+pypdf
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]

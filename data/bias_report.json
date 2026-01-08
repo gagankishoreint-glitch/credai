@@ -1,0 +1,18 @@
+{
+  "age": {
+    "reference_group": "30+",
+    "reference_approval_rate": 0.356,
+    "protected_group": "Under 30",
+    "protected_approval_rate": 0.3991,
+    "disparate_impact_ratio": 1.1207,
+    "flagged": false
+  },
+  "marital": {
+    "reference_group": "Married",
+    "reference_approval_rate": 0.3718,
+    "protected_group": "Single",
+    "protected_approval_rate": 0.3509,
+    "disparate_impact_ratio": 0.9435,
+    "flagged": false
+  }
+}

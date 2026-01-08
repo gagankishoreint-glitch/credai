@@ -1,0 +1,2 @@
+Status Code: 200
+Response: {'application_id': 'TEST_USER_001', 'risk_score': 0.05600000000000001, 'tier': 'Approve', 'confidence': 0.7200000000000001, 'reason_flag': 'Solid Approval (Standard)', 'status': 'SUCCESS', 'error_message': None}

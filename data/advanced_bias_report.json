@@ -1,0 +1,125 @@
+{
+  "age": [
+    {
+      "approval_rate": 0.7678,
+      "fpr": 0.0849,
+      "fnr": 0.4549,
+      "count": 1559,
+      "group": "45-60",
+      "disparate_impact": 0.99,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7761,
+      "fpr": 0.0688,
+      "fnr": 0.4361,
+      "count": 1523,
+      "group": "30-45",
+      "disparate_impact": 1.0,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7372,
+      "fpr": 0.1033,
+      "fnr": 0.4244,
+      "count": 921,
+      "group": "Over 60",
+      "disparate_impact": 0.95,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7613,
+      "fpr": 0.0586,
+      "fnr": 0.3988,
+      "count": 997,
+      "group": "Under 30",
+      "disparate_impact": 0.98,
+      "flagged_dir": false
+    }
+  ],
+  "income": [
+    {
+      "approval_rate": 0.7232,
+      "fpr": 0.0916,
+      "fnr": 0.3846,
+      "count": 1250,
+      "group": "Low",
+      "disparate_impact": 0.92,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7744,
+      "fpr": 0.0737,
+      "fnr": 0.4456,
+      "count": 1250,
+      "group": "High",
+      "disparate_impact": 0.98,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7864,
+      "fpr": 0.0704,
+      "fnr": 0.4635,
+      "count": 1250,
+      "group": "Very High",
+      "disparate_impact": 1.0,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7696,
+      "fpr": 0.0774,
+      "fnr": 0.4408,
+      "count": 1250,
+      "group": "Medium",
+      "disparate_impact": 0.98,
+      "flagged_dir": false
+    }
+  ],
+  "employment": [
+    {
+      "approval_rate": 0.8014,
+      "fpr": 0.0691,
+      "fnr": 0.47,
+      "count": 1007,
+      "group": "IT",
+      "disparate_impact": 0.99,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7925,
+      "fpr": 0.0687,
+      "fnr": 0.4393,
+      "count": 993,
+      "group": "Services",
+      "disparate_impact": 0.98,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.7715,
+      "fpr": 0.0768,
+      "fnr": 0.4126,
+      "count": 963,
+      "group": "Manufacturing",
+      "disparate_impact": 0.95,
+      "flagged_dir": false
+    },
+    {
+      "approval_rate": 0.6415,
+      "fpr": 0.1186,
+      "fnr": 0.3799,
+      "count": 1018,
+      "group": "Construction",
+      "disparate_impact": 0.79,
+      "flagged_dir": true
+    },
+    {
+      "approval_rate": 0.8116,
+      "fpr": 0.0678,
+      "fnr": 0.4965,
+      "count": 1019,
+      "group": "Trading",
+      "disparate_impact": 1.0,
+      "flagged_dir": false
+    }
+  ]
+}

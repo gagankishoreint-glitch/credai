@@ -1,0 +1,29 @@
+Loading model from k:/credit-ai-model\model\credit_risk_model.joblib...
+Model loaded successfully.
+================================================================================
+MODEL STABILITY AND SANITY AUDIT
+================================================================================
+
+Loading model...
+
+================================================================================
+TEST 1: MONOTONICITY CHECKS
+================================================================================
+
+Baseline PD: 0.3281
+
+1a. Credit Utilization Test (expect PD to increase)
+------------------------------------------------------------
+Traceback (most recent call last):
+  File "K:\credit-ai-model\backend\tests\model_stability_audit.py", line 456, in <module>
+    results = run_audit()
+  File "K:\credit-ai-model\backend\tests\model_stability_audit.py", line 445, in run_audit
+    auditor.test_monotonicity()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "K:\credit-ai-model\backend\tests\model_stability_audit.py", line 68, in test_monotonicity
+    print(f"  Utilization: {util:.0%} \u2192 PD: {pd:.4f}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gagan Kishore\AppData\Local\Python\pythoncore-3.14-64\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 19: character maps to <undefined>

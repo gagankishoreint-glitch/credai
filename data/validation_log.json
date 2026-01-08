@@ -1,0 +1,28 @@
+{
+  "total_records": 5000,
+  "missing_values": {
+    "applicant_id": 0,
+    "age": 0,
+    "education_level": 0,
+    "marital_status": 0,
+    "housing_type": 0,
+    "cnt_children": 0,
+    "employment_years": 0,
+    "annual_income": 0,
+    "assets_total": 0,
+    "total_debt": 0,
+    "monthly_debt_obligations": 0,
+    "business_type": 0,
+    "credit_score": 0,
+    "total_credit_lines": 0,
+    "utilization_rate": 0,
+    "days_since_last_delinquency": 0,
+    "avg_trans_amount_3m": 0,
+    "trans_fail_count": 0,
+    "default_flag": 0
+  },
+  "negative_income": 0,
+  "debt_exceeds_assets": 93,
+  "possible_duplicates": 0,
+  "default_rate": 0.2902
+}
