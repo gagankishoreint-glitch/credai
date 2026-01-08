@@ -1,0 +1,9 @@
+{
+    "metric": "PSI",
+    "value": 0.006966709762335865,
+    "status": "STABLE",
+    "thresholds": {
+        "warning": 0.1,
+        "critical": 0.2
+    }
+}

@@ -2,7 +2,18 @@ from fastapi import FastAPI, APIRouter
 from app.api.api_v1.endpoints import decisions, documents, auth, test_endpoint
 from app.core.config import settings
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json")
+
+# Set all CORS enabled origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # For development, allow all. Improve for prod.
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Include Routers
 api_router = APIRouter()

@@ -20,9 +20,14 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     """Upgrade schema."""
+    conn = op.get_bind()
+    inspector = sa.inspect(conn)
+    columns = [c['name'] for c in inspector.get_columns('manual_reviews')]
+    
     with op.batch_alter_table('manual_reviews', schema=None) as batch_op:
-        batch_op.add_column(sa.Column('decision_id', sa.String(), nullable=True))
-        batch_op.create_foreign_key('fk_manual_reviews_decisions', 'decisions', ['decision_id'], ['id'])
+        if 'decision_id' not in columns:
+            batch_op.add_column(sa.Column('decision_id', sa.String(), nullable=True))
+            batch_op.create_foreign_key('fk_manual_reviews_decisions', 'decisions', ['decision_id'], ['id'])
 
 
 def downgrade() -> None:

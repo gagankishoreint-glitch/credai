@@ -126,15 +126,15 @@ def predict_credit_risk(application: CreditApplication):
             
             # Enhanced Explainability
             try:
-                from app.services.explainability_enhancer import explainability_enhancer
-                enhanced_response = explainability_enhancer.create_enhanced_response(
-                    pd=prob_default,
-                    confidence=model_conf,
-                    model_version=model_ver,
-                    data=data,
-                    application_id=application.applicant_id,
-                    decision_id=decision_id
-                )
+                # Use existing xai_service
+                import pandas as pd
+                df_input = pd.DataFrame([data])
+                
+                # Enrich with derived features for XAI if needed (simple heuristic)
+                if "utilization_rate" not in df_input.columns:
+                     df_input["utilization_rate"] = data.get("credit_utilization", 0)
+                
+                explanation = xai_service.generate_explanation(df_input, None)
                 
                 # Log success
                 try:
@@ -148,16 +148,16 @@ def predict_credit_risk(application: CreditApplication):
                 
                 # Return enhanced response
                 return DecisionResponse(
-                    application_id=enhanced_response["application_id"],
-                    decision_id=enhanced_response["decision_id"],
-                    tier=enhanced_response["decision"],
-                    risk_score=enhanced_response["default_probability_raw"],
-                    confidence_score=enhanced_response["certainty_raw"],
-                    reason_flag=enhanced_response["explanation"],
-                    factors=enhanced_response["positive_factors"] + enhanced_response["negative_factors"],
-                    counterfactuals=[rec["action"] for rec in enhanced_response["recommendations"]],
-                    model_version=enhanced_response["model_version"],
-                    status=enhanced_response["status"],
+                    application_id=application.applicant_id,
+                    decision_id=decision_id,
+                    tier=decision_tier,
+                    risk_score=prob_default,
+                    confidence_score=confidence,
+                    reason_flag=flag,
+                    factors=explanation.get("top_contributors", []),
+                    counterfactuals=[{"action": cf} for cf in explanation.get("counterfactuals", [])],
+                    model_version=model_ver,
+                    status="SUCCESS",
                     error_message=None
                 )
                 
