@@ -124,6 +124,31 @@ export default function ApplicantDashboard() {
             setStep(3);
         } catch (error) {
             console.error('Application failed:', error);
+
+            // DEMO MODE FALLBACK
+            if (user?.token?.startsWith('mock-demo-token')) {
+                console.warn('Using MOCK decision response.');
+
+                // Simulate processing delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                const mockResponse = {
+                    tier: 'Approve',
+                    risk_score: 85,
+                    confidence_score: 0.92,
+                    factors: [
+                        { name: 'Credit Score', impact: 'Positive', value: applicationData.credit_score },
+                        { name: 'Debt-to-Income', impact: 'Positive', value: 'Low' },
+                        { name: 'Asset Reserve', impact: 'Positive', value: 'High' }
+                    ],
+                    counterfactuals: []
+                };
+
+                setDecision(mockResponse);
+                setStep(3);
+                return;
+            }
+
             alert('Application submission failed. Please try again.');
         } finally {
             setLoading(false);
