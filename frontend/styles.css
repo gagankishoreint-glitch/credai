@@ -146,8 +146,7 @@ body {
 /* Navbar (Unified Global) */
 .landing-nav {
     display: flex;
-    justify-content: center;
-    /* Center the navbar */
+    justify-content: space-between;
     align-items: center;
     padding: 1rem 4%;
     position: fixed;
@@ -156,27 +155,12 @@ body {
     right: 0;
     z-index: 9999;
     background-color: rgba(255, 255, 255, 0.9);
-    /* Light Glass */
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
     height: 70px;
     box-sizing: border-box;
 }
 
-/* Navbar Inner Container (Center all content) */
-.landing-nav>* {
-    margin: 0 auto;
-}
-
-.landing-nav .brand-logo {
-    position: absolute;
-    left: 4%;
-}
-
-.landing-nav .nav-actions {
-    position: absolute;
-    right: 4%;
-}
 
 /* Adjust main content to prevent overlap */
 body {
