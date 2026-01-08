@@ -1,5 +1,4 @@
 from typing import Tuple, Optional
-import pandas as pd
 
 class PolicyEngine:
     def check_safety(self, input_data: dict) -> Tuple[bool, Optional[str]]:
@@ -20,19 +19,15 @@ class PolicyEngine:
         if reported > 0:
             gap = (reported - verified) / reported
             if gap > 0.20:
-                # Instead of immediate hard fail, this might be a reason for High Risk Review
-                # But for safety check, let's keep it strictly if it looks fraudulent
                 pass 
 
-        # 3. KNOCKOUT RULES (Prompt 4)
+        # 3. KNOCKOUT RULES
         credit_score = input_data.get("credit_score", 0)
         if credit_score < 600:
             return False, f"Knockout: Credit Score {credit_score} is below minimum threshold (600)."
             
-        # DTI Calculation (if available)
+        # DTI Calculation
         debt = input_data.get("total_debt", 0)
-        # Assuming total_debt might be monthly obligations * 12 or similar if not explicitly monthly? 
-        # Actually input usually has 'monthly_debt_obligations'.
         monthly_debt = input_data.get("monthly_debt_obligations")
         if monthly_debt is None:
              monthly_debt = debt / 12 if debt > 0 else 0
@@ -45,55 +40,72 @@ class PolicyEngine:
 
         return True, None
 
-    def apply_decision_logic(self, probability: float, business_type: str = "Other") -> Tuple[str, float, str]:
+    def apply_decision_logic(self, probability: float, confidence: float, business_type: str = "Other") -> Tuple[str, float, str]:
         """
-        Returns: (Tier, Confidence, Flag/Reason)
-        """
-        # Base Thresholds
-        low, high = 0.20, 0.45
-        policy_note = "Standard"
+        Robust PD-based decision logic with confidence gating.
         
-        # FAIRNESS MITIGATION
+        Returns: (Tier, Confidence, Reason)
+        
+        Key Principles:
+        - Moderate risk (0.25-0.45) is PROTECTED from auto-reject
+        - Confidence gates quality: low confidence -> human review
+        - Asymmetric thresholds: higher bar for rejection
+        """
+        
+        # Adjust thresholds for business type (fairness mitigation)
         if business_type == "Construction":
-            low, high = 0.30, 0.60
-            policy_note = "Construction Mitigation"
-            
-        tier = "Review"
-        flag = "None"
-        confidence = 0.0
-        
-        if probability < low:
-            tier = "Approve"
-            # High confidence near 0, Low confidence near Threshold
-            confidence = (low - probability) / low
-            flag = f"Solid Approval ({policy_note})"
-            
-        elif probability > high:
-            tier = "Reject"
-            # High confidence near 1, Low confidence near Threshold
-            confidence = (probability - high) / (1.0 - high) if high < 1.0 else 1.0
-            flag = f"Solid Rejection ({policy_note})"
-            
+            # Construction mitigation: shift bands upward by 0.10
+            low_threshold = 0.20
+            moderate_threshold = 0.35
+            high_threshold = 0.55
+            very_high_threshold = 0.75
+            policy_note = "Construction Mitigation Applied"
         else:
-            tier = "Review"
-            # Gray Zone Logic
-            # Midpoint is "Least Confident" (0.0), Edges are "More Confident" (1.0)?
-            # OR: User wants "Calculated Confidence Band". typically, inside gray zone confidence is LOW.
-            # Let's define Confidence as distance from CENTER of gray zone? (No, that implies usually Review is target)
-            # Center of Gray Zone = Most Ambiguous.
-            mid = (low + high) / 2
-            range_span = (high - low) / 2
-            
-            # 1.0 = At the edge (Clear Review), 0.0 = Dead Center (Ambiguous)
-            dist_from_center = abs(probability - mid)
-            confidence = dist_from_center / range_span if range_span > 0 else 0.0
-            
-            if confidence < 0.50:
-                flag = f"ESCALATE_TO_SENIOR: Deep Gray Zone ({policy_note})"
+            low_threshold = 0.10
+            moderate_threshold = 0.25
+            high_threshold = 0.45
+            very_high_threshold = 0.65
+            policy_note = "Standard Policy"
+        
+        # BAND 1: Very Low Risk (PD < 0.10)
+        if probability < low_threshold:
+            if confidence >= 0.70:
+                return "Approve", confidence, f"Very Low Risk - Strong Confidence ({policy_note})"
             else:
-                flag = f"Gray Zone: Review Required ({policy_note})"
-            
-        return tier, min(max(confidence, 0.0), 1.0), flag
+                return "Review", confidence, f"Very Low Risk - Confidence Below Threshold ({policy_note})"
+        
+        # BAND 2: Low Risk (0.10 ≤ PD < 0.25)
+        elif probability < moderate_threshold:
+            if confidence >= 0.60:
+                return "Approve", confidence, f"Low Risk - Acceptable Confidence ({policy_note})"
+            else:
+                return "Review", confidence, f"Low Risk - Manual Verification Required ({policy_note})"
+        
+        # BAND 3: Moderate Risk (0.25 ≤ PD < 0.45) - PROTECTED ZONE
+        elif probability < high_threshold:
+            # CRITICAL: Never auto-reject moderate risk
+            # Calculate review priority based on how close to high-risk boundary
+            distance_to_high = (high_threshold - probability) / (high_threshold - moderate_threshold)
+            if distance_to_high < 0.3:
+                priority = "HIGH"
+            else:
+                priority = "MEDIUM"
+            return "Review", confidence, f"Moderate Risk - Mandatory Human Assessment (Priority: {priority}) ({policy_note})"
+        
+        # BAND 4: High Risk (0.45 ≤ PD < 0.65)
+        elif probability < very_high_threshold:
+            if confidence >= 0.75:
+                # Only reject if VERY confident
+                return "Reject", confidence, f"High Risk - Strong Model Confidence ({policy_note})"
+            else:
+                return "Review", confidence, f"High Risk - Borderline Case Needs Review ({policy_note})"
+        
+        # BAND 5: Very High Risk (PD ≥ 0.65)
+        else:
+            if confidence >= 0.70:
+                return "Reject", confidence, f"Very High Risk - Clear Rejection Signal ({policy_note})"
+            else:
+                return "Review", confidence, f"Very High Risk - Confidence Insufficient for Auto-Reject ({policy_note})"
 
     def calculate_pricing(self, tier: str, credit_score: int, total_debt: float, income: float) -> dict:
         """
