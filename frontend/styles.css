@@ -146,7 +146,8 @@ body {
 /* Navbar (Unified Global) */
 .landing-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* Center the navbar */
     align-items: center;
     padding: 1rem 4%;
     position: fixed;
@@ -160,6 +161,21 @@ body {
     border-bottom: 1px solid var(--glass-border);
     height: 70px;
     box-sizing: border-box;
+}
+
+/* Navbar Inner Container (Center all content) */
+.landing-nav>* {
+    margin: 0 auto;
+}
+
+.landing-nav .brand-logo {
+    position: absolute;
+    left: 4%;
+}
+
+.landing-nav .nav-actions {
+    position: absolute;
+    right: 4%;
 }
 
 /* Adjust main content to prevent overlap */
@@ -223,10 +239,24 @@ body {
     font-weight: 600;
     font-size: 0.9rem;
     transition: transform 0.2s;
+    border: none;
 }
 
 .btn-start:hover {
     transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* Secondary Button (No Underline) */
+.btn-secondary {
+    text-decoration: none !important;
+    color: var(--text-primary);
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    text-decoration: none !important;
+    background: var(--bg-subtle);
 }
 
 @media (max-width: 768px) {

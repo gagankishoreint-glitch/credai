@@ -103,35 +103,43 @@
             </div>
         </section>
 
-        <!-- Section 4: Workflow Steps -->
+        <!-- Section 4: How It Works (Technical Pipeline) -->
         <section class="workflow-section reveal"
             style="padding: var(--space-xl) 0; border-top: 1px solid var(--border-light);">
             <div class="container" style="text-align: center;">
-                <h2 style="margin-bottom: 4rem;">The Modern Credit Stack</h2>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
-                    <!-- Step 1 -->
+                <h2 style="margin-bottom: 4rem;">How it Works</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                    <!-- Step 1: Data Preprocessing -->
                     <div class="feature-card"
                         style="padding: 2rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); text-align: left;">
-                        <span style="font-family: monospace; color: var(--text-tertiary);">01</span>
-                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Ingest</h3>
-                        <p style="color: var(--text-secondary);">Connect structured data from banking APIs or standard
-                            loan tapes.</p>
+                        <span style="font-family: monospace; color: var(--accent-success); font-weight: 600;">01</span>
+                        <h3 style="font-size: 1.25rem; margin: 1rem 0;">Data Preprocessing</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Cleaning missing values,
+                            normalization, and automated feature engineering from raw application data.</p>
                     </div>
-                    <!-- Step 2 -->
+                    <!-- Step 2: Document Analysis -->
                     <div class="feature-card"
                         style="padding: 2rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); text-align: left;">
-                        <span style="font-family: monospace; color: var(--text-tertiary);">02</span>
-                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Analysis</h3>
-                        <p style="color: var(--text-secondary);">Ensemble models evaluate solvency, stability, and fraud
-                            risk in parallel.</p>
+                        <span style="font-family: monospace; color: var(--accent-warning); font-weight: 600;">02</span>
+                        <h3 style="font-size: 1.25rem; margin: 1rem 0;">Document Analysis</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">OCR for PDF extraction and
+                            NLP-based parsing of key financial indicators from bank statements.</p>
                     </div>
-                    <!-- Step 3 -->
+                    <!-- Step 3: Model Development -->
                     <div class="feature-card"
                         style="padding: 2rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); text-align: left;">
-                        <span style="font-family: monospace; color: var(--text-tertiary);">03</span>
-                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Pricing</h3>
-                        <p style="color: var(--text-secondary);">Dynamic interest rate and term suggestions based on
-                            risk tier.</p>
+                        <span style="font-family: monospace; color: var(--primary-color); font-weight: 600;">03</span>
+                        <h3 style="font-size: 1.25rem; margin: 1rem 0;">Model Ensemble</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Logistic Regression, Random Forest,
+                            and XGBoost combined via voting classifier for risk probability prediction.</p>
+                    </div>
+                    <!-- Step 4: Decision Logic -->
+                    <div class="feature-card"
+                        style="padding: 2rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); text-align: left;">
+                        <span style="font-family: monospace; color: var(--text-tertiary); font-weight: 600;">04</span>
+                        <h3 style="font-size: 1.25rem; margin: 1rem 0;">Decision Logic</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Threshold-based approval/rejection
+                            with confidence scores and explainability for underwriters.</p>
                     </div>
                 </div>
             </div>
