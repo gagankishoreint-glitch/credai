@@ -20,7 +20,7 @@ api_router = APIRouter()
 api_router.include_router(auth.router, tags=["auth"])
 api_router.include_router(test_endpoint.router, tags=["test"])
 api_router.include_router(decisions.router, tags=["decisions"])
-api_router.include_router(documents.router, prefix="/documents", tags=["documents"])
+api_router.include_router(documents.router, tags=["documents"])
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
 

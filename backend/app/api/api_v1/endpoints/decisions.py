@@ -103,18 +103,45 @@ def predict_credit_risk(application: CreditApplication):
     # Risk Scoring & Decision
     if passed:
         try:
-            # Model inference
-            inference_result = model_service.predict_probability(data)
+            # Step 1: Feature Fusion (NEW Phase 3)
+            # If document data provided, merge it with form data
+            processed_data = data.copy()
+            fusion_meta = None
+            
+            if application.document_data:
+                from app.services.feature_fusion import feature_fusion
+                processed_data, fusion_meta = feature_fusion.fuse_features(data, application.document_data)
+                
+                # Log fusion outcome
+                print(f"Fusion Complete: Trust={fusion_meta['trust_score']:.2f}, Sources={fusion_meta['data_sources']}")
+                
+                # Propagate verified values back to application object for downstream use
+                if "annual_income" in processed_data: application.annual_income = processed_data["annual_income"]
+                if "total_debt" in processed_data: application.total_debt = processed_data["total_debt"]
+            
+            # Step 2: Model Inference (Phase 4)
+            # Use FUSED data for prediction
+            inference_result = model_service.predict_probability(processed_data)
             prob_default = inference_result.get("calibrated_pd", 0.5)
             model_conf = inference_result.get("confidence_score", 0.5)
             model_ver = inference_result.get("model_version", "ensemble_v1")
             
-            # Policy decision
+            # Step 3: Policy Decision (Phase 5)
             try:
                 decision_tier, confidence, flag = policy_engine.apply_decision_logic(
                     prob_default, 
+                    confidence=model_conf,
                     business_type=application.business_type
                 )
+                
+                # Adjust decision based on Fusion Trust
+                if fusion_meta:
+                    if feature_fusion.should_force_review(fusion_meta):
+                        if decision_tier == "Approve":
+                            decision_tier = "Review"
+                            flag += " | [Fusion Alert] Data Inconsistency Detected"
+                            confidence = min(confidence, 0.65) # Cap confidence
+            
             except Exception as policy_error:
                 print(f"Policy engine error: {policy_error}")
                 if prob_default < 0.20:

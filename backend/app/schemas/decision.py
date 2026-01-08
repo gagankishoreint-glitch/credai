@@ -24,6 +24,9 @@ class CreditApplication(BaseModel):
     payment_history_months: Optional[int] = 0
     credit_utilization: Optional[float] = 0.0
     
+    # Document Fusion Data (Optional)
+    document_data: Optional[dict] = None
+    
     class Config:
         extra = "allow"  # Allow extra fields for Model
 
