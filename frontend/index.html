@@ -4,190 +4,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CredAI - Smart Credit Evaluation</title>
+    <title>CredAI - Intelligent Credit Decisioning</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="landing.css">
-    <!-- Google Fonts: Inter (Body) & Playfair Display (Headings) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap"
         rel="stylesheet">
 </head>
 
 <body class="landing-page">
     <!-- Navbar -->
-    <nav class="landing-nav">
+    <nav class="landing-nav" style="backdrop-filter: blur(var(--blur-strength)); background: rgba(255,255,255,0.85);">
         <a href="index.html" class="brand-logo">CredAi</a>
         <ul class="nav-links">
-            <li><a href="assessment.html">Application Submission</a></li>
-            <li><a href="dashboard.html">Risk Score Visualization</a></li>
-            <li><a href="dashboard.html">Underwriter Dashboard</a></li>
+            <li><a href="assessment.html">Product</a></li>
+            <li><a href="capabilities.html">Technology</a></li>
+            <li><a href="about.html">About</a></li>
+            <!-- Auth Restricted -->
+            <li id="nav-dashboard" class="hidden"><a href="dashboard.html"
+                    style="color: var(--primary-color);">Dashboard</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="login.html" class="btn-signin">Sign In</a>
-            <a href="assessment.html" class="btn-start">Start for Free</a>
+            <a href="login.html" id="nav-signin" class="btn-signin" style="color: var(--text-secondary);">Sign In</a>
+            <a href="#" id="nav-signout" class="btn-signin hidden">Sign Out</a>
+            <a href="assessment.html" class="btn-start" style="border-radius: var(--radius-sm);">Start Demo</a>
         </div>
     </nav>
 
-    <div class="landing-container">
-        <!-- Glow Effect -->
-        <div class="glow-effect"></div>
-
-        <!-- Hero Section -->
-        <header class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title reveal">
-                    <span class="gradient-text">AI-Driven</span> Smart<br>
-                    Credit Evaluation
+    <main class="landing-container">
+        <!-- Section 1: Hero -->
+        <header class="hero-section"
+            style="padding-top: 8rem; min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+            <div class="hero-content" style="max-width: 900px;">
+                <h1 class="hero-title reveal" style="font-size: var(--text-display); margin-bottom: 2rem;">
+                    Credit decisions,<br><span style="color: var(--text-tertiary);">perfected.</span>
                 </h1>
-                <p class="hero-description reveal delay-100">
-                    Automate your lending decisions with 80% accuracy.
-                    Reduce manual underwriting time from days to seconds using advanced machine learning.
+                <p class="hero-description reveal delay-100"
+                    style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;">
+                    The first AI-native underwriting platform that combines regulatory compliance with state-of-the-art
+                    predictive accuracy.
                 </p>
-                <div class="hero-actions reveal delay-200">
-                    <a href="assessment.html" class="btn-action-primary">Start for Free</a>
-                    <a href="capabilities.html" class="btn-action-secondary">How it Works</a>
+                <div class="hero-actions reveal delay-200" style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="assessment.html" class="btn-primary" style="width: auto; padding: 1rem 2.5rem;">Launch
+                        Assessment</a>
+                    <a href="capabilities.html" class="btn-secondary"
+                        style="padding: 1rem 2.5rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-weight: 600;">Explore
+                        Logic</a>
                 </div>
             </div>
         </header>
 
-        <!-- Credit Risk Modeling Section -->
-        <section class="content-section reveal delay-300" style="padding: 4rem 0;">
-            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1.5rem;">Credit Risk
-                    Modeling in the Age of AI</h2>
-                <p style="font-size: 1.1rem; color: #475569; line-height: 1.8; margin-bottom: 2rem;">
-                    Traditional credit risk modeling relies on a limited number of credit attributes and linear
-                    regression techniques which often result in limited predictive power and higher default rates.
-                    <br><br>
-                    Utilizing historical data coupled with underwriter feedback on previous model variance cases, we
-                    have developed a unified AI platform for decisioning and pricing loans across all channels, which
-                    has achieved significant improvement in accuracy.
-                </p>
+        <!-- Section 2: Trust / Stats (Minimalist) -->
+        <section class="stats-section reveal" style="padding: 4rem 0; background: var(--bg-subtle);">
+            <div class="container"
+                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;">
+                <div>
+                    <h3 style="font-size: 3rem; margin-bottom: 0.5rem;">94%</h3>
+                    <p style="color: var(--text-secondary);">Accuracy Rate</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 3rem; margin-bottom: 0.5rem;">&lt;1s</h3>
+                    <p style="color: var(--text-secondary);">Decision Latency</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 3rem; margin-bottom: 0.5rem;">100%</h3>
+                    <p style="color: var(--text-secondary);">Explainable AI</p>
+                </div>
             </div>
         </section>
 
-        <!-- Our Models Section -->
-        <section class="content-section reveal" style="padding: 2rem 0; background-color: #f8fafc;">
-            <div
-                style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-                <div>
-                    <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 1rem;">Custom
-                        Non-Linear Models</h3>
-                    <p style="color: #475569; line-height: 1.7;">
-                        Our proprietary algorithms take a more sophisticated credit risk modeling approach by evaluating
-                        thousands of applicant details, the past performance of your loans, and the expertise of your
-                        underwriters.
-                        <br><br>
-                        Like humans, our models never stop learning, they continuously optimize themselves. This is the
-                        definition of modern artificial intelligence: not algorithms that think, but algorithms that
-                        learn and evolve.
+        <!-- Section 3: Philosophy (Editorial Layout) -->
+        <section class="philosophy-section" style="padding: var(--space-xl) 0;">
+            <div class="container"
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div class="reveal">
+                    <h2 style="font-size: var(--text-h2); margin-bottom: 1.5rem;">Algorithms that explain themselves.
+                    </h2>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+                        Black box models are a liability. CredAi introduces a new standard of transparency, providing
+                        granular "Why" factors for every approval and rejection, ensuring full alignment with Fair
+                        Lending regulations.
                     </p>
                 </div>
-                <div>
-                    <!-- Visual Placeholder for Graph -->
-                    <div
-                        style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                        <div
-                            style="height: 12px; background: #f1f5f9; border-radius: 99px; margin-bottom: 1rem; width: 80%;">
-                        </div>
-                        <div
-                            style="height: 12px; background: #e2e8f0; border-radius: 99px; margin-bottom: 2rem; width: 60%;">
-                        </div>
-                        <div
-                            style="height: 200px; background: linear-gradient(180deg, rgba(79, 70, 229, 0.1) 0%, rgba(255,255,255,0) 100%); border-bottom: 2px solid #4f46e5; position: relative;">
-                            <div
-                                style="position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: #e2e8f0;">
-                            </div>
-                        </div>
-                        <p style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem;">Predictive
-                            Accuracy vs. Traditional Methods</p>
+                <div class="reveal delay-200"
+                    style="background: var(--bg-subtle); padding: 3rem; border-radius: var(--radius-md);">
+                    <!-- Abstract Visualization Code -->
+                    <div style="font-family: monospace; color: var(--text-tertiary); font-size: 0.9rem;">
+                        > Analyzing Applicant...<br>
+                        > Income Stability: <span style="color: var(--accent-success);">Verified</span><br>
+                        > Debt Load: <span style="color: var(--accent-warning);">Elevated</span><br>
+                        > Logic Chain: <span style="color: var(--text-primary);">Policy_7B -> Risk_Model_v2</span><br>
+                        > Final Decision: <span style="color: var(--text-primary);">REVIEW</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Steps Section -->
-        <section class="content-section reveal" style="padding: 5rem 0;">
-            <div style="max-width: 1000px; margin: 0 auto;">
-                <h2
-                    style="text-align: center; font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 3rem;">
-                    How it works</h2>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+        <!-- Section 4: Workflow Steps -->
+        <section class="workflow-section reveal"
+            style="padding: var(--space-xl) 0; border-top: 1px solid var(--border-light);">
+            <div class="container" style="text-align: center;">
+                <h2 style="margin-bottom: 4rem;">The Modern Credit Stack</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
                     <!-- Step 1 -->
-                    <div style="text-align: center; padding: 2rem; border: 1px solid #e2e8f0; border-radius: 12px;">
-                        <div
-                            style="width: 40px; height: 40px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: bold;">
-                            1</div>
-                        <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Gather your data</h4>
-                        <p style="font-size: 0.9rem; color: #64748b;">Send us your Loan tape and Application tape.</p>
+                    <div class="feature-card"
+                        style="padding: 2rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); text-align: left;">
+                        <span style="font-family: monospace; color: var(--text-tertiary);">01</span>
+                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Ingest</h3>
+                        <p style="color: var(--text-secondary);">Connect structured data from banking APIs or standard
+                            loan tapes.</p>
                     </div>
-
                     <!-- Step 2 -->
-                    <div style="text-align: center; padding: 2rem; border: 1px solid #e2e8f0; border-radius: 12px;">
-                        <div
-                            style="width: 40px; height: 40px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: bold;">
-                            2</div>
-                        <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Custom AI model</h4>
-                        <p style="font-size: 0.9rem; color: #64748b;">We construct a custom model and share an initial
-                            data study showing loss reduction.</p>
+                    <div class="feature-card"
+                        style="padding: 2rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); text-align: left;">
+                        <span style="font-family: monospace; color: var(--text-tertiary);">02</span>
+                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Analysis</h3>
+                        <p style="color: var(--text-secondary);">Ensemble models evaluate solvency, stability, and fraud
+                            risk in parallel.</p>
                     </div>
-
                     <!-- Step 3 -->
-                    <div style="text-align: center; padding: 2rem; border: 1px solid #e2e8f0; border-radius: 12px;">
-                        <div
-                            style="width: 40px; height: 40px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: bold;">
-                            3</div>
-                        <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Try free for 30 days</h4>
-                        <p style="font-size: 0.9rem; color: #64748b;">Connect to your origination system and test the
-                            platform free for the first month.</p>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div style="text-align: center; padding: 2rem; border: 1px solid #e2e8f0; border-radius: 12px;">
-                        <div
-                            style="width: 40px; height: 40px; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: bold;">
-                            4</div>
-                        <h4 style="font-size: 1.1rem; margin-bottom: 0.5rem;">What you get back?</h4>
-                        <p style="font-size: 0.9rem; color: #64748b;">Loss reduction analysis and a ready-to-use custom
-                            model.</p>
+                    <div class="feature-card"
+                        style="padding: 2rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); text-align: left;">
+                        <span style="font-family: monospace; color: var(--text-tertiary);">03</span>
+                        <h3 style="font-size: 1.5rem; margin: 1rem 0;">Pricing</h3>
+                        <p style="color: var(--text-secondary);">Dynamic interest rate and term suggestions based on
+                            risk tier.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Chained Models Section -->
-        <section class="content-section reveal" style="padding: 4rem 0; background: #f8fafc;">
-            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1.5rem;">Chained AI
-                    Models</h2>
-                <p style="font-size: 1.1rem; color: #475569; margin-bottom: 3rem;">
-                    CredAi develops a true artificial intelligence model which effectively replicates the process of a
-                    skilled human underwriter by chaining ensembles:
-                </p>
+        <!-- Footer -->
+        <footer
+            style="padding: 4rem 0; border-top: 1px solid var(--border-light); text-align: center; color: var(--text-tertiary);">
+            <p>&copy; 2026 CredAi Systems. All systems operational.</p>
+        </footer>
+    </main>
 
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-                    <div
-                        style="background: white; padding: 1.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); font-weight: 600;">
-                        1. Score</div>
-                    <div style="display: flex; align-items: center; color: #cbd5e1;">&rarr;</div>
-                    <div
-                        style="background: white; padding: 1.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); font-weight: 600;">
-                        2. Decision</div>
-                    <div style="display: flex; align-items: center; color: #cbd5e1;">&rarr;</div>
-                    <div
-                        style="background: white; padding: 1.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); font-weight: 600;">
-                        3. Pricing</div>
-                    <div style="display: flex; align-items: center; color: #cbd5e1;">&rarr;</div>
-                    <div
-                        style="background: white; padding: 1.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); font-weight: 600;">
-                        4. Explanation</div>
-                </div>
-            </div>
-        </section>
-
-    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

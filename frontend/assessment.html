@@ -11,17 +11,18 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="landing-nav">
-        <a href="index.html" class="brand-logo">CreditAI</a>
+    <nav class="landing-nav" style="backdrop-filter: blur(var(--blur-strength)); background: rgba(255,255,255,0.85);">
+        <a href="index.html" class="brand-logo">CredAi</a>
         <ul class="nav-links">
-            <li><a href="assessment.html" class="active">Assessment</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="capabilities.html">Capabilities</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="assessment.html" style="color: var(--primary-color);">Product</a></li>
+            <li><a href="capabilities.html">Technology</a></li>
+            <li><a href="about.html">About</a></li>
+            <li id="nav-dashboard" class="hidden"><a href="dashboard.html">Dashboard</a></li>
         </ul>
         <div class="nav-actions">
-            <!-- Conditional content could go here, for now static -->
-            <a href="index.html" class="btn-signin">Back to Home</a>
+            <a href="login.html" id="nav-signin" class="btn-signin" style="color: var(--text-secondary);">Sign In</a>
+            <a href="#" id="nav-signout" class="btn-signin hidden">Sign Out</a>
+            <a href="assessment.html" class="btn-start" style="border-radius: var(--radius-sm);">Start Demo</a>
         </div>
     </nav>
 
@@ -78,23 +79,23 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="annual_income">Annual Income ($) <span class="required">*</span></label>
+                            <label for="annual_income">Annual Income (&#8377;) <span class="required">*</span></label>
                             <input type="number" id="annual_income" name="annual_income" required min="0" step="1000">
                         </div>
                         <div class="form-group">
-                            <label for="total_debt">Total Debt ($) <span class="required">*</span></label>
+                            <label for="total_debt">Total Debt (&#8377;) <span class="required">*</span></label>
                             <input type="number" id="total_debt" name="total_debt" required min="0" step="100">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="monthly_debt_obligations">Monthly Obligations ($)</label>
+                            <label for="monthly_debt_obligations">Monthly Obligations (&#8377;)</label>
                             <input type="number" id="monthly_debt_obligations" name="monthly_debt_obligations" min="0"
                                 step="10">
                         </div>
                         <div class="form-group">
-                            <label for="assets_total">Total Assets ($)</label>
+                            <label for="assets_total">Total Assets (&#8377;)</label>
                             <input type="number" id="assets_total" name="assets_total" min="0" step="1000">
                         </div>
                     </div>

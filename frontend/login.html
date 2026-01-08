@@ -145,11 +145,16 @@
 
             // Simulate API Call
             setTimeout(() => {
+                // Set Mock Token
+                localStorage.setItem('auth_token', 'mock-jwt-token-123');
+
                 // Determine redirection based on email (simple mock logic)
                 const email = document.getElementById('email').value;
                 if (email.includes('underwriter')) {
+                    localStorage.setItem('user_role', 'underwriter'); // Store role for UI logic
                     window.location.href = 'dashboard.html';
                 } else {
+                    localStorage.setItem('user_role', 'applicant');
                     window.location.href = 'assessment.html';
                 }
             }, 1000);

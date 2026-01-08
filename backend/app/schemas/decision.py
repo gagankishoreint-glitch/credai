@@ -36,6 +36,7 @@ class DecisionResponse(BaseModel):
     reason_flag: Optional[str] = None
     factors: Optional[List[dict]] = []
     counterfactuals: Optional[List[dict]] = []
+    pricing_details: Optional[dict] = None
     model_version: Optional[str] = None
     status: str  # "SUCCESS", "REJECTED_SAFETY"
     error_message: Optional[str] = None

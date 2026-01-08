@@ -3,6 +3,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit-btn');
     const errorMessage = document.getElementById('error-message');
 
+    // AUTH LOGIC (Global)
+    checkAuth();
+
+    function checkAuth() {
+        const token = localStorage.getItem('auth_token');
+        const navDashboard = document.getElementById('nav-dashboard');
+        const navSignIn = document.getElementById('nav-signin');
+        const navSignOut = document.getElementById('nav-signout');
+
+        if (token) {
+            // Logged In
+            if (navDashboard) navDashboard.classList.remove('hidden');
+            if (navSignIn) navSignIn.classList.add('hidden');
+            if (navSignOut) {
+                navSignOut.classList.remove('hidden');
+                navSignOut.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('auth_token');
+                    localStorage.removeItem('user_role');
+                    window.location.href = 'index.html';
+                });
+            }
+        } else {
+            // Guest
+            if (navDashboard) navDashboard.classList.add('hidden');
+            if (navSignIn) navSignIn.classList.remove('hidden');
+            if (navSignOut) navSignOut.classList.add('hidden');
+        }
+    }
+
     // Result Elements
     // View Containers
     const appView = document.getElementById('application-view');
@@ -27,18 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
             const payload = {
                 applicant_id: formData.get('applicant_id') || undefined,
-                business_type: formData.get('business_type'),
-                age: parseInt(formData.get('age')),
-                credit_score: parseInt(formData.get('credit_score')),
-                annual_income: parseFloat(formData.get('annual_income')),
-                total_debt: parseFloat(formData.get('total_debt')),
-                monthly_debt_obligations: formData.get('monthly_debt_obligations') ? parseFloat(formData.get('monthly_debt_obligations')) : null,
+                business_type: formData.get('business_type') || "Other",
+                age: parseInt(formData.get('age')) || 18,
+                credit_score: parseInt(formData.get('credit_score')) || 300,
+                annual_income: parseFloat(formData.get('annual_income')) || 0,
+                total_debt: parseFloat(formData.get('total_debt')) || 0,
+                monthly_debt_obligations: formData.get('monthly_debt_obligations') ? parseFloat(formData.get('monthly_debt_obligations')) : 0,
                 assets_total: formData.get('assets_total') ? parseFloat(formData.get('assets_total')) : 0.0
             };
 
+            console.log("Submitting Payload:", payload);
+
             const response = await fetch('http://localhost:8000/api/v1/decide', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                mode: 'cors', // Explicitly request CORS
                 body: JSON.stringify(payload)
             });
 
@@ -56,7 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Submission Error:', error);
-            errorMessage.textContent = error.message || 'An unexpected error occurred.';
+            // Show detailed error if available
+            const msg = error.message === 'Failed to fetch'
+                ? 'Cannot connect to Server. Is Backend running on port 8000?'
+                : (error.message || 'An unexpected error occurred.');
+
+            errorMessage.textContent = msg;
             errorMessage.classList.remove('hidden');
             setLoading(false);
         }

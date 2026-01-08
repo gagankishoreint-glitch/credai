@@ -95,4 +95,37 @@ class PolicyEngine:
             
         return tier, min(max(confidence, 0.0), 1.0), flag
 
+    def calculate_pricing(self, tier: str, credit_score: int, total_debt: float, income: float) -> dict:
+        """
+        Generates 'More Decisions': Interest Rate, Max Loan Amount.
+        """
+        # Base Rate (Market Placeholder)
+        base_rate = 5.5
+        
+        # Risk Spread
+        if tier == "Approve":
+            spread = 2.0 if credit_score > 750 else 4.5
+        elif tier == "Review":
+            spread = 7.0
+        else:
+            spread = 12.0 # High risk if overridden
+            
+        final_rate = base_rate + spread
+        
+        # Loan Capacity (DTI based)
+        # Conservative: Max 40% DTI post-loan.
+        monthly_income = income / 12
+        max_monthly_payment = (monthly_income * 0.40) - (total_debt / 12 * 0.03) # Estimating min payment as 3% of debt
+        if max_monthly_payment < 0: max_monthly_payment = 0
+        
+        # PV of annuity (roughly) for 36 months
+        # Simplified: Max Loan ~= Payment * 36 (ignoring interest for rough cap)
+        max_loan = max_monthly_payment * 36
+        
+        return {
+            "approved_amount": round(max_loan, -2) if tier != "Reject" else 0,
+            "interest_rate": round(final_rate, 2),
+            "term_months": 36
+        }
+
 policy_engine = PolicyEngine()

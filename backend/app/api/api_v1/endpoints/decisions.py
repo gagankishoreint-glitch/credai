@@ -146,6 +146,14 @@ def predict_credit_risk(application: CreditApplication):
                 except:
                     pass
                 
+                # Calculate Pricing
+                pricing = policy_engine.calculate_pricing(
+                    tier=decision_tier,
+                    credit_score=application.credit_score,
+                    total_debt=application.total_debt,
+                    income=application.annual_income
+                )
+                
                 # Return enhanced response
                 return DecisionResponse(
                     application_id=application.applicant_id,
@@ -156,6 +164,7 @@ def predict_credit_risk(application: CreditApplication):
                     reason_flag=flag,
                     factors=explanation.get("top_contributors", []),
                     counterfactuals=[{"action": cf} for cf in explanation.get("counterfactuals", [])],
+                    pricing_details=pricing, # New Field
                     model_version=model_ver,
                     status="SUCCESS",
                     error_message=None

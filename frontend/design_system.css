@@ -1,0 +1,135 @@
+:root {
+    /* -------------------------------------------------------------------------- */
+    /*                                 COLOR PALETTE                                */
+    /* -------------------------------------------------------------------------- */
+    /* Backgrounds */
+    --bg-surface: #ffffff;
+    --bg-subtle: #f9fafb;
+    /* Slate 50 */
+    --bg-glass: rgba(255, 255, 255, 0.75);
+
+    /* Text */
+    --text-primary: #0f172a;
+    /* Slate 900 */
+    --text-secondary: #64748b;
+    /* Slate 500 */
+    --text-tertiary: #94a3b8;
+    /* Slate 400 */
+
+    /* Accents (Restrained) */
+    --accent-primary: #111111;
+    /* Onyx Black */
+    --accent-success: #059669;
+    /* Emerald 600 */
+    --accent-warning: #d97706;
+    /* Amber 600 */
+    --accent-danger: #dc2626;
+    /* Red 600 */
+
+    /* Borders */
+    --border-light: #e2e8f0;
+    /* Slate 200 */
+    --border-focus: #94a3b8;
+
+    /* -------------------------------------------------------------------------- */
+    /*                                 TYPOGRAPHY                                   */
+    /* -------------------------------------------------------------------------- */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Scale (Editorial) */
+    --text-display: 4.5rem;
+    /* Hero */
+    --text-h1: 3.5rem;
+    /* Section Headers */
+    --text-h2: 2.5rem;
+    --text-h3: 1.75rem;
+    --text-body: 1.05rem;
+    /* Slightly larger reading size */
+    --text-small: 0.875rem;
+
+    --leading-tight: 1.1;
+    --leading-normal: 1.6;
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   MOTION                                     */
+    /* -------------------------------------------------------------------------- */
+    /* Physics-based Easing */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --duration-fast: 0.3s;
+    --duration-normal: 0.6s;
+    --duration-slow: 0.9s;
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   SPACING                                    */
+    /* -------------------------------------------------------------------------- */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+    /* Dramatic whitespace */
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   EFFECTS                                    */
+    /* -------------------------------------------------------------------------- */
+    --blur-strength: 16px;
+    --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+}
+
+/* RESET & BASE */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: var(--leading-normal);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* UTILITIES */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-tertiary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
