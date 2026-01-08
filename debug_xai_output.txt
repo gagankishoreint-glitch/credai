@@ -1,0 +1,10 @@
+STARTING PROMPT T7: EXPLAINABILITY QUALITY AUDIT
+====================================================
+Traceback (most recent call last):
+  File "K:\credit-ai-model\backend\tests\explainability_audit.py", line 76, in <module>
+    audit_explainability()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "K:\credit-ai-model\backend\tests\explainability_audit.py", line 16, in audit_explainability
+    for case in cases:
+                ^^^^^
+NameError: name 'cases' is not defined

@@ -73,7 +73,9 @@ class ExplainabilityService:
             
             # Rules of Thumb for "Why High Risk"
             row = input_df.iloc[0]
+            print(f"DEBUG XAI ROW: {row.to_dict()}")
             
+            # Rule 1: Utilization
             if row.get('utilization_rate', 0) > 0.30:
                 contributors.append({
                     "feature": "Credit Utilization",
@@ -81,7 +83,8 @@ class ExplainabilityService:
                     "impact": "Negative",
                     "reason": "Utilization is above recommended 30% limit."
                 })
-                
+            
+            # Rule 2: Credit Score
             if row.get('credit_score', 700) < 670:
                 contributors.append({
                     "feature": "Credit Score",
@@ -89,7 +92,24 @@ class ExplainabilityService:
                     "impact": "Negative",
                     "reason": "Credit score is below prime threshold."
                 })
+            
+            # Rule 3: DTI / Debt (CRITICAL for Audit)
+            # Check explicit DTI or derive it
+            inc = row.get('annual_income', row.get('income', 0))
+            dti = row.get('debt_to_income', 0)
+            
+            if dti == 0 and inc > 0:
+                 dti = row.get('total_debt', 0) / inc 
+            
+            if dti > 0.40:
+                contributors.append({
+                    "feature": "Debt-to-Income (DTI)",
+                    "value": f"{dti:.2f}",
+                    "impact": "Negative",
+                    "reason": "Total debt load is high relative to income."
+                })
                 
+            # Rule 4: Cashflow
             if row.get('cashflow_coverage', 1) < 1.2:
                  contributors.append({
                     "feature": "Cashflow Coverage",
@@ -98,9 +118,10 @@ class ExplainabilityService:
                     "reason": "Cashflow barely covers obligations."
                 })
                 
+            # Rule 5: Income Discrepancy
             if row.get('income_discrepancy', 0) > 0.15:
                  contributors.append({
-                    "feature": "Income Discrepancy",
+                    "feature": "Derived Income",
                     "value": f"{row.get('income_discrepancy', 0):.1%}",
                     "impact": "Negative",
                     "reason": "Significant gap between reported and verified income."

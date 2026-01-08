@@ -1,0 +1,25 @@
+STARTING PROMPT T7: EXPLAINABILITY QUALITY AUDIT
+====================================================
+
+[AUDIT] Case: High Debt Case
+   Decision: Reject (Risk: 0.50)
+   Top Factors: []
+   Counterfactuals: []
+   Consistency Check: FAIL (Expected 'debt', got [])
+   Clarity Check: PASS
+   Actionability Check: FAIL
+
+[AUDIT] Case: Low Score Case
+   Decision: Reject (Risk: 0.50)
+   Top Factors: []
+   Counterfactuals: []
+   Consistency Check: FAIL (Expected 'score', got [])
+   Clarity Check: PASS
+   Actionability Check: FAIL
+
+EXPLAINABILITY SCORECARD
+Consistency:   0/2
+Clarity:       2/2
+Actionability: 0/2
+
+AUDIT RESULT: NEEDS IMPROVEMENT
