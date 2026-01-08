@@ -67,16 +67,19 @@ body {
 }
 
 .nav-links a {
-    color: #94a3b8;
-    /* Slate 400 */
+    color: var(--text-light);
+    /* Dark Text from variable */
     text-decoration: none;
     font-size: 0.95rem;
-    font-weight: 500;
-    transition: color 0.2s;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: inline-block;
 }
 
 .nav-links a:hover {
-    color: white;
+    color: var(--primary-blue);
+    transform: translateY(-2px);
+    /* Float effect */
 }
 
 .nav-actions {

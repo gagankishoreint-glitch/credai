@@ -4,30 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underwriter Dashboard - Credit AI</title>
+    <title>Underwriter Dashboard - CredAi</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <!-- Navbar -->
     <nav class="landing-nav">
-        <a href="index.html" class="brand-logo">CreditAI <span
-                style="font-size: 0.5em; font-weight: 400; opacity: 0.7;">| Underwriter</span></a>
+        <a href="index.html" class="brand-logo">CredAi <span
+                style="font-size: 0.5em; font-weight: 400; opacity: 0.7; font-family: var(--font-body); margin-left: 8px;">|
+                Underwriter</span></a>
         <ul class="nav-links">
             <li><a href="assessment.html">New Application</a></li>
-            <li><a href="dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="dashboard.html" class="active" style="color: var(--primary-color);">Dashboard</a></li>
             <li><a href="index.html">Logout</a></li>
         </ul>
         <div class="nav-actions">
-            <div style="width: 32px; height: 32px; background: #334155; border-radius: 50%;"></div>
+            <!-- Avatar -->
+            <div
+                style="width: 32px; height: 32px; background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem;">
+                JD</div>
         </div>
     </nav>
 
     <main class="container main-content">
-        <div class="intro-section">
-            <h2>Application Review: APP-20260108-XYZ</h2>
-            <p>Priority Review • Submitted 10 mins ago • Source: Web Portal</p>
+        <div class="intro-section reveal">
+            <h2 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">Application Review: APP-20260108-XYZ
+            </h2>
+            <p style="color: var(--text-muted);">Priority Review • Submitted 10 mins ago • Source: Web Portal</p>
         </div>
 
         <div class="dashboard-grid">
@@ -37,91 +48,148 @@
                 <div class="metric-card reveal delay-100" style="border-left: 5px solid #ffbc00;"> <!-- Review Color -->
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div>
-                            <h4>AI Recommendation</h4>
-                            <h2 style="color: #f57f17; font-size: 2rem; margin: 0.5rem 0;">REVIEW REQUIRED</h2>
+                            <h4
+                                style="color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">
+                                AI Recommendation</h4>
+                            <h2
+                                style="color: #f59e0b; font-size: 2rem; margin: 0.5rem 0; font-family: var(--font-heading);">
+                                REVIEW REQUIRED</h2>
                             <p class="text-small">Risk Score (PD): <strong>28.4%</strong></p>
                         </div>
                         <div style="text-align: right;">
-                            <h4 style="color: #666;">Confidence</h4>
+                            <h4 style="color: var(--text-muted); font-size: 0.9rem;">Confidence</h4>
                             <h3 style="color: var(--primary-color);">85%</h3>
-                            <div class="confidence-band" style="width: 120px;">
-                                <div class="confidence-level"></div>
+                            <div class="confidence-band"
+                                style="width: 120px; background: #e2e8f0; height: 6px; border-radius: 4px; margin-top: 4px;">
+                                <div class="confidence-level"
+                                    style="width: 85%; background: var(--primary-color); height: 100%; border-radius: 4px;">
+                                </div>
                             </div>
-                            <p class="text-small">Calibrated (Isotonic)</p>
+                            <p class="text-small"
+                                style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Calibrated
+                                (Isotonic)</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Key Drivers -->
                 <div class="metric-card reveal delay-200">
-                    <h3>Key Risk Drivers (LIME/SHAP)</h3>
-                    <div class="risk-factor-item negative">
+                    <h3 style="font-family: var(--font-heading);">Key Risk Drivers (LIME/SHAP)</h3>
+                    <div class="risk-factor-item negative"
+                        style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--glass-border);">
                         <span>High Credit Utilization</span>
-                        <span>-15 pts</span>
+                        <span style="color: #ef4444; font-weight: 600;">-15 pts</span>
                     </div>
-                    <div class="risk-factor-item negative">
+                    <div class="risk-factor-item negative"
+                        style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--glass-border);">
                         <span>Recent Inquiries (Last 6m)</span>
-                        <span>-10 pts</span>
+                        <span style="color: #ef4444; font-weight: 600;">-10 pts</span>
                     </div>
-                    <div class="risk-factor-item positive">
+                    <div class="risk-factor-item positive"
+                        style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--glass-border);">
                         <span>Stable Employment History (5y)</span>
-                        <span>+20 pts</span>
+                        <span style="color: #10b981; font-weight: 600;">+20 pts</span>
                     </div>
-                    <div class="risk-factor-item positive">
+                    <div class="risk-factor-item positive"
+                        style="display: flex; justify-content: space-between; padding: 0.8rem 0;">
                         <span>Verified Income Match</span>
-                        <span>+15 pts</span>
+                        <span style="color: #10b981; font-weight: 600;">+15 pts</span>
                     </div>
                 </div>
 
                 <!-- Counterfactuals -->
                 <div class="metric-card">
-                    <h3>Counterfactual Analysis</h3>
-                    <p><em>"What specific changes would change the decision to APPROVE?"</em></p>
-                    <ul style="margin-top: 0.5rem; padding-left: 1.2rem; color: #555;">
-                        <li>Reduce total debt by <strong>$5,000</strong>.</li>
+                    <h3 style="font-family: var(--font-heading);">Counterfactual Analysis</h3>
+                    <p style="color: var(--text-muted); font-style: italic; margin-bottom: 1rem;">"What specific changes
+                        would change the decision to APPROVE?"</p>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.2rem; color: var(--text-main);">
+                        <li style="margin-bottom: 0.5rem;">Reduce total debt by <strong>$5,000</strong>.</li>
                         <li>Reduce credit utilization from 45% to <strong>30%</strong>.</li>
                     </ul>
+                </div>
+
+                <!-- Audit Log Section (F6 Requirement) -->
+                <div class="metric-card reveal delay-300">
+                    <h3 style="font-family: var(--font-heading);">Immutable Audit Log</h3>
+                    <div class="audit-log" style="font-size: 0.85rem; color: var(--text-muted);">
+                        <div style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">
+                            <strong style="color: var(--text-main);">10:45 AM</strong> - System: AI Decision Generated
+                            (Review Required)
+                        </div>
+                        <div style="padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);">
+                            <strong style="color: var(--text-main);">10:42 AM</strong> - System: Data Enriched via
+                            Bureau API
+                        </div>
+                        <div style="padding: 0.5rem 0;">
+                            <strong style="color: var(--text-main);">10:41 AM</strong> - Applicant: Application
+                            Submitted
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Right Column: Applicant Details & Actions -->
             <div class="details-section">
                 <div class="metric-card reveal delay-300">
-                    <h3>Applicant Summary</h3>
-                    <p><strong>Name:</strong> John Doe</p>
-                    <p><strong>Age:</strong> 34</p>
-                    <p><strong>Credit Score:</strong> 640</p>
-                    <p><strong>Annual Income:</strong> $65,000</p>
-                    <p><strong>DTI Ratio:</strong> 42%</p>
+                    <h3 style="font-family: var(--font-heading);">Applicant Summary</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <p class="text-small" style="color: var(--text-muted);">Name</p>
+                            <p style="font-weight: 600;">John Doe</p>
+                        </div>
+                        <div>
+                            <p class="text-small" style="color: var(--text-muted);">Age</p>
+                            <p style="font-weight: 600;">34</p>
+                        </div>
+                        <div>
+                            <p class="text-small" style="color: var(--text-muted);">Credit Score</p>
+                            <p style="font-weight: 600;">640</p>
+                        </div>
+                        <div>
+                            <p class="text-small" style="color: var(--text-muted);">Income</p>
+                            <p style="font-weight: 600;">$65,000</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="metric-card">
-                    <h3>Document Validation</h3>
-                    <div class="risk-factor-item">
+                    <h3 style="font-family: var(--font-heading);">Document Validation</h3>
+                    <div class="risk-factor-item"
+                        style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
                         <span>Identity (PAN/Aadhaar)</span>
-                        <span style="color: green;">Verified &#10004;</span>
+                        <span style="color: #10b981; font-weight: 600;">Verified &#10004;</span>
                     </div>
-                    <div class="risk-factor-item">
+                    <div class="risk-factor-item"
+                        style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
                         <span>Bank Statements</span>
-                        <span style="color: green;">Verified &#10004;</span>
+                        <span style="color: #10b981; font-weight: 600;">Verified &#10004;</span>
                     </div>
-                    <div class="risk-factor-item">
+                    <div class="risk-factor-item"
+                        style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
                         <span>Tax Returns (ITR)</span>
-                        <span style="color: orange;">Missing</span>
+                        <span style="color: #f59e0b; font-weight: 600;">Missing</span>
                     </div>
                 </div>
 
                 <div class="metric-card">
-                    <h3>Decision Action</h3>
-                    <p class="text-small" style="margin-bottom: 1rem;">All overrides are logged in the immutable audit
-                        trail.</p>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <h3 style="font-family: var(--font-heading);">Decision Action</h3>
+                    <p class="text-small" style="margin-bottom: 1rem; color: var(--text-muted);">All overrides are
+                        logged in the immutable audit trail.</p>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                         <button class="btn-primary"
-                            style="background-color: #388e3c; border: none; width: 100%;">Approve Application</button>
+                            style="background-color: #16a34a; border: none; width: 100%; border-radius: 8px; font-weight: 600;">Approve
+                            Application</button>
                         <button class="btn-primary"
-                            style="background-color: #f57f17; border: none; width: 100%;">Request More Info</button>
+                            style="background-color: #d97706; border: none; width: 100%; border-radius: 8px; font-weight: 600;">Request
+                            More Info</button>
                         <button class="btn-primary"
-                            style="background-color: #d32f2f; border: none; width: 100%;">Reject</button>
+                            style="background-color: #dc2626; border: none; width: 100%; border-radius: 8px; font-weight: 600;">Reject</button>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <label style="font-size: 0.85rem; color: var(--text-muted);">Override Justification</label>
+                        <textarea
+                            style="width: 100%; border: 1px solid var(--glass-border); border-radius: 6px; padding: 0.5rem; font-family: var(--font-body); margin-top: 0.25rem;"
+                            rows="3" placeholder="Required for override..."></textarea>
                     </div>
                 </div>
             </div>

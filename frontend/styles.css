@@ -188,15 +188,18 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-muted);
+    color: var(--text-main);
+    /* Explicitly Dark */
     font-size: 0.95rem;
-    font-weight: 500;
-    transition: color 0.3s;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: white;
+.nav-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    /* Float effect */
 }
 
 .nav-actions {
@@ -281,15 +284,29 @@ body {
     margin-bottom: 2rem;
 }
 
+/* Inputs (Light Mode) */
+.form-group {
+    margin-bottom: 1.5rem;
+    /* Add spacing between inputs */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
 .form-group input,
 .form-group select {
     width: 100%;
     padding: var(--input-padding);
-    background-color: #1f2937;
-    /* Lighter fill for inputs inside dark cards */
-    border: 1px solid #374151;
+    background-color: #f1f5f9;
+    /* Light grey fill */
+    border: 1px solid #cbd5e1;
     border-radius: 8px;
-    color: white;
+    color: var(--text-main);
+    /* Dark text */
     font-size: 1rem;
     transition: all 0.2s;
     box-sizing: border-box;
@@ -299,9 +316,9 @@ body {
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
-    background-color: #111827;
-    /* Darken on focus */
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    /* Purple ring */
 }
 
 .btn-primary {
