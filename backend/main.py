@@ -1,6 +1,7 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-import joblib
+```python
+from db import get_db_connection
+from model import ml_service
+from dotenv import load_dotenv
 import pandas as pd
 import numpy as np
 from fastapi.middleware.cors import CORSMiddleware

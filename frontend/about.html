@@ -25,7 +25,7 @@
             <ul class="nav-menu">
                 <li><a href="application.html" class="nav-link">Application Submission</a></li>
                 <li><a href="dashboard.html" class="nav-link">Risk Score Visualization</a></li>
-                <li><a href="admin.html" class="nav-link">Underwriter Dashboard</a></li>
+                <li><a href="underwriter.html" class="nav-link">Underwriter Dashboard</a></li>
             </ul>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
@@ -143,58 +143,112 @@
         </div>
     </div>
 
-    <!-- PROBLEM & OBJECTIVE -->
+    <!-- PROJECT DETAILS -->
     <div style="background: var(--color-bg-secondary); padding: 100px 0;">
         <div class="container">
             <div class="text-center" style="margin-bottom: 60px;">
-                <p class="label-tag" style="margin-bottom: 24px;">Project Overview</p>
-                <h2 style="margin-bottom: 32px;">AI-Driven Smart Credit Evaluation</h2>
+                <p class="label-tag" style="margin-bottom: 24px;">Project Documentation</p>
+                <h2 style="margin-bottom: 32px;">AI-Driven Smart Credit Evaluation System</h2>
             </div>
 
-            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
-                <div>
-                    <h3 style="margin-bottom: 24px;">Problem Statement</h3>
-                    <p style="color: var(--color-text-secondary); margin-bottom: 40px; line-height: 1.8;">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <!-- 1. Problem Statement -->
+                <div style="margin-bottom: 60px;">
+                    <h3 style="margin-bottom: 24px;">1. Problem Statement</h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 24px;">
                         Financial institutions often face delays in evaluating loan applications due to manual document
-                        verification and rule-based credit assessment. This leads to slower processing times and
-                        inconsistent decisions, especially as application volumes increase.
+                        verification and rule-based credit assessment. This project aims to design and implement an
+                        AI-powered credit evaluation system that can analyze applicant data and generate faster, more
+                        consistent credit risk decisions for business customers.
                     </p>
+                </div>
 
-                    <h3 style="margin-bottom: 24px;">Our Objective</h3>
-                    <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
-                        <li style="margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
-                            <ion-icon name="arrow-forward-circle"
-                                style="color: var(--color-accent-blue); font-size: 24px;"></ion-icon>
-                            Automate creditworthiness assessment
-                        </li>
-                        <li style="margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
-                            <ion-icon name="arrow-forward-circle"
-                                style="color: var(--color-accent-blue); font-size: 24px;"></ion-icon>
-                            Reduce decision time significantly (days to seconds)
-                        </li>
-                        <li style="display: flex; align-items: center; gap: 12px;">
-                            <ion-icon name="arrow-forward-circle"
-                                style="color: var(--color-accent-blue); font-size: 24px;"></ion-icon>
-                            Assist human underwriters with data-driven insights
-                        </li>
+                <!-- 2. Objective -->
+                <div style="margin-bottom: 60px;">
+                    <h3 style="margin-bottom: 24px;">2. Objective</h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8;">
+                        To develop an intelligent system that:
+                    </p>
+                    <ul
+                        style="color: var(--color-text-secondary); line-height: 1.8; list-style-type: disc; padding-left: 20px; margin-top: 16px;">
+                        <li>Automates creditworthiness assessment</li>
+                        <li>Reduces decision time significantly</li>
+                        <li>Assists human underwriters with data-driven insights</li>
                     </ul>
                 </div>
 
-                <div>
-                    <h3 style="margin-bottom: 24px;">Motivation & Background</h3>
-                    <p style="color: var(--color-text-secondary); margin-bottom: 24px; line-height: 1.8;">
-                        Traditional credit evaluation relies on manual scrutiny of financial documents and static rules.
-                        These methods are prone to inconsistency and cannot easily scale.
+                <!-- 3. Motivation -->
+                <div style="margin-bottom: 60px;">
+                    <h3 style="margin-bottom: 24px;">3. Motivation & Background</h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 16px;">
+                        Traditional credit evaluation methods rely heavily on:
                     </p>
+                    <ul
+                        style="color: var(--color-text-secondary); line-height: 1.8; list-style-type: disc; padding-left: 20px; margin-bottom: 16px;">
+                        <li>Manual scrutiny of financial documents</li>
+                        <li>Static rules</li>
+                        <li>Limited historical trend analysis</li>
+                    </ul>
                     <p style="color: var(--color-text-secondary); line-height: 1.8;">
-                        Advances in machine learning and predictive analytics allow us to modernize this process.
-                        Our system accepts digital applications, processes structured and unstructured data, and
-                        generates
-                        a near real-time credit risk score to support safer lending.
+                        These methods are slow and prone to inconsistency, especially when application volumes increase.
+                        Advances in machine learning, document intelligence, and predictive analytics can help modernize
+                        this process by enabling near real-time credit assessment.
+                    </p>
+                </div>
+
+                <!-- 4. Scope -->
+                <div style="margin-bottom: 60px;">
+                    <h3 style="margin-bottom: 24px;">4. Scope of the Project</h3>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 16px;">
+                        Students will design an end-to-end solution that:
+                    </p>
+                    <ul
+                        style="color: var(--color-text-secondary); line-height: 1.8; list-style-type: disc; padding-left: 20px; margin-bottom: 16px;">
+                        <li>Accepts business loan applications digitally</li>
+                        <li>Extracts and processes structured and unstructured data</li>
+                        <li>Generates a credit risk score and recommendation</li>
+                    </ul>
+                    <p style="color: var(--color-text-secondary); line-height: 1.8;">
+                        The system is intended as a decision-support tool, not a full replacement for human judgment.
                     </p>
                 </div>
             </div>
         </div>
+    </div>
+    </p>
+
+    <h3 style="margin-bottom: 24px;">Our Objective</h3>
+    <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
+        <li style="margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+            <ion-icon name="arrow-forward-circle" style="color: var(--color-accent-blue); font-size: 24px;"></ion-icon>
+            Automate creditworthiness assessment
+        </li>
+        <li style="margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+            <ion-icon name="arrow-forward-circle" style="color: var(--color-accent-blue); font-size: 24px;"></ion-icon>
+            Reduce decision time significantly (days to seconds)
+        </li>
+        <li style="display: flex; align-items: center; gap: 12px;">
+            <ion-icon name="arrow-forward-circle" style="color: var(--color-accent-blue); font-size: 24px;"></ion-icon>
+            Assist human underwriters with data-driven insights
+        </li>
+    </ul>
+    </div>
+
+    <div>
+        <h3 style="margin-bottom: 24px;">Motivation & Background</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: 24px; line-height: 1.8;">
+            Traditional credit evaluation relies on manual scrutiny of financial documents and static rules.
+            These methods are prone to inconsistency and cannot easily scale.
+        </p>
+        <p style="color: var(--color-text-secondary); line-height: 1.8;">
+            Advances in machine learning and predictive analytics allow us to modernize this process.
+            Our system accepts digital applications, processes structured and unstructured data, and
+            generates
+            a near real-time credit risk score to support safer lending.
+        </p>
+    </div>
+    </div>
+    </div>
     </div>
 
     <!-- SCOPE OF PROJECT -->

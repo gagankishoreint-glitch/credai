@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Check if at least one PDF has been uploaded
-        if (!window.uploadedFiles || window.uploadedFiles.length === 0) {
-            alert('❌ Please upload at least one bank statement (PDF) before submitting your application.');
-            // Scroll to documents section
-            document.getElementById('step-3').scrollIntoView({ behavior: 'smooth' });
-            return;
-        }
+        // if (!window.uploadedFiles || window.uploadedFiles.length === 0) {
+        //     alert('❌ Please upload at least one bank statement (PDF) before submitting your application.');
+        //     // Scroll to documents section
+        //     document.getElementById('step-3').scrollIntoView({ behavior: 'smooth' });
+        //     return;
+        // }
 
         // Show loading state
         const submitBtn = form.querySelector('button[type="submit"]');
@@ -62,17 +62,29 @@ document.addEventListener('DOMContentLoaded', function () {
             const amount = parseFloat(document.querySelector('[name="loan_amount"]').value);
 
             // Get form data - using name attributes as fallback if IDs don't exist
+            // Get form data - using name attributes
             const formData = {
                 userId: user.id || user.uid,
                 applicantEmail: document.querySelector('[name="email"]')?.value || user.email || 'demo@example.com',
                 phoneNumber: document.querySelector('[name="phone"]')?.value || 'N/A',
+                // Unified Schema (Lending Club + Home Credit)
+                amt_income_total: parseFloat(document.querySelector('[name="annual_revenue"]').value),
+                amt_credit: parseFloat(document.querySelector('[name="loan_amount"]').value),
+                amt_goods_price: parseFloat(document.querySelector('[name="collateral_value"]').value),
+                emp_length: parseInt(document.querySelector('[name="years_in_operation"]').value),
+
+                // Existing/Helper fields
                 annualRevenue: parseFloat(document.querySelector('[name="annual_revenue"]').value),
-                yearsInBusiness: parseInt(document.querySelector('[name="years_in_operation"]').value),
-                employeeCount: parseInt(document.querySelector('[name="employees"]')?.value) || 0,
-                creditScore: parseInt(document.querySelector('[name="credit_score"]')?.value) || 0,
-                loanPurpose: document.querySelector('[name="purpose"]')?.value || 'Business expansion',
-                operatingExpenses: parseFloat(document.querySelector('[name="operating_expenses"]')?.value) || 0,
-                industry: document.querySelector('[name="industry_type"]').value,
+                monthly_cashflow: parseFloat(document.querySelector('[name="monthly_cashflow"]').value),
+                operating_expenses: parseFloat(document.querySelector('[name="operating_expenses"]').value),
+
+                // Risk
+                dti: parseFloat(document.querySelector('[name="debt_to_income_ratio"]').value),
+                fico_score: parseInt(document.querySelector('[name="credit_score"]')?.value) || 700, // Default if hidden
+
+                // Business Specific
+                business_type: document.querySelector('[name="business_type"]').value,
+                repayment_history: document.querySelector('[name="repayment_history"]').value
             };
 
             const API_BASE_URL = window.API_CONFIG ? window.API_CONFIG.BASE_URL : '/api';

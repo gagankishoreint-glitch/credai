@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             <div class="feature-card glow-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
                     <div>
-                        <h3 style="margin: 0;">${data.businessName || 'Loan Application'}</h3>
-                        <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 8px;">Submitted on ${dateStr} • ID: #${appId.substr(0, 6)}</p>
+                        <h3 style="margin: 0;">${data.business_name || 'Loan Application'}</h3>
+                        <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 8px;">Submitted on ${dateStr} • ID: #${appId.toString().substr(0, 6)}</p>
                     </div>
                     <span style="background: ${statusNode.bg}; color: ${statusNode.color}; padding: 8px 16px; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 600;">
                         ${statusNode.text}
@@ -148,13 +148,13 @@ document.addEventListener('DOMContentLoaded', async function () {
                     <div style="position: absolute; bottom: 0; left: 50%; width: 160px; height: 80px; background: var(--color-bg-card); transform: translateX(-50%); border-top-left-radius: 80px; border-top-right-radius: 80px;"></div>
                     
                     <!-- Needle Visualization -->
-                    <div style="position: absolute; bottom: 0; left: 50%; width: 4px; height: 90px; background: var(--gradient-primary); transform-origin: bottom center; transform: translateX(-50%) rotate(${calculateNeedleRotation(data.creditScore || 720)}deg); box-shadow: 0 0 10px rgba(90, 69, 255, 0.5);"></div>
+                    <div style="position: absolute; bottom: 0; left: 50%; width: 4px; height: 90px; background: var(--gradient-primary); transform-origin: bottom center; transform: translateX(-50%) rotate(${calculateNeedleRotation(data.ai_score || 350)}deg); box-shadow: 0 0 10px rgba(90, 69, 255, 0.5);"></div>
                 </div>
 
                 <!-- Score Display: Fixed Margin to Prevent Overlap -->
                 <div style="margin-top: 10px; margin-bottom: 32px;">
                     <h2 style="font-size: 3.5rem; margin-bottom: 0; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        ${data.creditScore || 720}
+                        ${data.ai_score || '---'}
                     </h2>
                     <p style="color: var(--color-text-secondary);">${statusNode.step === 3 ? 'Final Score' : 'Pending Final Review'}</p>
                 </div>

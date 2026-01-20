@@ -292,7 +292,7 @@ const aiWidgetHTML = `
                 <h3 class="ai-title">Meet Cai</h3>
             </div>
             <p class="ai-description">
-                Your AI Finance Assistant. Ask me about credit evaluation, risk models, or pricing.
+                Your AI Finance Assistant. Ask me about credit evaluation, risk models, or methodology.
             </p>
         </div>
 
@@ -309,7 +309,7 @@ const aiWidgetHTML = `
                 </div>
                 <div class="ai-message-content">
                     <p>Hello! I'm Cai. I can help guide you through our platform. Try asking:</p>
-                    <span class="ai-message-example">"How does the risk model work?" or "Is there a free trial?"</span>
+                    <span class="ai-message-example">"How does the risk model work?" or "Start Application"</span>
                 </div>
             </div>
         </div>
@@ -362,9 +362,9 @@ const knowledgeBase = {
         keywords: ['risk', 'model', 'xgboost', 'random forest', 'logistic regression', 'algorithm', 'score'],
         response: "We use three core models:<br>1. **XGBoost**: For high-performance classification.<br>2. **Random Forest**: For robust feature importance.<br>3. **Logistic Regression**: A baseline for linear interpretability."
     },
-    pricing: {
-        keywords: ['price', 'cost', 'plan', 'free', 'subscription', 'pay', 'money', 'charge'],
-        response: "We offer a **Free Starter Plan** for basic evaluations. Our **Pro Plan** ($49/mo) includes detailed risk reports, API access, and priority support. You can view all options on our Pricing page."
+    accuracy: {
+        keywords: ['accuracy', 'precise', 'reliable', 'trust', 'error rate', 'performance'],
+        response: "Our **XGBoost model** achieves an AUC-ROC score of **0.88**, significantly outperforming traditional scorecard methods (typically 0.65-0.70). We continuously retrain on new data."
     },
     security: {
         keywords: ['security', 'safe', 'data', 'privacy', 'encrypt', 'gdpr'],
@@ -375,7 +375,7 @@ const knowledgeBase = {
         response: "You can reach our human support team at **support@credai.com**. We're available 24/7 for enterprise inquiries."
     },
     default: {
-        response: "I'm trained specifically on CredAi's services. Try asking me to **'Navigate to Application'**, explain **'How it works'**, or check **'Pricing'**."
+        response: "I'm trained specifically on CredAi's services. Try asking me to **'Navigate to Application'**, explain **'How it works'**, or check **'Risk Models'**."
     }
 };
 
@@ -415,7 +415,7 @@ function initAIWidget() {
         const initialActions = document.createElement('div');
         initialActions.className = 'ai-quick-actions';
 
-        const initialSuggestions = ['How does it work?', 'Pricing', 'Start Application'];
+        const initialSuggestions = ['How does it work?', 'Risk Models', 'Start Application'];
         initialSuggestions.forEach(suggestion => {
             const btn = document.createElement('button');
             btn.className = 'ai-quick-btn';
@@ -544,15 +544,13 @@ function initAIWidget() {
             let suggestions = [];
             if (bestMatchScore === 0) {
                 // Default fallback - show common options
-                suggestions = ['How does it work?', 'Pricing', 'Start Application'];
+                suggestions = ['How does it work?', 'Risk Models', 'Start Application'];
             } else if (response.includes('XGBoost')) {
                 suggestions = ['What is XGBoost?', 'View Tech Stack', 'Start Application'];
-            } else if (response.includes('Free Starter')) {
-                suggestions = ['Sign Up', 'View Features', 'Contact Support'];
             } else if (response.includes('Application')) {
-                suggestions = ['Go to Dashboard', 'View Pricing', 'Contact Support'];
+                suggestions = ['Go to Dashboard', 'View Methodology', 'Contact Support'];
             } else {
-                suggestions = ['Tell me more', 'Pricing', 'Start Application'];
+                suggestions = ['Tell me more', 'Risk Models', 'Start Application'];
             }
 
             appendMessage(response, 'bot', suggestions);

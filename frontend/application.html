@@ -25,7 +25,7 @@
             <ul class="nav-menu">
                 <li><a href="application.html" class="nav-link">Application Submission</a></li>
                 <li><a href="dashboard.html" class="nav-link">Risk Score Visualization</a></li>
-                <li><a href="admin.html" class="nav-link">Underwriter Dashboard</a></li>
+                <li><a href="underwriter.html" class="nav-link">Underwriter Dashboard</a></li>
             </ul>
 
 
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <form id="application-form">
+            <form id="application-form" novalidate>
                 <!-- STEP 1: BUSINESS BASICS -->
                 <div class="step-content active" id="step-1">
                     <div class="form-group">
@@ -70,9 +70,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Industry Type</label>
+                        <label class="form-label">Business Type</label>
+                        <select id="businessType" class="form-select" name="business_type" required>
+                            <option value="">Select type...</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Trading">Trading</option>
+                            <option value="Services">Services</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Industry Sector</label>
                         <select id="industry" class="form-select" name="industry_type" required>
-                            <option value="">Select industry...</option>
+                            <option value="">Select sector...</option>
                             <option value="Retail">Retail</option>
                             <option value="Services">Services</option>
                             <option value="Manufacturing">Manufacturing</option>
@@ -102,14 +112,47 @@
                             <input type="number" id="revenue" class="form-input" name="annual_revenue" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Requested Loan Amount ($)</label>
-                            <input type="number" id="loanAmount" class="form-input" name="loan_amount" required>
+                            <label class="form-label">Monthly Cash Flow ($)</label>
+                            <input type="number" id="cashflow" class="form-input" name="monthly_cashflow" required>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Monthly Operating Expenses ($)</label>
-                        <input type="number" class="form-input" name="operating_expenses" required>
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Requested Loan ($)</label>
+                            <input type="number" id="loanAmount" class="form-input" name="loan_amount" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Collateral Value ($)</label>
+                            <input type="number" id="collateral" class="form-input" name="collateral_value" required>
+                        </div>
+                    </div>
+
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Operating Expenses ($/mo)</label>
+                            <input type="number" class="form-input" name="operating_expenses" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Debt-to-Income Ratio (0-1)</label>
+                            <input type="number" class="form-input" name="debt_to_income_ratio" step="0.01" max="1"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Existing Loans</label>
+                            <input type="number" class="form-input" name="existing_loans" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Repayment History</label>
+                            <select class="form-select" name="repayment_history" required>
+                                <option value="Good">Good (On Time)</option>
+                                <option value="Average">Average (Occasional Delay)</option>
+                                <option value="Poor">Poor (Frequent Default)</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-actions">
@@ -206,8 +249,8 @@
                                 <div style="margin-bottom: 16px;">
                                     <p
                                         style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 4px;">
-                                        Detected Monthly Revenue</p>
-                                    <h3 style="margin: 0;">₹ 12,50,000</h3>
+                                        Detected Annual Revenue</p>
+                                    <h3 style="margin: 0;" id="ai-revenue-display">--</h3>
                                 </div>
 
                                 <div class="grid"
@@ -215,14 +258,14 @@
                                     <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
                                         <p
                                             style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 4px;">
-                                            Avg Balance</p>
-                                        <strong style="color: var(--color-white);">₹ 4.2L</strong>
+                                            Proj. Mthly Cashflow</p>
+                                        <strong style="color: var(--color-white);" id="ai-cashflow-display">--</strong>
                                     </div>
                                     <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
                                         <p
                                             style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 4px;">
-                                            Bounces</p>
-                                        <strong style="color: #ef4444;">0 Detected</strong>
+                                            Risk Flags</p>
+                                        <strong style="color: #ef4444;" id="ai-risk-display">Scanning...</strong>
                                     </div>
                                 </div>
 
@@ -230,8 +273,8 @@
                                     <p style="font-size: 0.9rem; margin-bottom: 8px;">Health Score</p>
                                     <div
                                         style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px;">
-                                        <div
-                                            style="width: 85%; height: 100%; background: var(--gradient-primary); border-radius: 4px;">
+                                        <div id="ai-health-bar"
+                                            style="width: 0%; height: 100%; background: var(--gradient-primary); border-radius: 4px; transition: width 1s ease;">
                                         </div>
                                     </div>
                                 </div>
@@ -469,13 +512,81 @@
             analysisPanel.style.borderStyle = 'solid';
             analysisPanel.style.borderColor = 'var(--color-accent-blue)';
 
+            // Fetch Input Data from Step 2
+            let revenueInput = parseFloat(document.getElementById('revenue').value) || 0;
+            let cashflowInput = parseFloat(document.getElementById('cashflow').value) || 0;
+            let expensesInput = parseFloat(document.querySelector('input[name="operating_expenses"]').value) || 0;
+
+            // FALLBACK SIMULATION: If inputs are empty (User skipped Step 2), generate plausible data
+            if (revenueInput === 0) {
+                // Generate random revenue between 500k and 2M
+                revenueInput = Math.floor(Math.random() * (2000000 - 500000 + 1)) + 500000;
+                // Cashflow approx 10-20% of revenue
+                cashflowInput = Math.floor(revenueInput * (0.1 + Math.random() * 0.1));
+                // Expenses approx 70-90% of monthly revenue
+                expensesInput = (revenueInput / 12) * (0.7 + Math.random() * 0.2);
+            }
+
+            // Logic Simulation
             setTimeout(() => {
                 // UI State: Complete
                 analysisLoading.style.display = 'none';
                 analysisResult.style.display = 'block';
                 analysisPanel.style.justifyContent = 'flex-start'; // Align top
                 analysisPanel.style.background = 'linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%)';
-            }, 3000);
+
+                // Update Dynamic Values
+                // Format Currency (USD or INR based on context, defaulting to $)
+                const formatMoney = (amount) => {
+                    return '$' + Math.floor(amount).toLocaleString('en-US');
+                };
+
+                document.getElementById('ai-revenue-display').textContent = formatMoney(revenueInput);
+                document.getElementById('ai-cashflow-display').textContent = formatMoney(cashflowInput / 12); // Monthly Cashflow
+
+                // Calculate Risk Flags
+                let riskText = "0 Detected";
+                let riskColor = "#10B981"; // Green
+
+                // Simple logic: If Profit Margin is low or negative
+                const monthlyRevenue = revenueInput / 12;
+                const impliedProfit = monthlyRevenue - expensesInput;
+
+                if (impliedProfit < 0) {
+                    riskText = "High Burn Rate";
+                    riskColor = "#EF4444"; // Red
+                } else if ((cashflowInput / 12) < expensesInput) {
+                    riskText = "Cashflow Strain";
+                    riskColor = "#F59E0B"; // Orange
+                }
+
+                const riskEl = document.getElementById('ai-risk-display');
+                riskEl.textContent = riskText;
+                riskEl.style.color = riskColor;
+
+                // Calculate Health Score Bar
+                // Ratio of Cashflow to Revenue (just a heuristic for viz)
+                let healthRatio = 0;
+                if (revenueInput > 0) {
+                    healthRatio = (cashflowInput) / revenueInput; // Annual to Annual
+                    // Normalize visuals: typical health is 0.1 to 0.3 margin
+                    healthRatio = (healthRatio / 0.2) * 100;
+                    if (healthRatio > 100) healthRatio = 100;
+                    if (healthRatio < 10) healthRatio = 10;
+                }
+
+                document.getElementById('ai-health-bar').style.width = `${healthRatio}%`;
+
+                // Set color based on score
+                if (healthRatio < 40) {
+                    document.getElementById('ai-health-bar').style.backgroundColor = '#EF4444';
+                } else if (healthRatio < 70) {
+                    document.getElementById('ai-health-bar').style.backgroundColor = '#F59E0B';
+                } else {
+                    document.getElementById('ai-health-bar').style.backgroundColor = '#10B981';
+                }
+
+            }, 2500);
         }
     </script>
 
