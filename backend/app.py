@@ -4,8 +4,9 @@ import os
 import bcrypt
 import jwt
 import datetime
+import psycopg2
 from db import get_db_connection
-from ml_model import ml_service
+from model import ml_service
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -169,6 +170,12 @@ def submit_application(current_user_id):
     # Merge amount into data for processing
     process_data = app_data.copy()
     process_data['loanAmount'] = amount
+    process_data['business_type'] = app_data.get('businessType')
+    process_data['monthly_cashflow'] = app_data.get('monthlyCashflow')
+    process_data['collateral_value'] = app_data.get('collateralValue')
+    process_data['debt_to_income_ratio'] = app_data.get('debtToIncomeRatio')
+    process_data['existing_loans'] = app_data.get('existingLoans')
+    process_data['repayment_history'] = app_data.get('repaymentHistory')
     
     prediction = ml_service.predict(process_data)
     
